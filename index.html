@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>document.documentElement.classList.add('dark-theme');</script>
+<title>Islamic World Pro — Qur'an, Prayer Times &amp; Qibla Companion</title>
+<meta name="description" content="Islamic World Pro brings the Qur'an, prayer times, Qibla direction, Azkar, Duas, Tasbih, Zakat, Hajj &amp; Umrah guidance, a Kids Corner and more into one calm, offline-ready app.">
+<meta name="theme-color" content="#050a10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Islamic World Pro">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://islamicworldpro.com/">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Islamic World Pro">
+<meta property="og:url" content="https://islamicworldpro.com/">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Islamic World Pro — Qur'an, Prayer Times &amp; Qibla Companion">
+<meta property="og:description" content="One calm, offline-ready app for the Qur'an, prayer, and daily remembrance.">
+<meta property="og:image" content="https://islamicworldpro.com/assets/img/social-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Islamic World Pro">
+<meta name="twitter:image" content="https://islamicworldpro.com/assets/img/social-share.jpg">
+<link rel="stylesheet" href="assets/liquid.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://islamicworldpro.com/#organization",
+      "name": "Islamic World Pro",
+      "url": "https://islamicworldpro.com/",
+      "logo": "https://islamicworldpro.com/assets/img/logo.png",
+      "email": "usamaahmedahmed5@gmail.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://islamicworldpro.com/#website",
+      "url": "https://islamicworldpro.com/",
+      "name": "Islamic World Pro",
+      "publisher": { "@id": "https://islamicworldpro.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Islamic World Pro",
+      "operatingSystem": "Android",
+      "applicationCategory": "LifestyleApplication",
+      "description": "Islamic World Pro brings the Qur'an, prayer times, Qibla direction, Azkar, Duas, Tasbih, Zakat, Hajj & Umrah guidance, a Kids Corner and more into one calm, offline-ready app.",
+      "url": "https://islamicworldpro.com/",
+      "image": "https://islamicworldpro.com/assets/img/social-share.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": { "@id": "https://islamicworldpro.com/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://islamicworldpro.com/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need internet access for prayer times to work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Once your location is set, prayer times and Adhan alerts continue working offline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I deny location permission?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The app falls back gracefully to Makkah as a default, so it still functions — accuracy for your local prayer times simply improves once location is enabled."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why didn't my Adhan alert go off?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Android 12 and newer, exact alarms and battery optimisation can silently block notifications unless permission is granted. Islamic World Pro prompts for both directly inside the app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Islamic World Pro free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It's free to download, with no account required to get started."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" aria-hidden="true">
+  <div class="loader-mark"><img src="assets/img/logo.png" alt="" width="64" height="64"></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ============ AMBIENT LAYERS ============ -->
+<div class="aurora-field" aria-hidden="true">
+  <div class="aurora-blob b1"></div>
+  <div class="aurora-blob b2"></div>
+  <div class="aurora-blob b3"></div>
+</div>
+<div class="noise-layer" aria-hidden="true"></div>
+<div class="spotlight" aria-hidden="true"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav-premium glass" aria-label="Primary">
+  <a href="/" class="nav-brand">
+    <img src="assets/img/logo.png" alt="Islamic World Pro logo" width="32" height="32">
+    <span>Islamic World Pro</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-list" id="navLinks">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#quran">Qur'an</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <a href="/download" class="btn btn-gold nav-cta" data-play-store data-cursor-hover>Get the App</a>
+</nav>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<header class="hero-premium" id="hero" data-nav-section>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <svg class="hero-ornament" viewBox="0 0 300 300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="url(#ornGrad)" stroke-width="1">
+          <path d="M150 12 L173 92 L253 68 L196 128 L268 150 L196 172 L253 232 L173 208 L150 288 L127 208 L47 232 L104 172 L32 150 L104 128 L47 68 L127 92 Z"/>
+          <circle cx="150" cy="150" r="118"/>
+          <circle cx="150" cy="150" r="90"/>
+        </g>
+        <defs>
+          <linearGradient id="ornGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f1b98d"/>
+            <stop offset="1" stop-color="#2f8f6f"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="eyebrow-glass glass" data-reveal="fade-down"><span class="dot"></span> Islamic World Pro</div>
+      <p class="hero-bismillah" dir="rtl" lang="ar" data-reveal="fade-down" aria-hidden="true">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1 class="hero-title" aria-label="One quiet place for the Qur'an, your prayers, and your daily remembrance.">
+        <span class="word" style="--i:0">One</span> <span class="word" style="--i:1">quiet</span> <span class="word" style="--i:2">place</span> <span class="word" style="--i:3">for</span> <span class="word" style="--i:4">the</span> <span class="word" style="--i:5">Qur'an,</span> <span class="word" style="--i:6">your</span> <span class="word" style="--i:7">prayers,</span> <span class="word" style="--i:8">and</span> <span class="word" style="--i:9">your</span> <span class="word" style="--i:10">daily</span> <span class="word" style="--i:11">remembrance.</span>
+      </h1>
+      <p class="hero-lede" data-reveal="fade-up">Prayer times, Qibla direction, the full Qur'an with Tajweed colouring, Azkar, Duas, Hadith, Tasbih, Zakat, Hajj &amp; Umrah guidance, and a dedicated Kids Corner — all in a single app built to work even when your connection doesn't.</p>
+      <ul class="hero-pillars" data-stagger>
+        <li class="hero-pillar glass" data-cursor-hover><img src="assets/img/icons/icon-quran.png" alt="" width="22" height="22" loading="lazy"><span>Qur'an</span></li>
+        <li class="hero-pillar glass" data-cursor-hover><img src="assets/img/icons/icon-prayer.png" alt="" width="22" height="22" loading="lazy"><span>Prayer Times</span></li>
+        <li class="hero-pillar glass" data-cursor-hover><img src="assets/img/icons/icon-qibla.png" alt="" width="22" height="22" loading="lazy"><span>Qibla</span></li>
+        <li class="hero-pillar glass" data-cursor-hover><img src="assets/img/icons/icon-azkar.png" alt="" width="22" height="22" loading="lazy"><span>Azkar</span></li>
+      </ul>
+      <div class="hero-cta-row" data-reveal="fade-up">
+        <div class="btn-border-anim">
+          <a href="/download" class="btn btn-gold" data-play-store data-cursor-hover>
+            Get it on Google Play
+            <span class="badge-soon" data-coming-soon-badge>Coming soon</span>
+          </a>
+        </div>
+        <a href="#features" class="btn btn-glass glass" data-cursor-hover>Explore features</a>
+      </div>
+      <div class="hero-stats" data-reveal="fade-up">
+        <div class="stat"><span class="num">5</span><span class="label">Daily prayers tracked</span></div>
+        <div class="stat"><span class="num">13</span><span class="label">Worship tools in one app</span></div>
+        <div class="stat"><span class="num">100</span><span class="label">% works offline once loaded</span></div>
+      </div>
+    </div>
+
+    <div class="instrument-wrap" data-parallax="14">
+      <div class="floating-shape f1" data-parallax="30"></div>
+      <div class="floating-shape f2" data-parallax="-24"></div>
+      <div class="floating-shape f3" data-parallax="40"></div>
+      <div class="instrument-glass glass">
+        <div class="instrument-ring"></div>
+        <div class="instrument-ring r2"></div>
+        <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="210" cy="210" r="205" stroke="#dd7f4a" stroke-opacity="0.25"/>
+          <circle cx="210" cy="210" r="172" stroke="#dd7f4a" stroke-opacity="0.35"/>
+          <g stroke="#dd7f4a" stroke-opacity="0.55" stroke-width="1.4">
+            <line x1="210" y1="8" x2="210" y2="34"/>
+            <line x1="210" y1="386" x2="210" y2="412"/>
+            <line x1="8" y1="210" x2="34" y2="210"/>
+            <line x1="386" y1="210" x2="412" y2="210"/>
+          </g>
+          <g transform="translate(210,210)" fill="#dd7f4a" fill-opacity="0.9">
+            <path d="M0,-118 L20,-40 L98,-58 L36,-14 L74,54 L0,20 L-74,54 L-36,-14 L-98,-58 L-20,-40 Z" fill-opacity="0.14" stroke="#f1b98d" stroke-opacity="0.5"/>
+          </g>
+          <circle cx="210" cy="210" r="10" fill="#faf6ef"/>
+          <path d="M210,86 L222,210 L210,222 L198,210 Z" fill="#f1b98d"/>
+          <path d="M210,334 L222,210 L210,198 L198,210 Z" fill="#7fa3e0" fill-opacity="0.6"/>
+          <text x="210" y="52" text-anchor="middle" fill="#f0e8d9" font-family="Amiri, serif" font-size="15">Makkah</text>
+        </svg>
+      </div>
+
+      <div class="icon-orbit" aria-hidden="true">
+        <div class="orbit-icon oi-1" style="--delay:0s;"><img src="assets/img/icons/icon-quran.png" alt="" width="40" height="40" loading="lazy"></div>
+        <div class="orbit-icon oi-2" style="--delay:-5s;"><img src="assets/img/icons/icon-prayer.png" alt="" width="40" height="40" loading="lazy"></div>
+        <div class="orbit-icon oi-3" style="--delay:-10s;"><img src="assets/img/icons/icon-qibla.png" alt="" width="40" height="40" loading="lazy"></div>
+        <div class="orbit-icon oi-4" style="--delay:-15s;"><img src="assets/img/icons/icon-azkar.png" alt="" width="40" height="40" loading="lazy"></div>
+        <div class="orbit-icon oi-5" style="--delay:-20s;"><img src="assets/img/icons/icon-tasbih.png" alt="" width="40" height="40" loading="lazy"></div>
+        <div class="orbit-icon oi-6" style="--delay:-25s;"><img src="assets/img/icons/icon-calendar.png" alt="" width="40" height="40" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>Scroll</span><div class="stick"></div></div>
+</header>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip-wrap">
+  <div class="container">
+    <div class="trust-strip glass" data-reveal="fade-up">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 9.5L2 12l2.5 2.5M19.5 9.5L22 12l-2.5 2.5M14.5 5l-5 14"/></svg>
+        <span>No ads, ever</span>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 9-4.6-.5-8-4-8-9V7l8-4z"/></svg>
+        <span>No account needed</span>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
+        <span>Works fully offline</span>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.8 9 2.5 5.5 6 5c2-.3 4 .9 6 3.5C14 5.9 16 4.7 18 5c3.5.5 5.2 4 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
+        <span>Always free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRAYER STRIP ============ -->
+<section class="section-tight" id="prayer" data-nav-section>
+  <div class="container">
+    <div class="section-head center" data-reveal="fade-up">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">The five, in order</div>
+      <h2><span class="underline-draw">A day held together by five moments</span></h2>
+    </div>
+    <div class="prayer-strip" data-stagger>
+      <div class="prayer-cell glass"><div class="name">Fajr</div><div class="arabic">الفجر</div><div class="desc">Before sunrise</div></div>
+      <div class="prayer-cell glass"><div class="name">Dhuhr</div><div class="arabic">الظهر</div><div class="desc">Early afternoon</div></div>
+      <div class="prayer-cell glass"><div class="name">Asr</div><div class="arabic">العصر</div><div class="desc">Late afternoon</div></div>
+      <div class="prayer-cell glass"><div class="name">Maghrib</div><div class="arabic">المغرب</div><div class="desc">Just after sunset</div></div>
+      <div class="prayer-cell glass"><div class="name">Isha</div><div class="arabic">العشاء</div><div class="desc">Night</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="section-tight">
+  <div class="container">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="pill glass">Qur'an · Tajweed colouring</span>
+        <span class="pill glass">Qibla direction</span>
+        <span class="pill glass">Prayer times &amp; Adhan</span>
+        <span class="pill glass">Azkar, morning &amp; evening</span>
+        <span class="pill glass">Dua collection</span>
+        <span class="pill glass">Tasbih counter</span>
+        <span class="pill glass">Hijri calendar</span>
+        <span class="pill glass">Hadith</span>
+        <span class="pill glass">Zakat calculator</span>
+        <span class="pill glass">Hajj &amp; Umrah guide</span>
+        <span class="pill glass">Kids Corner</span>
+        <span class="pill glass">Janaza guide</span>
+        <!-- duplicate set for seamless loop -->
+        <span class="pill glass" aria-hidden="true">Qur'an · Tajweed colouring</span>
+        <span class="pill glass" aria-hidden="true">Qibla direction</span>
+        <span class="pill glass" aria-hidden="true">Prayer times &amp; Adhan</span>
+        <span class="pill glass" aria-hidden="true">Azkar, morning &amp; evening</span>
+        <span class="pill glass" aria-hidden="true">Dua collection</span>
+        <span class="pill glass" aria-hidden="true">Tasbih counter</span>
+        <span class="pill glass" aria-hidden="true">Hijri calendar</span>
+        <span class="pill glass" aria-hidden="true">Hadith</span>
+        <span class="pill glass" aria-hidden="true">Zakat calculator</span>
+        <span class="pill glass" aria-hidden="true">Hajj &amp; Umrah guide</span>
+        <span class="pill glass" aria-hidden="true">Kids Corner</span>
+        <span class="pill glass" aria-hidden="true">Janaza guide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE GRID ============ -->
+<section id="features" data-nav-section>
+  <div class="container">
+    <div class="section-head center" data-reveal="fade-up">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">Everything, in one place</div>
+      <h2><span class="underline-draw">Thirteen tools, one calm app</span></h2>
+      <p style="color:var(--ink-1); margin-top:14px;">No separate apps for Qibla, Tasbih, or Azkar. Islamic World Pro keeps your whole daily practice under one roof.</p>
+    </div>
+    <div class="feature-grid" data-stagger>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-quran.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Qur'an</h3>
+        <p>Clean, distraction-free Mushaf layout with Tajweed-marked pages.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-qibla.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Qibla Direction</h3>
+        <p>Live compass to Makkah using your phone's sensors, GPS-accurate.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-prayer.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Prayer Times</h3>
+        <p>Fajr to Isha, calculated for your exact location, with Adhan alerts.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-azkar.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Azkar, Morning &amp; Evening</h3>
+        <p>Structured daily remembrance sets, plus a dedicated Sleep Azkar list.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s-7-4.35-9.5-8.5C.8 9 2.5 5.5 6 5c2-.3 4 .9 6 3.5C14 5.9 16 4.7 18 5c3.5.5 5.2 4 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
+        <h3>Dua Collection</h3>
+        <p>A curated library of supplications for everyday situations.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-tasbih.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Tasbih Counter</h3>
+        <p>A built-in digital counter for dhikr — no separate app needed.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-calendar.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Hijri Calendar</h3>
+        <p>Islamic dates and events, always in view alongside the Gregorian date.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-hadith.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Hadith</h3>
+        <p>Browse authentic collections alongside your daily reading.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-zakat.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Zakat Calculator</h3>
+        <p>Work out what you owe on cash, gold, and savings in a few taps.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-hajj-umrah.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Hajj &amp; Umrah Guide</h3>
+        <p>Step-by-step rites in Arabic, transliteration, Urdu and English.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-kids.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Kids Corner</h3>
+        <p>Short surahs, dua cards, Prophet stories and a quiz for children.</p>
+      </div>
+      <div class="glass-card glass" data-cursor-hover>
+        <img class="feature-icon-img" src="assets/img/icons/icon-janaza.png" alt="" width="44" height="44" loading="lazy">
+        <h3>Janaza Guide</h3>
+        <p>The funeral prayer and rites, ready for the moments they're needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOT SHOWCASE ============ -->
+<section class="section-tight" id="screenshots" data-nav-section>
+  <div class="container">
+    <div class="section-head center" data-reveal="fade-up">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">See it in the app</div>
+      <h2><span class="underline-draw">A look inside Islamic World Pro</span></h2>
+      <p style="color:var(--ink-1); margin-top:14px;">Real screens from the app — the Qur'an, prayer, Qibla, Azkar and more.</p>
+    </div>
+    <div class="showcase-wrap" data-reveal="fade-up">
+      <button type="button" class="showcase-arrow showcase-arrow-prev glass" aria-label="Previous screenshot" data-showcase-prev data-cursor-hover>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="showcase-arrow showcase-arrow-next glass" aria-label="Next screenshot" data-showcase-next data-cursor-hover>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="showcase-rail" data-showcase-rail tabindex="0" aria-label="App screenshots, scrollable">
+      <div class="showcase-track">
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-quran.png" alt="The complete Qur'an with colour-coded Tajweed" width="540" height="960" loading="lazy">
+          <div class="showcase-label">The Complete Qur'an</div>
+          <span class="showcase-tag">114 Surahs · Tajweed colours</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-reciters.png" alt="Listen to world-famous Qur'an reciters" width="540" height="960" loading="lazy">
+          <div class="showcase-label">World-Famous Reciters</div>
+          <span class="showcase-tag">Audio recitation · 6+ Qaris</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-translations.png" alt="Choose your favourite Qur'an translation and tafseer" width="540" height="960" loading="lazy">
+          <div class="showcase-label">Understand Every Ayah</div>
+          <span class="showcase-tag">Multiple languages · 10+ Tafsir</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-prayer-qibla.png" alt="Prayer times and live Qibla compass" width="540" height="960" loading="lazy">
+          <div class="showcase-label">Never Miss a Prayer</div>
+          <span class="showcase-tag">Prayer times · Qibla compass</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-azkar.png" alt="Daily Azkar with elegant dua cards" width="540" height="960" loading="lazy">
+          <div class="showcase-label">Daily Azkar, Made Beautiful</div>
+          <span class="showcase-tag">9+ categories · Daily reminders</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-duas.png" alt="Beautifully designed dua cards" width="540" height="960" loading="lazy">
+          <div class="showcase-label">Beautiful Dua Cards</div>
+          <span class="showcase-tag">Elegant azkar you'll love to read</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-tools.png" alt="All Islamic tools in one app, with instant search" width="540" height="960" loading="lazy">
+          <div class="showcase-label">All Your Tools, One App</div>
+          <span class="showcase-tag">13+ tools · Instant search</span>
+        </div>
+        <div class="showcase-card glass" data-cursor-hover>
+          <img src="assets/img/screens/screen-themes.png" alt="Light and dark theme options" width="540" height="960" loading="lazy">
+          <div class="showcase-label">Light &amp; Dark Themes</div>
+          <span class="showcase-tag">A comfortable view, day or night</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QURAN SPOTLIGHT ============ -->
+<section id="quran" data-nav-section>
+  <div class="container split-grid" style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;">
+    <div class="device-frame glass has-screenshot" data-reveal="fade-right" data-cursor-hover>
+      <div class="device-screen">
+        <img src="assets/img/screens/screen-quran.png" alt="Islamic World Pro Qur'an reading screen with Tajweed colour-coding" width="540" height="960" loading="lazy">
+      </div>
+    </div>
+    <div data-reveal="fade-left">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">A closer look</div>
+      <h2><span class="underline-draw">Read the Qur'an the way it was meant to be recited</span></h2>
+      <p style="color:var(--ink-1); margin:16px 0 22px;">Every page follows a clean Mushaf-style layout. Tajweed rules are colour-coded directly into the text, so correct pronunciation is something you notice, not something you have to memorise separately.</p>
+      <ul style="list-style:none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:12px; color:var(--ink-1);">
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Tajweed colour-coding across all 30 Juz</li>
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Distraction-free reading, no ads between pages</li>
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Keeps your place, even offline</li>
+      </ul>
+      <a href="/quran" class="btn btn-glass glass" data-cursor-hover>See the Qur'an experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AYAH PANEL ============ -->
+<section class="section-tight">
+  <div class="container">
+    <div class="ayah-panel glass" data-reveal="scale-in">
+      <p class="ayah-arabic">وَقُرْآنًا فَرَقْنَاهُ لِتَقْرَأَهُ عَلَى النَّاسِ عَلَىٰ مُكْثٍ</p>
+      <p class="ayah-translation">"…and a Qur'an which We have separated [by chapters] that you might recite it to the people over a prolonged period."</p>
+      <p class="ayah-ref">Surah Al-Isra, 17:106</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DUA SPOTLIGHT ============ -->
+<section class="section-tight" data-nav-section>
+  <div class="container split-grid" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;">
+    <div data-reveal="fade-right">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">A closer look</div>
+      <h2><span class="underline-draw">Duas for every moment, not just the big ones</span></h2>
+      <p style="color:var(--ink-1); margin:16px 0 22px;">Waking up, leaving the house, eating, travelling, feeling anxious — Islamic World Pro has an authentic dua ready, laid out on elegant, easy-to-read cards instead of a wall of plain text.</p>
+      <ul style="list-style:none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:12px; color:var(--ink-1);">
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Arabic, transliteration and translation together</li>
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Organised by moment: home, food, travel, sleep &amp; more</li>
+        <li style="display:flex; gap:10px; align-items:flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--emerald-0)" stroke-width="2" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"/></svg> Swipeable cards designed to actually be read</li>
+      </ul>
+      <a href="/features" class="btn btn-glass glass" data-cursor-hover>See all Duas &amp; Azkar</a>
+    </div>
+    <div class="device-frame glass has-screenshot" data-reveal="fade-left" data-cursor-hover>
+      <div class="device-screen">
+        <img src="assets/img/screens/screen-duas.png" alt="Islamic World Pro beautifully designed dua cards" width="540" height="960" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS TIMELINE ============ -->
+<section class="section-alt">
+  <div class="container split-grid" style="display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px;">
+    <div data-reveal="fade-right">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">Getting started</div>
+      <h2><span class="underline-draw">From install to your first Adhan</span></h2>
+      <p style="color:var(--ink-1); margin-top:14px;">No account, no setup wizard — just a calm app that's ready when you are.</p>
+    </div>
+    <div class="timeline" data-reveal="fade-left">
+      <div class="timeline-item">
+        <h4>Install &amp; open</h4>
+        <p>Islamic World Pro loads instantly — no sign-up, no onboarding forms.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Allow location (optional)</h4>
+        <p>Enables accurate prayer times and a live Qibla compass. Deny it and the app still works, defaulting gracefully to Makkah.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Everything downloads once</h4>
+        <p>The Qur'an, Hadith, and Duas are cached for full offline access after the first load.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Your day, held together</h4>
+        <p>Adhan alerts, Azkar reminders, and your Tasbih count are all there the moment you open the app again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" data-nav-section>
+  <div class="container" style="max-width:760px;">
+    <div class="section-head center" data-reveal="fade-up">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">Common questions</div>
+      <h2><span class="underline-draw">Prayer times &amp; Qibla, explained</span></h2>
+    </div>
+    <div class="faq-list" data-reveal="fade-up">
+      <div class="faq-item glass" data-open="false">
+        <button class="faq-q" aria-expanded="false">Do I need internet access for prayer times to work?<span class="plus"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><p>No. Once your location is set, prayer times and Adhan alerts continue working offline.</p></div></div>
+      </div>
+      <div class="faq-item glass" data-open="false">
+        <button class="faq-q" aria-expanded="false">What if I deny location permission?<span class="plus"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><p>The app falls back gracefully to Makkah as a default, so it still functions — accuracy for your local prayer times simply improves once location is enabled.</p></div></div>
+      </div>
+      <div class="faq-item glass" data-open="false">
+        <button class="faq-q" aria-expanded="false">Why didn't my Adhan alert go off?<span class="plus"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><p>On Android 12 and newer, exact alarms and battery optimisation can silently block notifications unless permission is granted. Islamic World Pro prompts for both directly inside the app.</p></div></div>
+      </div>
+      <div class="faq-item glass" data-open="false">
+        <button class="faq-q" aria-expanded="false">Is Islamic World Pro free?<span class="plus"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><p>Yes. It's free to download, with no account required to get started.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD CTA ============ -->
+<section>
+  <div class="container">
+    <div class="cta-band glass" data-reveal="scale-in">
+      <div class="eyebrow-glass glass" style="display:inline-flex;">Ready when you are</div>
+      <h2 style="margin-top:16px;">Bring your daily worship into one app</h2>
+      <p style="color:var(--ink-1); max-width:44ch; margin:14px auto 30px;">Free to download. Works offline once loaded. No account required to get started.</p>
+      <div class="btn-border-anim">
+        <a href="/download" class="btn btn-gold" data-play-store data-cursor-hover>
+          Get it on Google Play
+          <span class="badge-soon" data-coming-soon-badge>Coming soon</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-premium">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="nav-brand" style="margin-bottom:14px; display:inline-flex;">
+          <img src="assets/img/logo.png" alt="Islamic World Pro logo" width="32" height="32">
+          <span>Islamic World Pro</span>
+        </a>
+        <p style="color:var(--ink-2); font-size:.9rem; max-width:280px; margin-top:14px;">A calm, all-in-one companion for the Qur'an, prayer, and daily remembrance.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/quran">Qur'an</a></li>
+          <li><a href="/prayer-qibla">Prayer &amp; Qibla</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>App</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/download">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:usamaahmedahmed5@gmail.com">usamaahmedahmed5@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Islamic World Pro. Built with care for the Ummah.</span>
+      <span>Made for Android</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/config.js"></script>
+<script src="assets/liquid.js"></script>
+</body>
+</html>

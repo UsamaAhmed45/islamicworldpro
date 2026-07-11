@@ -1,0 +1,25 @@
+{
+  "name": "Islamic World Pro — Qur'an, Prayer Times & Qibla Companion",
+  "short_name": "Islamic World Pro",
+  "description": "The Qur'an, prayer times, Qibla direction, Azkar, Duas, Tasbih, Zakat, Hajj & Umrah guidance, and a Kids Corner in one calm, offline-ready app.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050a10",
+  "theme_color": "#050a10",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "assets/img/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
