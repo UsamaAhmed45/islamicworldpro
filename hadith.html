@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadith Library — Sahih al-Bukhari, Sahih Muslim &amp; More | Islamic World Pro</title>
+<meta name="description" content="Browse and search the major Hadith collections — Sahih al-Bukhari, Sahih Muslim, Abu Dawud, Tirmidhi, An-Nasa'i and Ibn Majah.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/favicon-16.png">
+<link rel="icon" href="assets/img/brand/favicon.ico">
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/img/brand/logo-64.png" alt="Islamic World Pro logo"></span>
+      Islamic World Pro
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7" class="nt-line nt-top"/><line x1="4" y1="12" x2="20" y2="12" class="nt-line nt-mid"/><line x1="4" y1="17" x2="20" y2="17" class="nt-line nt-bot"/></svg></button>
+    <div class="nav-links">
+      <div class="slide-tabs" id="navSlideTabs">
+        <span class="slide-tabs-highlight" id="navHighlight"></span>
+        <a href="index.html" class="slide-tab" data-tab>Home</a>
+        <a href="quran.html" class="slide-tab" data-tab>Qur'an</a>
+        <a href="azkar.html" class="slide-tab" data-tab>Azkar &amp; Duas</a>
+        <a href="hadith.html" class="slide-tab active" data-tab>Hadith</a>
+        <a href="faq.html" class="slide-tab" data-tab>FAQ</a>
+        <a href="about.html" class="slide-tab" data-tab>About</a>
+      </div>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero bg-pattern" style="padding:130px 0 50px;">
+  <div class="container">
+    <span class="eyebrow">Sayings of the Prophet</span>
+    <h1 style="margin-top:14px;">Hadith Library</h1>
+    <p class="lead">Read from Sahih al-Bukhari, Sahih Muslim, Sunan Abu Dawud, Jami at-Tirmidhi, Sunan an-Nasa'i and Sunan Ibn Majah — in Arabic and English, browsed by book and number.</p>
+  </div>
+</section>
+
+<!-- ============ FEATURED ============ -->
+<section class="section-light" style="padding-bottom:50px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="justify-content:center;">A few to start with</span>
+      <h2>Well-known narrations</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="dua-card reveal">
+        <span class="dua-tag">Sahih al-Bukhari &amp; Muslim</span>
+        <p class="dua-meaning" style="font-size:1rem;">Every deed is weighed by the intention behind it, and each person is rewarded according to what they intended — so a person whose migration was for Allah and His Messenger, that is what their migration counts for; and one who migrated for worldly gain or marriage, their migration counts for only that.</p>
+        <p class="dua-ref">Narrated by 'Umar ibn al-Khattab (RA)</p>
+      </div>
+      <div class="dua-card reveal">
+        <span class="dua-tag">Sahih Muslim</span>
+        <p class="dua-meaning" style="font-size:1rem;">None of you truly believes until he wants for his brother what he wants for himself.</p>
+        <p class="dua-ref">Narrated by Anas ibn Malik (RA)</p>
+      </div>
+      <div class="dua-card reveal">
+        <span class="dua-tag">Sahih al-Bukhari</span>
+        <p class="dua-meaning" style="font-size:1rem;">Whoever believes in Allah and the Last Day should speak good or remain silent, should honour their neighbour, and should honour their guest.</p>
+        <p class="dua-ref">Narrated by Abu Hurairah (RA)</p>
+      </div>
+      <div class="dua-card reveal">
+        <span class="dua-tag">Jami at-Tirmidhi</span>
+        <p class="dua-meaning" style="font-size:1rem;">The most complete believers in faith are those with the best character, and the best among you are those who are best to their wives.</p>
+        <p class="dua-ref">Narrated by Abu Hurairah (RA)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE BROWSER ============ -->
+<section class="section-panel">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="justify-content:center;">Browse the full library</span>
+      <h2>Look up any hadith by book and number</h2>
+      <p>Pick a collection, enter a hadith number, and read it in Arabic and English.</p>
+    </div>
+    <div class="panel reveal">
+      <div class="reader-shell">
+        <aside class="reader-side">
+          <p class="small-muted" style="color:rgba(243,234,210,.7);margin-bottom:12px;">Collections</p>
+          <div id="bookList"></div>
+        </aside>
+        <main class="reader-main">
+          <div class="reader-main-head">
+            <div>
+              <h3 id="activeBookLabel">Loading…</h3>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button id="hadithPrevBtn" class="btn btn-line-dark btn-sm">←</button>
+              <input id="hadithNum" type="number" min="1" value="1" style="width:80px;padding:8px 10px;border-radius:8px;border:1px solid rgba(22,71,45,.2);">
+              <button id="hadithGoBtn" class="btn btn-line-dark btn-sm">Go</button>
+              <button id="hadithNextBtn" class="btn btn-line-dark btn-sm">→</button>
+            </div>
+          </div>
+          <div id="hadithResult"><div class="state-msg">Loading hadith…</div></div>
+        </main>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:var(--cream-100);margin-bottom:14px;">
+          <span class="brand-mark"><img src="assets/img/brand/logo-64.png" alt="Islamic World Pro logo"></span>
+          Islamic World Pro
+        </a>
+        <p style="max-width:280px;font-size:.9rem;color:rgba(243,234,210,.65);">A calm, all-in-one companion for Qur'an, Azkar, Hadith and daily worship.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="quran.html">Qur'an</a>
+        <a href="azkar.html">Azkar &amp; Duas</a>
+        <a href="hadith.html">Hadith</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#download">Download</a>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <a href="faq.html">Help Center</a>
+        <a href="about.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Islamic World Pro · Aurevia Solution. All rights reserved.</span>
+      <span>Made with care for the Ummah 🌙</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/kinetic-grid-bg.js"></script>
+<script src="assets/js/click-effects.js"></script>
+<script src="assets/js/slide-tabs.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/hadith.js"></script>
+<a href="https://wa.me/923147997272?text=Assalamu%20alaikum%2C%20I%20have%20a%20question%20about%20Islamic%20World%20Pro" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.41-1.42a9.87 9.87 0 004.63 1.18h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.69 2 12.04 2zm0 18.06a8.14 8.14 0 01-4.15-1.14l-.3-.18-3.09.81.83-3.01-.2-.31a8.14 8.14 0 01-1.25-4.32c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.23.85 5.78 2.4a8.11 8.11 0 012.4 5.79c0 4.51-3.67 8.14-8.2 8.14zm4.48-6.13c-.25-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.03 0 1.2.87 2.36 1 2.52.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
+</a>
+</body>
+</html>
