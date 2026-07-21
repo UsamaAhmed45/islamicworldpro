@@ -87,12 +87,37 @@
       <div class="reader-shell">
         <aside class="reader-side">
           <p class="small-muted" style="color:rgba(243,234,210,.7);margin-bottom:12px;">Collections</p>
-          <div id="bookList"></div>
+          <div id="bookList">
+            <div class="side-list-item active" data-book="bukhari">
+              <div class="side-num" style="border-radius:50%;">S</div>
+              <div class="meta"><div>Sahih al-Bukhari</div><small>7,563 hadith</small></div>
+            </div>
+            <div class="side-list-item" data-book="muslim">
+              <div class="side-num" style="border-radius:50%;">S</div>
+              <div class="meta"><div>Sahih Muslim</div><small>7,470 hadith</small></div>
+            </div>
+            <div class="side-list-item" data-book="abudawud">
+              <div class="side-num" style="border-radius:50%;">S</div>
+              <div class="meta"><div>Sunan Abu Dawud</div><small>5,274 hadith</small></div>
+            </div>
+            <div class="side-list-item" data-book="tirmidhi">
+              <div class="side-num" style="border-radius:50%;">J</div>
+              <div class="meta"><div>Jami at-Tirmidhi</div><small>3,956 hadith</small></div>
+            </div>
+            <div class="side-list-item" data-book="nasai">
+              <div class="side-num" style="border-radius:50%;">S</div>
+              <div class="meta"><div>Sunan an-Nasa'i</div><small>5,761 hadith</small></div>
+            </div>
+            <div class="side-list-item" data-book="ibnmajah">
+              <div class="side-num" style="border-radius:50%;">S</div>
+              <div class="meta"><div>Sunan Ibn Majah</div><small>4,341 hadith</small></div>
+            </div>
+          </div>
         </aside>
         <main class="reader-main">
           <div class="reader-main-head">
             <div>
-              <h3 id="activeBookLabel">Loading…</h3>
+              <h3 id="activeBookLabel">Sahih al-Bukhari — Hadith #1</h3>
             </div>
             <div style="display:flex;gap:8px;align-items:center;">
               <button id="hadithPrevBtn" class="btn btn-line-dark btn-sm">←</button>
@@ -101,7 +126,13 @@
               <button id="hadithNextBtn" class="btn btn-line-dark btn-sm">→</button>
             </div>
           </div>
-          <div id="hadithResult"><div class="state-msg">Loading hadith…</div></div>
+          <div id="hadithResult">
+            <div class="dua-card" style="margin-bottom:0;">
+              <span class="dua-tag">Sahih al-Bukhari · #1</span>
+              <div class="ayah-trans" style="font-size:1rem;">Every deed is weighed by the intention behind it, and each person is rewarded according to what they intended — so a person whose migration was for Allah and His Messenger, that is what their migration counts for; and one who migrated for worldly gain or marriage, their migration counts for only that.</div>
+              <p class="dua-ref">Narrated by 'Umar ibn al-Khattab (RA)</p>
+            </div>
+          </div>
         </main>
       </div>
     </div>
