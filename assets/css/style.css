@@ -640,6 +640,16 @@ section{padding:88px 0;}
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   font-size:.8rem;color:rgba(243,234,210,.5);
 }
+.social-row{display:flex;gap:12px;margin-bottom:24px;}
+.social-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(243,234,210,.08);border:1px solid rgba(243,234,210,.15);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.social-icon svg{width:18px;height:18px;fill:rgba(243,234,210,.85);transition:fill .2s;}
+.social-icon:hover{background:var(--gold-300);border-color:var(--gold-300);transform:translateY(-2px);}
+.social-icon:hover svg{fill:var(--green-800);}
 
 /* ============ Misc ============ */
 .tag-row{display:flex;flex-wrap:wrap;gap:10px;}
