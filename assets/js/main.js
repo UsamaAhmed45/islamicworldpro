@@ -55,4 +55,60 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // ============ Hero Bismillah typing animation ============
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bismillahEl = document.getElementById('bismillahType');
+  if (bismillahEl) {
+    const text = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+    if (reduceMotion) {
+      bismillahEl.textContent = text;
+    } else {
+      const chars = Array.from(text);
+      let i = 0;
+      let deleting = false;
+      const typeSpeed = 90;
+      const deleteSpeed = 40;
+      const holdAfterType = 3200;
+      const holdAfterDelete = 700;
+      function tick() {
+        if (!deleting) {
+          i++;
+          bismillahEl.textContent = chars.slice(0, i).join('');
+          if (i >= chars.length) {
+            deleting = true;
+            setTimeout(tick, holdAfterType);
+            return;
+          }
+          setTimeout(tick, typeSpeed);
+        } else {
+          i--;
+          bismillahEl.textContent = chars.slice(0, i).join('');
+          if (i <= 0) {
+            deleting = false;
+            setTimeout(tick, holdAfterDelete);
+            return;
+          }
+          setTimeout(tick, deleteSpeed);
+        }
+      }
+      tick();
+    }
+  }
+
+  // ============ Hero 3D tilt ============
+  const hero3D = document.getElementById('hero3D');
+  const heroWrap = hero3D ? hero3D.closest('.hero-visual-wrap') : null;
+  const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (hero3D && heroWrap && canTilt && !reduceMotion) {
+    heroWrap.addEventListener('mousemove', (e) => {
+      const rect = heroWrap.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      hero3D.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
+    });
+    heroWrap.addEventListener('mouseleave', () => {
+      hero3D.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  }
 });

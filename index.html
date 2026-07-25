@@ -133,6 +133,10 @@
 <!-- ============ HERO ============ -->
 <section class="page-hero bg-pattern" style="padding-top:120px;">
   <div class="container">
+    <div class="hero-bismillah reveal">
+      <span class="sr-only">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+      <span id="bismillahType" class="bismillah-type" lang="ar" dir="rtl" aria-hidden="true"></span><span class="bismillah-cursor" aria-hidden="true"></span>
+    </div>
     <div class="grid grid-2" style="align-items:center;gap:56px;">
       <div class="reveal">
         <img src="assets/img/brand/logo-96.png" alt="Islamic World Pro" style="width:64px;height:64px;border-radius:16px;box-shadow:var(--shadow-soft);margin-bottom:18px;">
@@ -151,9 +155,44 @@
         </div>
       </div>
       <div class="reveal">
-        <div class="arch-frame" style="max-width:340px;margin:0 auto;">
-          <div class="arch">
-            <img src="assets/img/hero-overview.jpg" alt="Islamic World Pro app — home screen overview">
+        <div class="hero-visual-wrap">
+          <div class="hero-3d" id="hero3D">
+            <div class="hero-orbit hero-orbit-1" aria-hidden="true">
+              <svg viewBox="0 0 400 400" fill="none">
+                <polygon points="200.0,50.0 236.4,112.2 306.1,93.9 287.8,163.6 350.0,200.0 287.8,236.4 306.1,306.1 236.4,287.8 200.0,350.0 163.6,287.8 93.9,306.1 112.2,236.4 50.0,200.0 112.2,163.6 93.9,93.9 163.6,112.2" stroke="url(#heroGoldA)" stroke-width="1.4"/>
+                <circle cx="200" cy="200" r="120" stroke="url(#heroGoldA)" stroke-width="1" opacity=".6"/>
+                <defs>
+                  <linearGradient id="heroGoldA" x1="0" y1="0" x2="400" y2="400">
+                    <stop offset="0" stop-color="#f3d879"/>
+                    <stop offset="1" stop-color="#c79b3b"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="hero-orbit hero-orbit-2" aria-hidden="true">
+              <svg viewBox="0 0 400 400" fill="none">
+                <circle cx="200" cy="200" r="170" stroke="#e9c873" stroke-width=".8" stroke-dasharray="2 10" opacity=".7"/>
+                <g fill="#e9c873" opacity=".85">
+                  <circle cx="370.0" cy="200.0" r="4"/>
+                  <circle cx="320.2" cy="320.2" r="4"/>
+                  <circle cx="200.0" cy="370.0" r="4"/>
+                  <circle cx="79.8" cy="320.2" r="4"/>
+                  <circle cx="30.0" cy="200.0" r="4"/>
+                  <circle cx="79.8" cy="79.8" r="4"/>
+                  <circle cx="200.0" cy="30.0" r="4"/>
+                  <circle cx="320.2" cy="79.8" r="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="hero-glow" aria-hidden="true"></div>
+            <span class="hero-spark s1" aria-hidden="true"></span>
+            <span class="hero-spark s2" aria-hidden="true"></span>
+            <span class="hero-spark s3" aria-hidden="true"></span>
+            <div class="arch-frame hero-phone" style="max-width:340px;margin:0 auto;">
+              <div class="arch">
+                <img src="assets/img/hero-overview.jpg" alt="Islamic World Pro app — home screen overview">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -162,7 +201,7 @@
 </section>
 
 <!-- ============ EXPANDING FEATURE CARDS ============ -->
-<section class="section-light">
+<section class="section-light" id="features">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow" style="justify-content:center;">Discover the app</span>

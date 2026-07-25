@@ -1,6 +1,25 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.islamicworldpro.com" }],
+      "destination": "https://islamicworldpro.com/:path*",
+      "permanent": true
+    },
+    { "source": "/features", "destination": "/#features", "permanent": true },
+    { "source": "/features.html", "destination": "/#features", "permanent": true },
+    { "source": "/download", "destination": "/#download", "permanent": true },
+    { "source": "/download.html", "destination": "/#download", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/quran.html", "destination": "/quran", "permanent": true },
+    { "source": "/azkar.html", "destination": "/azkar", "permanent": true },
+    { "source": "/hadith.html", "destination": "/hadith", "permanent": true },
+    { "source": "/faq.html", "destination": "/faq", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

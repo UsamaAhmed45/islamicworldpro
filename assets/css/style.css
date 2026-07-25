@@ -66,17 +66,36 @@ button{font-family:inherit;cursor:pointer;}
 }
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.is-visible{opacity:1;transform:translateY(0);}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* ============ Hero Bismillah typing banner ============ */
+.hero-bismillah{text-align:center;margin-bottom:22px;min-height:3.2em;padding:.2em 0;}
+.bismillah-type{
+  font-family:var(--font-arabic);direction:rtl;unicode-bidi:isolate;
+  font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:2;color:var(--gold-300);letter-spacing:0;
+  text-shadow:0 2px 18px rgba(212,175,55,.35);
+}
+.bismillah-cursor{
+  display:inline-block;width:2px;height:1.5em;vertical-align:-.3em;
+  background:var(--gold-300);margin-inline-start:5px;
+  animation:bismillahBlink .9s steps(1) infinite;
+}
+@keyframes bismillahBlink{50%{opacity:0;}}
+@media(prefers-reduced-motion: reduce){.bismillah-cursor{animation:none;}}
 
 /* ============ Arch signature motif ============ */
 .arch{
   position:relative;
-  border-radius: 220px 220px 20px 20px / 160px 160px 20px 20px;
+  border-radius: 46px 46px 22px 22px / 34px 34px 22px 22px;
   overflow:hidden;
 }
 .arch-frame{
   position:relative;
   padding:10px;
-  border-radius: 230px 230px 26px 26px / 170px 170px 26px 26px;
+  border-radius: 52px 52px 28px 28px / 40px 40px 28px 28px;
   background:linear-gradient(145deg,var(--gold-300),var(--gold-600) 55%,var(--gold-300));
   box-shadow:var(--shadow-deep);
 }
@@ -85,6 +104,38 @@ button{font-family:inherit;cursor:pointer;}
   background:radial-gradient(circle, rgba(212,175,55,.35), rgba(63,174,114,.16) 45%, transparent 72%);
   filter:blur(6px);
 }
+
+/* ============ Animated 3D hero ornament ============ */
+.hero-visual-wrap{perspective:1400px;}
+.hero-3d{
+  position:relative;max-width:380px;margin:0 auto;
+  transform-style:preserve-3d;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1);
+  will-change:transform;
+}
+.hero-orbit{position:absolute;inset:-38px;pointer-events:none;z-index:0;animation:heroSpin 46s linear infinite;}
+.hero-orbit svg{width:100%;height:100%;}
+.hero-orbit-2{inset:-64px;animation:heroSpinRev 64s linear infinite;opacity:.85;}
+@keyframes heroSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes heroSpinRev{from{transform:rotate(360deg);}to{transform:rotate(0deg);}}
+.hero-glow{
+  position:absolute;inset:12%;z-index:0;border-radius:50%;
+  background:radial-gradient(circle, rgba(212,175,55,.4), rgba(63,174,114,.18) 50%, transparent 72%);
+  filter:blur(18px);animation:heroGlowPulse 4.5s ease-in-out infinite;
+}
+@keyframes heroGlowPulse{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:.95;transform:scale(1.08);}}
+.hero-phone{position:relative;z-index:2;transform:translateZ(50px);animation:heroFloat 6s ease-in-out infinite;}
+@keyframes heroFloat{0%,100%{transform:translateZ(50px) translateY(0);}50%{transform:translateZ(50px) translateY(-14px);}}
+.hero-spark{
+  position:absolute;width:6px;height:6px;border-radius:50%;z-index:1;
+  background:var(--gold-300);box-shadow:0 0 10px 3px rgba(233,200,115,.7);
+  animation:heroSpark 5s ease-in-out infinite;
+}
+.hero-spark.s1{top:6%;left:2%;animation-delay:0s;}
+.hero-spark.s2{top:74%;right:0%;animation-delay:1.4s;}
+.hero-spark.s3{top:42%;left:-6%;animation-delay:2.8s;}
+@keyframes heroSpark{0%,100%{transform:translateY(0) scale(1);opacity:.5;}50%{transform:translateY(-18px) scale(1.4);opacity:1;}}
+@media(max-width:860px){.hero-orbit{inset:-16px;}.hero-orbit-2{inset:-30px;}}
 .motif-divider{
   display:flex;align-items:center;justify-content:center;gap:14px;
   margin:8px 0 34px;color:var(--gold-500);
