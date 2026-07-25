@@ -95,6 +95,7 @@
   player.addEventListener('ended', stopAudio);
 
   async function loadSurahList(){
+    sideList.innerHTML = '<div class="state-msg">Loading surah list…</div>';
     try{
       const res = await fetch('https://api.alquran.cloud/v1/surah');
       const json = await res.json();
@@ -102,9 +103,7 @@
       renderSideList(SURAHS);
       loadSurah(1);
     }catch(err){
-      // Keep the static surah list in place (it's already valid, just not
-      // click-interactive) rather than replacing it with an error message.
-      console.error('Could not refresh surah list from API:', err);
+      sideList.innerHTML = '<div class="state-msg error">Could not load the surah list. Please check your internet connection and reload the page.</div>';
     }
   }
 
@@ -243,11 +242,10 @@
     }
   }
 
-  // deep link ?surah=NN — falls back to Surah 1 (Al-Fatiha) when no valid param is given
+  // deep link ?surah=NN
   const params = new URLSearchParams(location.search);
   const initial = parseInt(params.get('surah'), 10);
-  const startSurah = (initial >= 1 && initial <= 114) ? initial : 1;
   loadSurahList().then(() => {
-    loadSurah(startSurah);
+    if(initial >= 1 && initial <= 114) loadSurah(initial);
   });
 })();
