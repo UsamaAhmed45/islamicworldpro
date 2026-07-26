@@ -3,6 +3,42 @@
 //   Surah list + Arabic + translations : https://api.alquran.cloud/v1
 //   Tafseer (Arabic)                   : https://api.quran-tafseer.com
 //   Recitation audio (Mishary Alafasy) : https://cdn.islamic.network/quran/audio*
+
+// Static seed for Surah Al-Fatihah (Arabic text: Tanzil.net Uthmani corpus, CC BY 3.0,
+// used with attribution per license terms — https://tanzil.net). This lets the reader
+// show real Qur'an content immediately, before (or even without) the live API call,
+// so the page always has substantive content rather than a bare "Loading…" placeholder.
+const STATIC_FATIHA = {
+  "ar": [
+    { "number": 1, "numberInSurah": 1, "text": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ" },
+    { "number": 2, "numberInSurah": 2, "text": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ" },
+    { "number": 3, "numberInSurah": 3, "text": "ٱلرَّحْمَٰنِ ٱلرَّحِيمِ" },
+    { "number": 4, "numberInSurah": 4, "text": "مَٰلِكِ يَوْمِ ٱلدِّينِ" },
+    { "number": 5, "numberInSurah": 5, "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ" },
+    { "number": 6, "numberInSurah": 6, "text": "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ" },
+    { "number": 7, "numberInSurah": 7, "text": "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ" }
+  ],
+  "en": [
+    { "number": 1, "numberInSurah": 1, "text": "In the name of Allah, the Most Gracious, the Most Merciful." },
+    { "number": 2, "numberInSurah": 2, "text": "All praise is for Allah, Lord of all the worlds." },
+    { "number": 3, "numberInSurah": 3, "text": "The Most Gracious, the Most Merciful." },
+    { "number": 4, "numberInSurah": 4, "text": "Master of the Day of Judgment." },
+    { "number": 5, "numberInSurah": 5, "text": "You alone we worship, and You alone we ask for help." },
+    { "number": 6, "numberInSurah": 6, "text": "Guide us to the straight path —" },
+    { "number": 7, "numberInSurah": 7, "text": "the path of those You have blessed, not of those who have earned Your anger, nor of those who have gone astray." }
+  ],
+  "ur": [
+    { "number": 1, "numberInSurah": 1, "text": "اللہ کے نام سے جو نہایت مہربان، رحم فرمانے والا ہے۔" },
+    { "number": 2, "numberInSurah": 2, "text": "تمام تعریفیں اللہ ہی کے لیے ہیں جو تمام جہانوں کا پروردگار ہے۔" },
+    { "number": 3, "numberInSurah": 3, "text": "نہایت مہربان، رحم فرمانے والا۔" },
+    { "number": 4, "numberInSurah": 4, "text": "جزا کے دن کا مالک۔" },
+    { "number": 5, "numberInSurah": 5, "text": "ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد مانگتے ہیں۔" },
+    { "number": 6, "numberInSurah": 6, "text": "ہمیں سیدھا راستہ دکھا۔" },
+    { "number": 7, "numberInSurah": 7, "text": "ان لوگوں کا راستہ جن پر تو نے انعام کیا، نہ کہ ان کا جن پر غضب ہوا اور نہ گمراہوں کا۔" }
+  ],
+  "tafsirs": {}
+};
+
 (() => {
   const sideList   = document.getElementById('surahList');
   const searchBox  = document.getElementById('surahSearch');
@@ -18,7 +54,7 @@
   let currentLang = 'en'; // 'en' | 'ur'
   let currentSurahNum = 1;
   let tafseerId = null;
-  let cache = {}; // surahNum -> {ar, en, ur, tafsirs:{ayahNum:text}}
+  let cache = { 1: STATIC_FATIHA }; // surahNum -> {ar, en, ur, tafsirs:{ayahNum:text}}
 
   function esc(str){
     return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
@@ -95,15 +131,18 @@
   player.addEventListener('ended', stopAudio);
 
   async function loadSurahList(){
-    sideList.innerHTML = '<div class="state-msg">Loading surah list…</div>';
+    // The full 114-surah list is already rendered statically in the HTML,
+    // so we only replace it once the live API responds — never blank it out
+    // with a "Loading…" placeholder first.
     try{
       const res = await fetch('https://api.alquran.cloud/v1/surah');
       const json = await res.json();
       SURAHS = json.data;
       renderSideList(SURAHS);
-      loadSurah(1);
+      loadSurah(currentSurahNum);
     }catch(err){
-      sideList.innerHTML = '<div class="state-msg error">Could not load the surah list. Please check your internet connection and reload the page.</div>';
+      // Keep the static list as-is; it's already complete and readable,
+      // just not clickable for surahs beyond the cached one.
     }
   }
 
@@ -119,10 +158,16 @@
           <div>${esc(s.englishName)} <span style="opacity:.6;font-size:.78rem;">— ${esc(s.name)}</span></div>
           <small>${esc(s.englishNameTranslation)} · ${s.numberOfAyahs} verses</small>
         </div>`;
-      el.addEventListener('click', () => loadSurah(s.number));
       sideList.appendChild(el);
     });
   }
+
+  // Delegated click handler — works for both the static server-rendered list
+  // (present on first paint, before the API responds) and the JS-rendered one.
+  sideList.addEventListener('click', (e) => {
+    const item = e.target.closest('.side-list-item[data-num]');
+    if(item) loadSurah(Number(item.dataset.num));
+  });
 
   searchBox && searchBox.addEventListener('input', () => {
     const q = searchBox.value.trim().toLowerCase();
@@ -164,12 +209,17 @@
     });
 
     const meta = SURAHS.find(s => s.number === num);
-    mainHead.textContent = meta ? `${meta.number}. ${meta.englishName}` : 'Loading…';
-    mainSub.textContent = meta ? `${meta.name} · ${meta.englishNameTranslation} · ${meta.numberOfAyahs} verses` : '';
-    ayahHost.innerHTML = '<div class="state-msg">Loading verses…</div>';
+    if(meta){
+      mainHead.textContent = `${meta.number}. ${meta.englishName}`;
+      mainSub.textContent = `${meta.name} · ${meta.englishNameTranslation} · ${meta.numberOfAyahs} verses`;
+    }else if(!cache[num]){
+      mainHead.textContent = 'Loading…';
+      mainSub.textContent = '';
+    }
 
     if(cache[num]){ renderAyahs(); return; }
 
+    ayahHost.innerHTML = '<div class="state-msg">Loading verses…</div>';
     try{
       const res = await fetch(`https://api.alquran.cloud/v1/surah/${num}/editions/quran-uthmani,en.sahih,ur.jalandhry`);
       const json = await res.json();
@@ -241,6 +291,10 @@
       box.innerHTML = '<span class="small-muted">Tafseer could not be loaded right now.</span>';
     }
   }
+
+  // Render the default surah (Al-Fatihah) immediately from the static cache —
+  // real content and working buttons from the very first moment, no network wait.
+  renderAyahs();
 
   // deep link ?surah=NN
   const params = new URLSearchParams(location.search);

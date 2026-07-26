@@ -72,12 +72,21 @@ button{font-family:inherit;cursor:pointer;}
 }
 
 /* ============ Hero Bismillah typing banner ============ */
-.hero-bismillah{text-align:center;margin-bottom:22px;min-height:3.2em;padding:.2em 0;}
+.hero-bismillah{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  text-align:center;margin-bottom:28px;min-height:2.1em;padding:.15em 0;
+}
+.bismillah-rule{
+  flex:1;max-width:90px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-500));
+}
+.hero-bismillah .bismillah-rule:last-child{background:linear-gradient(90deg,var(--gold-500),transparent);}
 .bismillah-type{
   font-family:var(--font-arabic);direction:rtl;unicode-bidi:isolate;
-  font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:2;color:var(--gold-300);letter-spacing:0;
+  font-size:clamp(1.4rem,3vw,2.05rem);line-height:1.7;color:var(--gold-300);letter-spacing:0;
   text-shadow:0 2px 18px rgba(212,175,55,.35);
 }
+@media(max-width:620px){.bismillah-rule{max-width:34px;}}
 .bismillah-cursor{
   display:inline-block;width:2px;height:1.5em;vertical-align:-.3em;
   background:var(--gold-300);margin-inline-start:5px;
@@ -108,14 +117,14 @@ button{font-family:inherit;cursor:pointer;}
 /* ============ Animated 3D hero ornament ============ */
 .hero-visual-wrap{perspective:1400px;}
 .hero-3d{
-  position:relative;max-width:380px;margin:0 auto;
+  position:relative;max-width:320px;margin:0 auto;
   transform-style:preserve-3d;
   transition:transform .35s cubic-bezier(.2,.7,.3,1);
   will-change:transform;
 }
-.hero-orbit{position:absolute;inset:-38px;pointer-events:none;z-index:0;animation:heroSpin 46s linear infinite;}
+.hero-orbit{position:absolute;inset:-26px;pointer-events:none;z-index:0;animation:heroSpin 46s linear infinite;}
 .hero-orbit svg{width:100%;height:100%;}
-.hero-orbit-2{inset:-64px;animation:heroSpinRev 64s linear infinite;opacity:.85;}
+.hero-orbit-2{inset:-46px;animation:heroSpinRev 64s linear infinite;opacity:.85;}
 @keyframes heroSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 @keyframes heroSpinRev{from{transform:rotate(360deg);}to{transform:rotate(0deg);}}
 .hero-glow{
@@ -125,7 +134,7 @@ button{font-family:inherit;cursor:pointer;}
 }
 @keyframes heroGlowPulse{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:.95;transform:scale(1.08);}}
 .hero-phone{position:relative;z-index:2;transform:translateZ(50px);animation:heroFloat 6s ease-in-out infinite;}
-@keyframes heroFloat{0%,100%{transform:translateZ(50px) translateY(0);}50%{transform:translateZ(50px) translateY(-14px);}}
+@keyframes heroFloat{0%,100%{transform:translateZ(50px) translateY(0);}50%{transform:translateZ(50px) translateY(-9px);}}
 .hero-spark{
   position:absolute;width:6px;height:6px;border-radius:50%;z-index:1;
   background:var(--gold-300);box-shadow:0 0 10px 3px rgba(233,200,115,.7);
@@ -254,8 +263,8 @@ button{font-family:inherit;cursor:pointer;}
 .bg-pattern{
   background-color:var(--green-950);
   background-image:
-    radial-gradient(circle at 15% 20%, rgba(212,175,55,.14), transparent 45%),
-    radial-gradient(circle at 85% 0%, rgba(63,174,114,.18), transparent 45%),
+    radial-gradient(circle at 15% 20%, rgba(212,175,55,.19), transparent 48%),
+    radial-gradient(circle at 85% 10%, rgba(63,174,114,.24), transparent 48%),
     repeating-linear-gradient(45deg, rgba(212,175,55,.035) 0 2px, transparent 2px 34px),
     repeating-linear-gradient(-45deg, rgba(212,175,55,.035) 0 2px, transparent 2px 34px);
 }
