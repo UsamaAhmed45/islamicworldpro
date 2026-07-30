@@ -475,6 +475,7 @@ section{padding:88px 0;}
   cursor:grab;
   touch-action:none;
   will-change:transform;
+  overflow:hidden;
   transition:transform .5s cubic-bezier(.2,.75,.3,1);
 }
 .swipe-card.dragging{cursor:grabbing;transition:none;}
@@ -486,14 +487,15 @@ section{padding:88px 0;}
 }
 .swipe-card-icon svg{width:90px;height:90px;stroke:var(--gold-300);}
 .swipe-card-icon.icon-plain{background:none;box-shadow:none;width:198px;height:198px;}
-.swipe-card-icon.icon-plain img{width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;}
 .swipe-card h3{
   font-family:var(--font-body);font-weight:700;font-size:1.3rem;
   color:var(--green-900);margin:0 0 14px;
 }
 .swipe-card p{
   font-family:var(--font-body);color:var(--sand-600);font-size:1rem;line-height:1.55;margin:0;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;
 }
+.swipe-card-icon.icon-plain img{width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;}
 .swipe-stack-hint{
   font-family:var(--font-body);font-size:.82rem;color:var(--sand-600);
   letter-spacing:.03em;text-transform:uppercase;
