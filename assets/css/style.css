@@ -457,8 +457,13 @@ section{padding:88px 0;}
 }
 .swipe-stack{
   position:relative;
-  width:min(90vw, 400px);
-  height:min(90vw * 1.18, 470px);
+  width:380px;
+  max-width:92vw;
+  height:540px;
+  margin:0 auto;
+}
+@media (max-width:480px){
+  .swipe-stack{width:320px;height:460px;}
 }
 .swipe-card{
   position:absolute;inset:0;
