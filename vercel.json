@@ -18,7 +18,9 @@
     { "source": "/quran.html", "destination": "/quran", "permanent": true },
     { "source": "/azkar.html", "destination": "/azkar", "permanent": true },
     { "source": "/hadith.html", "destination": "/hadith", "permanent": true },
-    { "source": "/faq.html", "destination": "/faq", "permanent": true }
+    { "source": "/faq.html", "destination": "/faq", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true }
   ],
   "headers": [
     {
