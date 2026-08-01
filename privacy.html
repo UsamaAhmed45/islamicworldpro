@@ -1,367 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Islamic World Pro</title>
-<meta name="description" content="Islamic World Pro privacy policy: no accounts, no ads, no tracking, no data collection. Read in English or Urdu.">
-<link rel="canonical" href="https://islamicworldpro.com/privacy">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="theme-color" content="#0b3d2e">
-<meta name="keywords" content="Islamic World Pro privacy policy, پرائیویسی پالیسی">
-<meta name="author" content="Aurevia Solution">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Islamic World Pro">
-<meta property="og:url" content="https://islamicworldpro.com/privacy">
-<meta property="og:title" content="Privacy Policy — Islamic World Pro">
-<meta property="og:description" content="No accounts, no ads, no tracking, no data collection. Read our privacy policy in English or Urdu.">
-<meta property="og:image" content="https://islamicworldpro.com/assets/img/brand/logo-512.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://islamicworldpro.com/privacy">
-<meta name="twitter:title" content="Privacy Policy — Islamic World Pro">
-<meta name="twitter:description" content="No accounts, no ads, no tracking, no data collection. Read our privacy policy in English or Urdu.">
-<meta name="twitter:image" content="https://islamicworldpro.com/assets/img/brand/logo-512.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/favicon-16.png">
-<link rel="icon" href="assets/img/brand/favicon.ico">
-<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="assets/css/style.css?v=20260801">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Privacy Policy — Islamic World Pro",
-  "description": "Islamic World Pro privacy policy: no accounts, no ads, no tracking, no data collection.",
-  "url": "https://islamicworldpro.com/privacy",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Islamic World Pro",
-    "url": "https://islamicworldpro.com/"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://islamicworldpro.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Privacy Policy",
-      "item": "https://islamicworldpro.com/privacy"
-    }
-  ]
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* Language toggle */
-  .lang-switch{
-    display:inline-flex; background:rgba(250,243,223,.12); border:1px solid rgba(250,243,223,.28);
-    border-radius:999px; padding:4px; gap:4px; margin-top:22px;
+  :root{
+    --ink:#1c2b22;
+    --paper:#faf7ee;
+    --paper-2:#f3edd9;
+    --emerald:#0f6b3f;
+    --emerald-dark:#0a4a2c;
+    --gold:#c69a2e;
+    --gold-soft:#d9b654;
+    --muted:#6b6250;
+    --rule:#e2d9bd;
   }
-  .lang-btn{
-    font-family:var(--font-body); font-weight:700; font-size:.82rem; letter-spacing:.03em;
-    padding:9px 22px; border-radius:999px; border:0; background:transparent; color:var(--cream-200);
-    cursor:pointer; transition:background .25s ease, color .25s ease;
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:
+      radial-gradient(1100px 500px at 50% -120px, rgba(15,107,63,.08), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Inter', Arial, sans-serif;
+    line-height:1.7;
+    font-size:16px;
   }
-  .lang-btn.active{ background:linear-gradient(135deg,var(--gold-300),var(--gold-600)); color:var(--green-950); }
+  .wrap{ max-width:820px; margin:0 auto; padding:0 22px 80px; }
 
-  .policy-block{ display:none; }
-  .policy-block.active{ display:block; }
+  /* ── Header ── */
+  header{
+    background:linear-gradient(160deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+    color:#f6efd8;
+    padding:56px 22px 46px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute; inset:auto 0 0 0; height:6px;
+    background:linear-gradient(90deg, var(--gold-soft), var(--gold), var(--gold-soft));
+  }
+  header::before{
+    content:"﷽";
+    position:absolute; top:-10px; inset-inline-end:6%; font-size:180px; opacity:.06;
+    font-family:'Noto Naskh Arabic',serif; color:#fff; pointer-events:none;
+  }
+  .header-inner{ max-width:820px; margin:0 auto; position:relative; }
+  .eyebrow{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px; font-weight:700;
+  }
+  h1{
+    margin:0 0 12px; font-size:38px; font-weight:700; color:#fbf6e4;
+  }
+  .updated{
+    font-size:13px; color:rgba(246,239,216,.72);
+  }
 
-  /* Urdu typography inside the policy content */
-  #policy-ur{
-    font-family:'Noto Nastaliq Urdu', var(--font-arabic), serif;
-    direction:rtl; text-align:right; line-height:2.1; font-size:1.06rem;
+  /* ── Intro banner ── */
+  .lede{
+    margin:34px 0 8px; padding:22px 24px; background:var(--paper-2);
+    border-inline-start:4px solid var(--gold); border-radius:4px;
+    font-weight:700; color:var(--emerald-dark); font-size:19px;
   }
-  #policy-ur h2{ font-family:'Noto Nastaliq Urdu', var(--font-arabic), serif; }
-  #policy-ur .eyebrow{ flex-direction:row-reverse; justify-content:flex-end; }
-  #policy-ur .eyebrow::before{ margin-inline-start:0; }
 
-  .policy-check-list{ list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
-  .policy-check-list li{
-    background:#fff; border:1px solid var(--cream-200); border-radius:12px;
-    padding:14px 18px; display:flex; gap:12px; align-items:flex-start; box-shadow:var(--shadow-soft);
+  /* ── Sections ── */
+  section{ margin-top:38px; }
+  .sec-head{
+    display:flex; align-items:center; gap:12px; margin-bottom:12px;
+    padding-bottom:10px; border-bottom:1px solid var(--rule);
   }
-  #policy-ur .policy-check-list li{ flex-direction:row-reverse; text-align:right; }
-  .policy-check-list li .chk{ color:var(--green-800); font-weight:700; flex-shrink:0; }
-  .policy-section{ margin-top:40px; }
-  .policy-section:first-of-type{ margin-top:0; }
-  .policy-section h2{ font-size:1.4rem; color:var(--green-900); }
-  .policy-section p{ color:var(--sand-700, #5b5140); margin:0 0 10px; line-height:1.85; }
-  #policy-ur .policy-section p{ line-height:2.15; }
-  .policy-updated{
-    font-family:var(--font-body); font-size:.85rem; color:var(--cream-200); opacity:.75; margin-top:10px;
+  .sec-icn{
+    width:38px; height:38px; flex-shrink:0; border-radius:50%;
+    background:var(--emerald); color:#fbf6e4; display:flex; align-items:center; justify-content:center;
+    font-size:17px;
   }
-  #policy-ur .policy-updated{ font-family:var(--font-body); direction:ltr; unicode-bidi:embed; text-align:right; }
+  .sec-head h2{ margin:0; font-size:23px; color:var(--emerald-dark); font-weight:700; }
+  section p{ margin:0 0 10px; color:#33291c; }
+  section p b{ color:var(--emerald-dark); }
 
-  .policy-contact-card{
-    margin-top:8px; background:linear-gradient(160deg,var(--green-800,#0f6b3f),var(--green-950));
-    color:var(--cream-100); border-radius:14px; padding:22px 24px;
-    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  ul.no-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  ul.no-list li{
+    background:#fff; border:1px solid var(--rule); border-radius:10px;
+    padding:12px 16px; display:flex; gap:10px; align-items:flex-start;
   }
-  #policy-ur .policy-contact-card{ flex-direction:row-reverse; text-align:right; }
-  .policy-contact-card .wa-num{ font-family:var(--font-body); font-weight:700; color:var(--gold-300); direction:ltr; unicode-bidi:embed; }
+  ul.no-list li .chk{ color:var(--emerald); font-weight:700; flex-shrink:0; }
+  ul.no-list li b{ color:var(--emerald-dark); }
+
+  .contact-card{
+    margin-top:10px; background:linear-gradient(160deg, var(--emerald), var(--emerald-dark));
+    color:#fbf6e4; border-radius:14px; padding:22px 24px; display:flex; align-items:center; gap:16px;
+    flex-wrap:wrap;
+  }
+  .contact-card .wa-num{
+    font-weight:700; letter-spacing:.02em; font-size:18px; color:var(--gold-soft);
+  }
+
+  .lang-toggle{
+    position:absolute; top:56px; inset-inline-start:22px;
+    display:inline-flex; background:rgba(255,255,255,.12); border:1px solid rgba(246,239,216,.35);
+    border-radius:999px; padding:4px; font-size:13px; z-index:2;
+  }
+  .lang-toggle a{
+    padding:6px 16px; border-radius:999px; color:rgba(246,239,216,.75); text-decoration:none; font-weight:600;
+  }
+  .lang-toggle a.active{ background:var(--gold-soft); color:var(--emerald-dark); }
+
+  @media (max-width:560px){
+    .lang-toggle{ position:static; display:inline-flex; margin-bottom:18px; }
+  }
+
+  footer{
+    margin-top:56px; padding-top:20px; border-top:1px solid var(--rule);
+    font-size:12.5px; color:var(--muted); text-align:center;
+  }
+
+  @media (max-width:560px){
+    h1{ font-size:30px; }
+    header{ padding:44px 18px 36px; }
+    .sec-head h2{ font-size:20px; }
+    body{ font-size:15px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <nav class="nav">
-    <a href="/" class="brand">
-      <span class="brand-mark"><img src="assets/img/brand/logo-64.png" alt="Islamic World Pro logo"></span>
-      Islamic World Pro
-    </a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7" class="nt-line nt-top"/><line x1="4" y1="12" x2="20" y2="12" class="nt-line nt-mid"/><line x1="4" y1="17" x2="20" y2="17" class="nt-line nt-bot"/></svg></button>
-    <div class="nav-links">
-      <div class="slide-tabs" id="navSlideTabs">
-        <span class="slide-tabs-highlight" id="navHighlight"></span>
-        <a href="/" class="slide-tab" data-tab>Home</a>
-        <a href="/quran" class="slide-tab" data-tab>Qur'an</a>
-        <a href="/azkar" class="slide-tab" data-tab>Azkar &amp; Duas</a>
-        <a href="/hadith" class="slide-tab" data-tab>Hadith</a>
-        <a href="/faq" class="slide-tab" data-tab>FAQ</a>
-        <a href="/about" class="slide-tab" data-tab>About</a>
-      </div>
-      <a href="/#download" class="nav-cta">Download</a>
-    </div>
-  </nav>
+<header>
+  <div class="lang-toggle">
+    <a href="/privacy" class="active">English</a>
+    <a href="/privacy-ur">اردو</a>
+  </div>
+  <div class="header-inner">
+    <p class="eyebrow">Islamic World Pro</p>
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: August 2026</div>
+  </div>
 </header>
 
-<section class="page-hero bg-pattern" style="padding:130px 0 50px;">
-  <div class="container">
-    <img src="assets/img/brand/logo-96.png" alt="Islamic World Pro" style="width:64px;height:64px;border-radius:16px;box-shadow:var(--shadow-soft);margin-bottom:18px;">
-    <span class="eyebrow">Your data, your device</span>
-    <h1 style="margin-top:14px;">Privacy Policy</h1>
-    <p class="lead">Islamic World Pro is built so you can use it without handing over any personal information.</p>
-    <div class="lang-switch" role="tablist" aria-label="Choose language">
-      <button type="button" class="lang-btn active" id="btnEn" role="tab" aria-selected="true">English</button>
-      <button type="button" class="lang-btn" id="btnUr" role="tab" aria-selected="false">اردو</button>
+<div class="wrap">
+
+  <p class="lede">Your privacy is our top priority. We designed Islamic World Pro so you can use it without ever giving us any personal information.</p>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">✓</div><h2>What we don't do</h2></div>
+    <ul class="no-list">
+      <li><span class="chk">✓</span><span><b>No accounts.</b> There's no sign-up or login required.</span></li>
+      <li><span class="chk">✓</span><span><b>No ads.</b> We don't show any advertising.</span></li>
+      <li><span class="chk">✓</span><span><b>No tracking.</b> No analytics, no crash reporting, no hidden trackers.</span></li>
+      <li><span class="chk">✓</span><span><b>No data collection.</b> We don't collect, store, or receive any of your data on a server — there's nothing to sell, share, or delete because it never leaves your phone.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">📍</div><h2>How we use location</h2></div>
+    <p>To give you accurate prayer times and the correct Qibla direction, the app uses your GPS coordinates entirely on your own device.</p>
+    <p>Your city name and time zone are determined locally, from a small list of locations built into the app — your coordinates are <b>never sent to us or to any third-party server, and are never shared with any third party</b>.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">🎙️</div><h2>Voice search (Ask Imam)</h2></div>
+    <p>If you use the voice search feature in Ask Imam, your voice is briefly processed to understand your question and find you an answer.</p>
+    <p>This audio is <b>not stored</b> — it's discarded immediately after use. Voice search is completely optional; you can always type your question instead.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">🔔</div><h2>Notifications &amp; alarms</h2></div>
+    <p>The app uses alarms to play the Azan at the correct time. This happens entirely on your phone. We have no way of knowing when you set or silence your alarms.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">💾</div><h2>Where is my data?</h2></div>
+    <p>We don't operate any servers or databases for user data, so we never receive or store anything about you in the first place.</p>
+    <p>Your preferences — such as tasbih counts, favourite hadiths, and Qur'an reading progress — are stored <b>only</b> on your phone. If you delete the app, this on-device data is automatically deleted with it; there's nothing stored anywhere else that would need a separate deletion request.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">🌐</div><h2>External content</h2></div>
+    <p>When you download additional Qur'an translations or audio, the app fetches that text or audio file from a public Islamic content source.</p>
+    <p>Those requests include only the requested surah/ayah — never your location or any personal or device information.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="sec-icn">✉️</div><h2>Contact us</h2></div>
+    <p>If you have any questions about privacy, feel free to reach out directly.</p>
+    <div class="contact-card">
+      <span>💬</span>
+      <span>WhatsApp: <span class="wa-num">+974 7440 0422</span></span>
     </div>
-    <p class="policy-updated" id="updatedEn">Last updated: February 2025</p>
-    <p class="policy-updated" id="updatedUr" style="display:none;">آخری بار اپ ڈیٹ: فروری 2025</p>
-  </div>
-</section>
+  </section>
 
-<section class="section-light">
-  <div class="container" style="max-width:760px;">
+  <footer>
+    © 2026 Islamic World Pro · Aurevia Solution. All rights reserved.
+  </footer>
 
-    <!-- ================= ENGLISH ================= -->
-    <div class="policy-block active" id="policy-en">
-
-      <div class="feature-card" style="margin-bottom:34px;">
-        <p style="margin:0;font-weight:600;color:var(--green-900);">Your privacy is our top priority. We designed Islamic World Pro so you can use it without ever giving us any personal information.</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">The basics</span>
-        <h2 style="margin-top:10px;">What we don't do</h2>
-        <ul class="policy-check-list">
-          <li><span class="chk">✓</span><span><strong>No accounts.</strong> There's no sign-up or login required.</span></li>
-          <li><span class="chk">✓</span><span><strong>No ads.</strong> We don't show any advertising.</span></li>
-          <li><span class="chk">✓</span><span><strong>No tracking.</strong> No analytics, no crash reporting, no hidden trackers.</span></li>
-          <li><span class="chk">✓</span><span><strong>No data collection.</strong> We don't collect, store, or receive any of your data on a server — there's nothing to sell, share, or delete because it never leaves your phone.</span></li>
-        </ul>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">Location</span>
-        <h2 style="margin-top:10px;">How we use location</h2>
-        <p>To give you accurate prayer times and the correct Qibla direction, the app uses your GPS coordinates entirely on your own device.</p>
-        <p>Your city name and time zone are determined locally, from a small list of locations built into the app — your coordinates are <strong>never sent to us or to any third-party server</strong>.</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">Reminders</span>
-        <h2 style="margin-top:10px;">Notifications &amp; alarms</h2>
-        <p>The app uses alarms to play the Azan at the correct time. This happens entirely on your phone. We have no way of knowing when you set or silence your alarms.</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">Storage</span>
-        <h2 style="margin-top:10px;">Where is my data?</h2>
-        <p>We don't operate any servers or databases for user data, so we never receive or store anything about you in the first place.</p>
-        <p>Your preferences — such as tasbih counts, favourite hadiths, and Qur'an reading progress — are stored <strong>only</strong> on your phone. If you delete the app, this on-device data is automatically deleted with it; there's nothing stored anywhere else that would need a separate deletion request.</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">Content</span>
-        <h2 style="margin-top:10px;">External content</h2>
-        <p>When you download additional Qur'an translations or audio, the app fetches that text or audio file from a public Islamic content source.</p>
-        <p>Those requests include only the requested surah/ayah — never your location or any personal or device information.</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">Get in touch</span>
-        <h2 style="margin-top:10px;">Contact us</h2>
-        <p>If you have any questions about privacy, feel free to reach out directly.</p>
-        <div class="policy-contact-card">
-          <span>💬</span>
-          <span>WhatsApp: <span class="wa-num">+974 7440 0422</span></span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ================= URDU ================= -->
-    <div class="policy-block" id="policy-ur">
-
-      <div class="feature-card" style="margin-bottom:34px;">
-        <p style="margin:0;font-weight:600;color:var(--green-900);">آپ کی پرائیویسی ہماری اولین ترجیح ہے۔ ہم نے Islamic World Pro کو اس طرح ڈیزائن کیا ہے کہ آپ اسے کوئی بھی ذاتی معلومات دیے بغیر استعمال کر سکیں۔</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">بنیادی باتیں</span>
-        <h2 style="margin-top:10px;">ہم کیا نہیں کرتے</h2>
-        <ul class="policy-check-list">
-          <li><span class="chk">✓</span><span><strong>کوئی اکاؤنٹ نہیں:</strong> آپ کو سائن اپ یا لاگ ان کرنے کی ضرورت نہیں۔</span></li>
-          <li><span class="chk">✓</span><span><strong>کوئی اشتہارات نہیں:</strong> ہم کوئی اشتہار نہیں دکھاتے۔</span></li>
-          <li><span class="chk">✓</span><span><strong>کوئی ٹریکنگ نہیں:</strong> کوئی اینالیٹکس، کریش رپورٹس، یا پوشیدہ ٹریکرز نہیں۔</span></li>
-          <li><span class="chk">✓</span><span><strong>کوئی ڈیٹا اکٹھا نہیں:</strong> ہم آپ کا کوئی ڈیٹا کسی سرور پر اکٹھا، محفوظ یا وصول نہیں کرتے — بیچنے، شیئر کرنے یا حذف کرنے کے لیے کچھ بھی نہیں کیونکہ یہ کبھی آپ کے فون سے باہر نہیں جاتا۔</span></li>
-        </ul>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">لوکیشن</span>
-        <h2 style="margin-top:10px;">ہم لوکیشن کیسے استعمال کرتے ہیں</h2>
-        <p>درست نماز کے اوقات اور صحیح قبلہ کا رخ دینے کے لیے، ایپ آپ کے GPS کوآرڈینیٹس مکمل طور پر آپ کے اپنے آلے پر استعمال کرتی ہے۔</p>
-        <p>آپ کے شہر کا نام اور ٹائم زون مقامی طور پر ایپ میں شامل ایک چھوٹی مقامات کی فہرست سے معلوم کیا جاتا ہے — آپ کے کوآرڈینیٹس <strong>کبھی بھی ہمیں یا کسی تیسرے فریق کے سرور کو نہیں بھیجے جاتے</strong>۔</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">یاد دہانیاں</span>
-        <h2 style="margin-top:10px;">نوٹیفیکیشنز اور الارمز</h2>
-        <p>ایپ صحیح وقت پر اذان بجانے کے لیے الارمز استعمال کرتی ہے۔ یہ مکمل طور پر آپ کے فون پر ہوتا ہے۔ ہمیں معلوم نہیں کہ آپ نے اپنے الارم کب سیٹ کیے یا خاموش کیے ہیں۔</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">اسٹوریج</span>
-        <h2 style="margin-top:10px;">میرا ڈیٹا کہاں ہے؟</h2>
-        <p>ہم صارف کے ڈیٹا کے لیے کوئی سرور یا ڈیٹا بیس آپریٹ نہیں کرتے، اس لیے ہم شروع سے ہی آپ کے بارے میں کچھ وصول یا محفوظ نہیں کرتے۔</p>
-        <p>آپ کی ترجیحات (جیسے ذکر کی گنتی، پسندیدہ احادیث، اور قرآن کی پیش رفت) <strong>صرف</strong> آپ کے فون پر محفوظ ہوتی ہیں۔ اگر آپ ایپ ڈیلیٹ کرتے ہیں تو یہ آن-ڈیوائس ڈیٹا خودبخود اس کے ساتھ ڈیلیٹ ہو جاتا ہے — کہیں اور کچھ بھی محفوظ نہیں کہ الگ سے حذف کی درخواست کی جائے۔</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">مواد</span>
-        <h2 style="margin-top:10px;">بیرونی مواد</h2>
-        <p>جب آپ اضافی قرآن ترجمے یا آڈیو ڈاؤن لوڈ کرتے ہیں، تو ایپ وہ متن یا آڈیو فائل ایک عوامی اسلامی مواد کے ذریعے سے حاصل کرتی ہے۔</p>
-        <p>ان درخواستوں میں صرف مطلوبہ سورت/آیت شامل ہوتی ہے — کبھی بھی آپ کی لوکیشن یا کوئی ذاتی یا آلے کی معلومات شامل نہیں ہوتی۔</p>
-      </div>
-
-      <div class="policy-section">
-        <span class="eyebrow">رابطہ</span>
-        <h2 style="margin-top:10px;">ہم سے رابطہ کریں</h2>
-        <p>اگر آپ کی پرائیویسی سے متعلق کوئی سوالات ہیں، تو بلا جھجک براہ راست رابطہ کریں۔</p>
-        <div class="policy-contact-card">
-          <span>💬</span>
-          <span>واٹس ایپ: <span class="wa-num">+974 7440 0422</span></span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <a href="/" class="brand" style="color:var(--cream-100);margin-bottom:14px;">
-          <span class="brand-mark"><img src="assets/img/brand/logo-64.png" alt="Islamic World Pro logo"></span>
-          Islamic World Pro
-        </a>
-        <p style="max-width:280px;font-size:.9rem;color:rgba(243,234,210,.65);">A calm, all-in-one companion for Qur'an, Azkar, Hadith and daily worship.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <a href="/quran">Qur'an</a>
-        <a href="/azkar">Azkar &amp; Duas</a>
-        <a href="/hadith">Hadith</a>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <a href="/about">About</a>
-        <a href="/faq">FAQ</a>
-        <a href="/#download">Download</a>
-      </div>
-      <div>
-        <h5>Support</h5>
-        <a href="/faq">Help Center</a>
-        <a href="/about">Contact Us</a>
-        <a href="/privacy">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="social-row" aria-label="Follow Islamic World Pro on social media">
-      <a href="https://www.facebook.com/share/1F8Vr5vJNq/?mibextid=wwXIfr" class="social-icon" target="_blank" rel="noopener me" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.25-1.5 1.53-1.5H16.5V4.3C16.2 4.26 15.2 4.17 14 4.17c-2.5 0-4.2 1.53-4.2 4.33v2H7.3v3h2.5V21h3.7z"/></svg></a>
-      <a href="https://www.instagram.com/islamicworldproapp?igsh=OGZqN2VzOG84OHdl&utm_source=qr" class="social-icon" target="_blank" rel="noopener me" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 0 4.1.06 1 .05 1.6.2 2 .35.5.2.9.4 1.3.8.4.4.6.8.8 1.3.15.4.3 1 .35 2 .06 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1-.2 1.6-.35 2-.2.5-.4.9-.8 1.3-.4.4-.8.6-1.3.8-.4.15-1 .3-2 .35-1.1.06-1.4.06-4.1.06s-3 0-4.1-.06c-1-.05-1.6-.2-2-.35-.5-.2-.9-.4-1.3-.8-.4-.4-.6-.8-.8-1.3-.15-.4-.3-1-.35-2C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1 .2-1.6.35-2 .2-.5.4-.9.8-1.3.4-.4.8-.6 1.3-.8.4-.15 1-.3 2-.35C9 2.2 9.3 2.2 12 2.2zm0 1.8c-2.65 0-2.96 0-4 .06-.86.04-1.32.18-1.63.3-.41.16-.7.35-1 .65-.3.3-.49.59-.65 1-.12.31-.26.77-.3 1.63-.06 1.04-.06 1.35-.06 4s0 2.96.06 4c.04.86.18 1.32.3 1.63.16.41.35.7.65 1 .3.3.59.49 1 .65.31.12.77.26 1.63.3 1.04.06 1.35.06 4 .06s2.96 0 4-.06c.86-.04 1.32-.18 1.63-.3.41-.16.7-.35 1-.65.3-.3.49-.59.65-1 .12-.31.26-.77.3-1.63.06-1.04.06-1.35.06-4s0-2.96-.06-4c-.04-.86-.18-1.32-.3-1.63-.16-.41-.35-.7-.65-1-.3-.3-.59-.49-1-.65-.31-.12-.77-.26-1.63-.3-1.04-.06-1.35-.06-4-.06zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3zm5.15-1.98a1.16 1.16 0 1 1-2.31 0 1.16 1.16 0 0 1 2.31 0z"/></svg></a>
-      <a href="https://www.tiktok.com/@islamic.world.pro?_r=1&_t=ZS-98K5mcZOkTd" class="social-icon" target="_blank" rel="noopener me" aria-label="Tiktok"><svg viewBox="0 0 24 24"><path d="M16.6 5.8c-.7-.8-1.1-1.8-1.1-2.9h-3v13.4c0 1.4-1.1 2.6-2.6 2.6a2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 2.6-2.6c.3 0 .5 0 .8.1v-3.1c-.3 0-.5-.05-.8-.05a5.6 5.6 0 0 0-5.6 5.6A5.6 5.6 0 0 0 9.9 22a5.6 5.6 0 0 0 5.6-5.6V9.1c1.2.9 2.6 1.4 4.1 1.4V7.5c-1.1 0-2.1-.4-3-1.7z"/></svg></a>
-      <a href="https://youtube.com/@islamicworldproapp?si=0UpC6FXp6NwvuVwp" class="social-icon" target="_blank" rel="noopener me" aria-label="Youtube"><svg viewBox="0 0 24 24"><path d="M22 12s0-3.1-.4-4.6a2.9 2.9 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.4a2.9 2.9 0 0 0-2 2C2 8.9 2 12 2 12s0 3.1.4 4.6a2.9 2.9 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.4a2.9 2.9 0 0 0 2-2C22 15.1 22 12 22 12zM10 15.2V8.8L15.6 12 10 15.2z"/></svg></a>
-      <a href="https://whatsapp.com/channel/0029Vb80wIgEVccKe2jRUL24" class="social-icon" target="_blank" rel="noopener me" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 6.9 12.6l-.2.4.9 3.2-3.3-.9-.4.2A8.2 8.2 0 1 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.8 2.1.9 2.5.7 3 .6.4 0 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1-.1-.2-.3-.2-.6-.4-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.1-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4z"/></svg></a>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 Islamic World Pro · Aurevia Solution. All rights reserved. · <a href="/privacy" style="color:inherit;text-decoration:underline;">Privacy Policy</a></span>
-      <span>Made with care for the Ummah 🌙</span>
-    </div>
-  </div>
-</footer>
-<script src="assets/js/kinetic-grid-bg.js?v=20260801"></script>
-<script src="assets/js/click-effects.js?v=20260801"></script>
-<script src="assets/js/slide-tabs.js?v=20260801"></script>
-<script src="assets/js/main.js?v=20260801"></script>
-<a href="https://wa.me/923147997272?text=Assalamu%20alaikum%2C%20I%20have%20a%20question%20about%20Islamic%20World%20Pro" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.41-1.42a9.87 9.87 0 004.63 1.18h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.69 2 12.04 2zm0 18.06a8.14 8.14 0 01-4.15-1.14l-.3-.18-3.09.81.83-3.01-.2-.31a8.14 8.14 0 01-1.25-4.32c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.23.85 5.78 2.4a8.11 8.11 0 012.4 5.79c0 4.51-3.67 8.14-8.2 8.14zm4.48-6.13c-.25-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.03 0 1.2.87 2.36 1 2.52.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
-</a>
-
-<script>
-  (function(){
-    var btnEn = document.getElementById('btnEn');
-    var btnUr = document.getElementById('btnUr');
-    var en = document.getElementById('policy-en');
-    var ur = document.getElementById('policy-ur');
-    var updEn = document.getElementById('updatedEn');
-    var updUr = document.getElementById('updatedUr');
-
-    function showEn(){
-      en.classList.add('active'); ur.classList.remove('active');
-      btnEn.classList.add('active'); btnUr.classList.remove('active');
-      btnEn.setAttribute('aria-selected','true'); btnUr.setAttribute('aria-selected','false');
-      updEn.style.display=''; updUr.style.display='none';
-      document.documentElement.setAttribute('lang','en');
-      history.replaceState(null,'',location.pathname+'#en');
-    }
-    function showUr(){
-      ur.classList.add('active'); en.classList.remove('active');
-      btnUr.classList.add('active'); btnEn.classList.remove('active');
-      btnUr.setAttribute('aria-selected','true'); btnEn.setAttribute('aria-selected','false');
-      updUr.style.display=''; updEn.style.display='none';
-      document.documentElement.setAttribute('lang','ur');
-      history.replaceState(null,'',location.pathname+'#ur');
-    }
-    btnEn.addEventListener('click', showEn);
-    btnUr.addEventListener('click', showUr);
-    if(location.hash === '#ur'){ showUr(); }
-  })();
-</script>
-
+</div>
 </body>
 </html>
