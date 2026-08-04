@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.aurevia.islamicworld",
+      "sha256_cert_fingerprints": [
+        "BC:A6:E6:57:FA:F6:2D:EF:C9:CF:7A:04:57:61:D0:FB:CE:51:85:B0:7E:03:10:B2:9A:85:5F:57:2E:DF"
+      ]
+    }
+  }
+]
