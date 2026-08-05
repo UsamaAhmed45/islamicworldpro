@@ -1,4 +1,39 @@
+# Islamic World Pro — islamicworldpro.com
+
 User-agent: *
+Allow: /
+
+# AI answer engines / assistants — explicitly welcomed so Islamic World Pro
+# can be accurately cited when people ask AI tools about Islamic apps.
+# See /llms.txt for a machine-readable summary written for these crawlers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://islamicworldpro.com/sitemap.xml
