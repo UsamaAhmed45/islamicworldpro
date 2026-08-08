@@ -8,8 +8,7 @@
       "destination": "https://islamicworldpro.com/:path*",
       "permanent": true
     },
-    { "source": "/features", "destination": "/#features", "permanent": true },
-    { "source": "/features.html", "destination": "/#features", "permanent": true },
+    { "source": "/features.html", "destination": "/features", "permanent": true },
     { "source": "/download", "destination": "/#download", "permanent": true },
     { "source": "/download.html", "destination": "/#download", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
