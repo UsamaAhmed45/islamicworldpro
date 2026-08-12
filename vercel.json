@@ -3,12 +3,13 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/:path((?!\\.well-known\\/).*)",
       "has": [{ "type": "host", "value": "www.islamicworldpro.com" }],
-      "destination": "https://islamicworldpro.com/:path*",
+      "destination": "https://islamicworldpro.com/:path",
       "permanent": true
     },
-    { "source": "/features.html", "destination": "/features", "permanent": true },
+    { "source": "/features", "destination": "/#features", "permanent": true },
+    { "source": "/features.html", "destination": "/#features", "permanent": true },
     { "source": "/download", "destination": "/#download", "permanent": true },
     { "source": "/download.html", "destination": "/#download", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
@@ -51,6 +52,13 @@
       "headers": [
         { "key": "Content-Type", "value": "application/xml" },
         { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/.well-known/assetlinks.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
       ]
     },
     {
