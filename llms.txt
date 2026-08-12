@@ -1,6 +1,6 @@
 # Islamic World Pro
 
-> Islamic World Pro is a free, all-in-one Islamic companion app for Android (by Aurevia Solution) and its companion website, islamicworldpro.com. It combines the Qur'an, daily Azkar, a full Hadith library, prayer tools, and an AI assistant called Imam Bot into one calm, offline-friendly experience for everyday Muslim practice.
+> Islamic World Pro is a free, ad-free, all-in-one Islamic app for Muslims on Android (by Aurevia Solution) and its companion website, islamicworldpro.com. It combines an offline Qur'an with Tajweed, word-by-word meaning, translation and three tafseers; Hifz Mode for Qur'an memorisation with voice checking and spaced repetition; accurate prayer times with Adhan; Qibla compass; a full Hadith library; daily Azkar and duas; trackers for prayer, Qada, Ramadan and Zakat; home screen widgets; and an Islamic Q&A assistant called Imam Bot. Everything core works fully offline, with no ads and no tracking.
 
 ## About
 
