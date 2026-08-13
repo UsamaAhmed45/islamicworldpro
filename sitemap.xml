@@ -1,52 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
   <url>
     <loc>https://islamicworldpro.com/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/hero-overview.webp</image:loc>
+      <image:title>Islamic World Pro app home screen</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/composite_01.webp</image:loc>
+      <image:title>Islamic World Pro feature overview</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/video-poster.webp</video:thumbnail_loc>
+      <video:title>Islamic World Pro — App Walkthrough</video:title>
+      <video:description>A walkthrough of Islamic World Pro: Qur'an with Tajweed, daily Azkar, Qibla compass, Hadith library, Imam Bot and voice search.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/app-walkthrough.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+      <video:publication_date>2026-07-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/features</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/expanding/expand-quran.webp</image:loc>
+      <image:title>Qur'an, translation and tafseer</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/quran</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/gallery-quran.webp</image:loc>
+      <image:title>Offline Qur'an reader with Tajweed</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/gallery-tafsir.webp</image:loc>
+      <image:title>Tafseer view</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/azkar</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/gallery-azkar.webp</image:loc>
+      <image:title>Daily Azkar and duas</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/hadith</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/gallery-hadith-calendar.webp</image:loc>
+      <image:title>Hadith library and Hijri calendar</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/faq</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/about</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/about-mission.webp</image:loc>
+      <image:title>About Islamic World Pro</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://islamicworldpro.com/privacy</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
+
 </urlset>
