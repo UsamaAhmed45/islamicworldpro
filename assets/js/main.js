@@ -112,3 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ---- Loading smoothness ---------------------------------------------- */
+(function () {
+  // Once a photo has decoded, drop its blur placeholder so the browser
+  // stops compositing a background layer it no longer needs.
+  var imgs = document.querySelectorAll('img.lqip');
+  function clear(img) {
+    img.style.backgroundImage = '';
+    img.classList.remove('lqip');
+  }
+  imgs.forEach(function (img) {
+    if (img.complete && img.naturalWidth > 0) { clear(img); return; }
+    img.addEventListener('load', function () { clear(img); }, { once: true });
+    img.addEventListener('error', function () { clear(img); }, { once: true });
+  });
+})();

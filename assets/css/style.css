@@ -45,7 +45,8 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-img{max-width:100%;display:block;}
+img{max-width:100%;height:auto;display:block;}
+html,body{overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
 h1,h2,h3,h4{margin:0 0 .5em;font-family:var(--font-display);color:var(--green-900);letter-spacing:.01em;}
 p{margin:0 0 1em;}
@@ -798,4 +799,108 @@ section{padding:88px 0;}
 @media (max-width:600px){
   .whatsapp-float{right:16px;bottom:16px;width:52px;height:52px;}
   .whatsapp-float svg{width:26px;height:26px;}
+}
+
+/* ============ Loading smoothness ============ */
+.lqip{
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+/* Hero entrance runs on CSS alone — never gated on JavaScript,
+   so the LCP image paints on first frame. */
+.now{animation:riseIn .8s cubic-bezier(.22,.61,.36,1) both;}
+@keyframes riseIn{
+  from{opacity:0;transform:translateY(18px);}
+  to{opacity:1;transform:none;}
+}
+/* Fallback: if JS never runs, reveal content anyway after a beat
+   instead of leaving the page blank. */
+@keyframes revealFallback{to{opacity:1;transform:none;}}
+.reveal{animation:revealFallback .01s linear 3s forwards;}
+.reveal.is-visible{animation:none;}
+
+/* Skip rendering work for offscreen sections */
+.cv-auto{content-visibility:auto;contain-intrinsic-size:auto 900px;}
+
+html{scroll-behavior:smooth;}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .now,.reveal{animation:none!important;opacity:1!important;transform:none!important;}
+  .reveal{transition:none!important;}
+}
+
+/* Smooth cross-page transitions where supported */
+@view-transition{navigation:auto;}
+
+/* ============ Features button (header + hero) ============ */
+/* On desktop the Features tab lives in the pill nav, so the header button
+   only appears once that nav collapses behind the hamburger. */
+.nav-feature{
+  display:none;align-items:center;gap:7px;
+  margin:0 4px 0 10px;
+  padding:8px 14px;border-radius:999px;
+  font-size:.82rem;font-weight:600;white-space:nowrap;
+  color:var(--gold-200);
+  border:1px solid rgba(212,175,55,.45);
+  background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.05));
+  transition:background .25s ease,border-color .25s ease,transform .2s ease;
+}
+.nav-feature svg{width:15px;height:15px;flex:none;}
+@media (max-width:900px){.brand{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
+@media (max-width:430px){.brand{font-size:.95rem;}}
+.nav-feature:hover{
+  background:linear-gradient(135deg,rgba(212,175,55,.26),rgba(212,175,55,.1));
+  border-color:rgba(212,175,55,.7);
+}
+.nav-feature:active{transform:scale(.96);}
+
+@media (max-width:900px){
+  .nav-feature{display:inline-flex;}
+}
+@media (max-width:380px){
+  .nav-feature span{display:none;}
+  .nav-feature{padding:8px 10px;}
+}
+
+/* Hero variant: gold hairline that fills on hover */
+.btn-feature{
+  position:relative;overflow:hidden;
+  color:var(--gold-200);
+  border-color:rgba(212,175,55,.55);
+  background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.04));
+}
+.btn-feature svg{width:17px;height:17px;flex:none;}
+.btn-feature:hover{
+  border-color:rgba(212,175,55,.85);
+  background:linear-gradient(135deg,rgba(212,175,55,.24),rgba(212,175,55,.09));
+}
+
+/* ============ Interaction polish ============ */
+/* Light sweep across the gold CTA on hover — one accent, used sparingly. */
+.btn-gold{position:relative;overflow:hidden;}
+.btn-gold::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);
+  transform:translateX(-120%);
+}
+.btn-gold:hover::after{animation:sheen .75s ease forwards;}
+@keyframes sheen{to{transform:translateX(120%);}}
+
+.btn:active{transform:translateY(0) scale(.97);}
+.btn:focus-visible,.nav-feature:focus-visible,.nav-cta:focus-visible{
+  outline:2px solid var(--gold-300);outline-offset:3px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .btn-gold:hover::after{animation:none;}
+  .btn:hover,.btn:active,.nav-feature:active{transform:none;}
+}
+
+/* Hero call-to-action row: even widths once they stack */
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+@media (max-width:620px){
+  .hero-cta{flex-direction:column;align-items:stretch;}
+  .hero-cta .btn{width:100%;justify-content:center;}
 }
