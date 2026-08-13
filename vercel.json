@@ -14,18 +14,8 @@
       "permanent": true
     },
     {
-      "source": "/features.html",
-      "destination": "/features",
-      "permanent": true
-    },
-    {
-      "source": "/download",
-      "destination": "/#download",
-      "permanent": true
-    },
-    {
-      "source": "/download.html",
-      "destination": "/#download",
+      "source": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -34,43 +24,23 @@
       "permanent": true
     },
     {
-      "source": "/index.html",
+      "source": "/download",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/about.html",
-      "destination": "/about",
-      "permanent": true
-    },
-    {
-      "source": "/quran.html",
-      "destination": "/quran",
-      "permanent": true
-    },
-    {
-      "source": "/azkar.html",
-      "destination": "/azkar",
-      "permanent": true
-    },
-    {
-      "source": "/hadith.html",
-      "destination": "/hadith",
-      "permanent": true
-    },
-    {
-      "source": "/faq.html",
-      "destination": "/faq",
-      "permanent": true
-    },
-    {
-      "source": "/privacy.html",
-      "destination": "/privacy",
+      "source": "/download.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/privacy-policy",
       "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/:slug(features|about|quran|azkar|hadith|faq|privacy)\\.html",
+      "destination": "/:slug",
       "permanent": true
     }
   ],
@@ -117,6 +87,19 @@
         {
           "key": "Content-Type",
           "value": "application/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
         },
         {
           "key": "Cache-Control",
