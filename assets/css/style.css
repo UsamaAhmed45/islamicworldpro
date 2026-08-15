@@ -33,6 +33,7 @@
   --shadow-deep:0 30px 60px -20px rgba(4,20,12,.55);
   --shadow-soft:0 14px 34px -18px rgba(4,20,12,.4);
   --container:1180px;
+  --dot-gap:30px;   /* matches the old canvas grid spacing */
 }
 
 *{box-sizing:border-box;}
@@ -263,25 +264,27 @@ button{font-family:inherit;cursor:pointer;}
 .bg-pattern{
   background-color:var(--green-950);
   background-image:
-    radial-gradient(circle at 15% 20%, rgba(212,175,55,.19), transparent 48%),
-    radial-gradient(circle at 85% 10%, rgba(63,174,114,.24), transparent 48%),
-    repeating-linear-gradient(45deg, rgba(212,175,55,.035) 0 2px, transparent 2px 34px),
-    repeating-linear-gradient(-45deg, rgba(212,175,55,.035) 0 2px, transparent 2px 34px);
+    radial-gradient(900px 460px at 18% -8%, rgba(212,175,55,.13), transparent 62%),
+    radial-gradient(760px 420px at 88% 4%, rgba(63,174,114,.13), transparent 60%);
+  position:relative;isolation:isolate;
+}
+/* The dot lattice sits on its own layer so it can be masked without
+   affecting the colour washes underneath. */
+.bg-pattern::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    radial-gradient(circle at center, rgba(233,200,115,.38) 1px, transparent 1.4px),
+    radial-gradient(circle at center, rgba(63,174,114,.20) 1px, transparent 1.4px);
+  background-size:var(--dot-gap) var(--dot-gap), var(--dot-gap) var(--dot-gap);
+  background-position:0 0, calc(var(--dot-gap)/2) calc(var(--dot-gap)/2);
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%, #000 8%, rgba(0,0,0,.55) 48%, transparent 88%);
+  mask-image:radial-gradient(120% 90% at 50% 0%, #000 8%, rgba(0,0,0,.55) 48%, transparent 88%);
 }
 
 .page-hero{
   padding:150px 0 90px;color:var(--cream-100);position:relative;
 }
 
-/* Kinetic grid host — applied by JS to every dark-background section
-   (.page-hero, .section-dark, .cta-band, .site-footer) so the reactive
-   grid renders behind their content, clipped to the section's shape. */
-.kinetic-host{position:relative;overflow:hidden;}
-.kinetic-grid-canvas{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:0;
-}
-.kinetic-host > *:not(.kinetic-grid-canvas){position:relative;z-index:1;}
 .page-hero h1{color:var(--cream-100);font-size:clamp(2.1rem,4.4vw,3.2rem);text-shadow:0 2px 24px rgba(0,0,0,.25);}
 .page-hero p.lead{color:var(--cream-200);max-width:640px;font-size:1.08rem;}
 .page-hero .logo-mark-lg,
@@ -954,4 +957,83 @@ html{scroll-behavior:smooth;}
   .expanding-card-title{font-size:1.15rem;}
   .expanding-card-desc{font-size:.86rem;-webkit-line-clamp:5;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;}
   .expanding-card-icon img{width:34px;height:34px;}
+}
+
+/* ============ Dark sections: static field, no canvas ============ */
+/* The reactive dot grid ran four rAF loops per page and never paused
+   offscreen. Replaced with a painted-once gradient. */
+.section-dark,.cta-band,.site-footer{position:relative;}
+.section-dark::before,.cta-band::before,.site-footer::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle at center, rgba(233,200,115,.34) 1px, transparent 1.4px),
+    radial-gradient(circle at center, rgba(63,174,114,.18) 1px, transparent 1.4px),
+    radial-gradient(700px 380px at 12% 0%, rgba(212,175,55,.10), transparent 62%),
+    radial-gradient(620px 340px at 90% 8%, rgba(63,174,114,.09), transparent 60%);
+  background-size:
+    var(--dot-gap) var(--dot-gap),
+    var(--dot-gap) var(--dot-gap),
+    auto, auto;
+  background-position:
+    0 0,
+    calc(var(--dot-gap)/2) calc(var(--dot-gap)/2),
+    0 0, 0 0;
+  -webkit-mask-image:radial-gradient(115% 100% at 50% 0%, #000 6%, rgba(0,0,0,.5) 52%, transparent 92%);
+  mask-image:radial-gradient(115% 100% at 50% 0%, #000 6%, rgba(0,0,0,.5) 52%, transparent 92%);
+}
+.section-dark > *,.cta-band > *,.site-footer > *{position:relative;z-index:1;}
+
+/* Hairline gold rule where dark sections meet the cream page */
+.section-dark::after,.cta-band::after{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.42),transparent);
+}
+
+@media (max-width:600px){
+  :root{--dot-gap:24px;}   /* keeps the lattice in proportion on phones */
+}
+
+/* #appGallery carries both .section-dark and .bg-pattern. Without this the
+   two lattices overlay at different offsets and the grid reads as noise. */
+.section-dark.bg-pattern::before{display:none;}
+
+/* ============ Hero: fit the first screen ============ */
+/* Measured at 1440x900 the hero ran 1060px tall against an 890px slot,
+   so the CTA row fell below the fold. Trimmed rather than removing copy. */
+@media (min-width:901px){
+  .page-hero{
+    padding:34px 0 40px !important;
+    min-height:calc(100vh - 96px);
+    display:flex;align-items:center;
+  }
+  .page-hero > .container{width:100%;}
+  .page-hero h1{
+    font-size:clamp(1.9rem,3.1vw,2.55rem);
+    line-height:1.16;margin-top:10px !important;
+  }
+  .page-hero p.lead{font-size:1rem;line-height:1.55;}
+  .page-hero .tag-row{margin:14px 0 20px !important;gap:7px;}
+  .page-hero .tag-row .pill{padding:6px 13px;font-size:.76rem;}
+  .page-hero .hero-cta .btn{padding:12px 20px;font-size:.86rem;gap:8px;}
+  .page-hero .hero-cta{gap:10px;}
+  .hero-bismillah{margin-bottom:10px;}
+  .page-hero img[src*="logo-96"]{width:52px !important;height:52px !important;margin-bottom:10px !important;}
+}
+
+/* ============ Hero ambient loop ============ */
+/* 44KB, sources attached only after window load, desktop only.
+   Screen blend keeps the dot lattice visible through it. */
+.hero-ambient{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;pointer-events:none;
+  z-index:0;opacity:0;
+  /* No mix-blend-mode: it forces an off-GPU compositing pass and cost
+     ~24fps in testing. Plain opacity is composited on the GPU. */
+  transition:opacity 1.2s ease;
+  will-change:opacity;
+}
+.hero-ambient.is-playing{opacity:.38;}
+.page-hero > .container{position:relative;z-index:1;}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  .hero-ambient{display:none;}
 }
