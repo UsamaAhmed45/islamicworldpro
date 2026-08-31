@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Studio — Islamic World Pro (private)</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="assets/img/brand/favicon.ico">
+<link rel="stylesheet" href="assets/css/style.css?v=20260904">
+<style>
+  body{background:var(--cream-100);}
+  .admin-wrap{max-width:960px;margin:0 auto;padding:40px 20px 80px;}
+  .admin-tabs{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap;}
+  .admin-tab{padding:10px 18px;border-radius:999px;border:1px solid rgba(22,71,45,.18);background:#fff;cursor:pointer;font-weight:600;font-size:.92rem;}
+  .admin-tab.active{background:var(--green-900);color:#fff;border-color:var(--green-900);}
+  .admin-panel{display:none;}
+  .admin-panel.active{display:block;}
+  .admin-card{background:#fff;border:1px solid rgba(22,71,45,.1);border-radius:var(--radius-md);padding:26px;box-shadow:var(--shadow-soft);margin-bottom:24px;}
+  .admin-card h3{margin-top:0;}
+  .admin-field{margin-bottom:16px;}
+  .admin-field label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px;color:var(--green-900);}
+  .admin-field input[type=text],
+  .admin-field select,
+  .admin-field textarea{width:100%;padding:10px 12px;border:1px solid rgba(22,71,45,.2);border-radius:8px;font-family:inherit;font-size:.95rem;background:#fdfcf8;}
+  .admin-field textarea{min-height:80px;resize:vertical;}
+  .admin-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:620px){.admin-row{grid-template-columns:1fr;}}
+  .admin-list-item{display:flex;align-items:center;gap:14px;padding:12px;border:1px solid rgba(22,71,45,.1);border-radius:10px;margin-bottom:10px;background:#fdfcf8;}
+  .admin-list-item img{width:52px;height:66px;object-fit:cover;border-radius:6px;flex-shrink:0;}
+  .admin-list-item .meta{flex:1;font-size:.88rem;}
+  .admin-list-item .meta strong{display:block;font-size:.95rem;}
+  .admin-list-item button{background:none;border:0;color:#a33;cursor:pointer;font-size:.85rem;font-weight:600;}
+  .admin-note{background:#fff8e6;border:1px solid rgba(212,175,55,.4);border-radius:10px;padding:14px 16px;font-size:.88rem;color:#6b5010;margin-bottom:24px;}
+  .gate{position:fixed;inset:0;background:var(--green-950);color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;z-index:999;text-align:center;padding:20px;}
+  .gate input{padding:10px 14px;border-radius:8px;border:0;width:240px;text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <h2 style="margin:0;color:var(--gold-300);">Content Studio</h2>
+  <p style="max-width:360px;opacity:.85;font-size:.92rem;">This is a private tool for the site owner. Enter the passphrase to continue.</p>
+  <input type="password" id="gatePass" placeholder="Passphrase">
+  <button class="btn btn-gold" id="gateSubmit" type="button">Enter</button>
+  <p id="gateError" style="color:#f3a3a3;font-size:.85rem;display:none;">Incorrect passphrase.</p>
+</div>
+
+<div class="admin-wrap" id="adminApp" style="display:none;">
+  <h1 style="margin-bottom:4px;">Content Studio</h1>
+  <p class="small-muted" style="margin-bottom:24px;">Manage the Wallpapers and Daily Posts shown on islamicworldpro.com. This tool runs entirely in your browser — it does not save to the live site by itself.</p>
+
+  <div class="admin-note">
+    <strong>How this works:</strong> add or edit entries below, then click <strong>Export JSON</strong>. Save the downloaded file over <code>assets/data/wallpapers.json</code> or <code>assets/data/daily-posts.json</code> in your repo, add any new image files to <code>assets/img/wallpapers/</code>, and redeploy (e.g. push to GitHub → Vercel). There's no server-side database here — this is a static site, so publishing still happens through your normal deploy step.
+  </div>
+
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-panel="panelWallpapers">Wallpapers</button>
+    <button class="admin-tab" data-panel="panelPosts">Daily Posts</button>
+  </div>
+
+  <!-- ============ WALLPAPERS PANEL ============ -->
+  <div class="admin-panel active" id="panelWallpapers">
+    <div class="admin-card">
+      <h3>Add a wallpaper</h3>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label for="wpTitle">Title</label>
+          <input type="text" id="wpTitle" placeholder="e.g. Sabr Ayah — Green">
+        </div>
+        <div class="admin-field">
+          <label for="wpCategory">Category</label>
+          <select id="wpCategory">
+            <option>Ayah</option>
+            <option>Dua</option>
+            <option>Quote</option>
+            <option>Minimal</option>
+            <option>Calligraphy</option>
+            <option>Ka'bah</option>
+            <option>Madinah</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-field">
+        <label for="wpFilename">Image filename (place the file in assets/img/wallpapers/ first)</label>
+        <input type="text" id="wpFilename" placeholder="e.g. sabr-ayah-green.webp">
+      </div>
+      <div class="admin-field">
+        <label for="wpPreview">Preview an image from your computer (optional — for your eyes only, not saved anywhere)</label>
+        <input type="file" id="wpPreview" accept="image/*">
+      </div>
+      <img id="wpPreviewImg" style="display:none;max-width:160px;border-radius:10px;margin-bottom:14px;box-shadow:var(--shadow-soft);">
+      <button class="btn btn-gold" type="button" id="wpAddBtn">Add Wallpaper</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Current list (<span id="wpCount">0</span>)</h3>
+      <div id="wpList"></div>
+      <button class="btn btn-outline" type="button" id="wpExportBtn" style="margin-top:10px;">Export wallpapers.json</button>
+    </div>
+  </div>
+
+  <!-- ============ DAILY POSTS PANEL ============ -->
+  <div class="admin-panel" id="panelPosts">
+    <div class="admin-card">
+      <h3>Add a daily post</h3>
+      <div class="admin-row">
+        <div class="admin-field">
+          <label for="dpType">Type</label>
+          <select id="dpType">
+            <option>Ayah</option>
+            <option>Hadith</option>
+            <option>Dua</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label for="dpSource">Source</label>
+          <input type="text" id="dpSource" placeholder="e.g. Qur'an 2:286 or Sahih Muslim 2699">
+        </div>
+      </div>
+      <div class="admin-field">
+        <label for="dpArabic">Arabic text</label>
+        <textarea id="dpArabic" dir="rtl" lang="ar" placeholder="النص العربي"></textarea>
+      </div>
+      <div class="admin-field">
+        <label for="dpTranslation">English translation</label>
+        <textarea id="dpTranslation" placeholder="English translation"></textarea>
+      </div>
+      <button class="btn btn-gold" type="button" id="dpAddBtn">Add Post</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Current list (<span id="dpCount">0</span>)</h3>
+      <div id="dpList"></div>
+      <button class="btn btn-outline" type="button" id="dpExportBtn" style="margin-top:10px;">Export daily-posts.json</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ---- Very light gate. This is obscurity, not real security: anyone with ----
+  // ---- this passphrase and the URL can open the tool. For real access     ----
+  // ---- control, protect this path at the hosting level (e.g. Vercel's    ----
+  // ---- deployment/password protection) instead of relying on this.       ----
+  const PASSPHRASE = "iwp-admin-2026";
+  const gate = document.getElementById("gate");
+  const app = document.getElementById("adminApp");
+
+  function tryEnter() {
+    const val = document.getElementById("gatePass").value;
+    if (val === PASSPHRASE) {
+      gate.style.display = "none";
+      app.style.display = "block";
+      sessionStorage.setItem("iwpAdminOK", "1");
+    } else {
+      document.getElementById("gateError").style.display = "block";
+    }
+  }
+  if (sessionStorage.getItem("iwpAdminOK") === "1") {
+    gate.style.display = "none";
+    app.style.display = "block";
+  }
+  document.getElementById("gateSubmit").addEventListener("click", tryEnter);
+  document.getElementById("gatePass").addEventListener("keydown", (e) => { if (e.key === "Enter") tryEnter(); });
+
+  // ---- Tabs ----
+  document.querySelectorAll(".admin-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".admin-tab").forEach((t) => t.classList.remove("active"));
+      document.querySelectorAll(".admin-panel").forEach((p) => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.getElementById(tab.dataset.panel).classList.add("active");
+    });
+  });
+
+  function download(filename, content) {
+    const blob = new Blob([content], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function slugify(s) {
+    return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  // ---- Wallpapers ----
+  let wallpapers = [];
+  const wpList = document.getElementById("wpList");
+  const wpCount = document.getElementById("wpCount");
+
+  fetch("assets/data/wallpapers.json").then((r) => r.json()).then((data) => { wallpapers = data; renderWallpapers(); }).catch(() => renderWallpapers());
+
+  function renderWallpapers() {
+    wpCount.textContent = wallpapers.length;
+    wpList.innerHTML = wallpapers.map((w, i) => `
+      <div class="admin-list-item">
+        <img src="${w.image}" alt="" onerror="this.style.display='none'">
+        <div class="meta"><strong>${w.title}</strong>${w.category} · ${w.image}</div>
+        <button type="button" data-i="${i}" class="wpRemove">Remove</button>
+      </div>`).join("") || '<p class="small-muted">No wallpapers yet.</p>';
+    wpList.querySelectorAll(".wpRemove").forEach((btn) => btn.addEventListener("click", () => {
+      wallpapers.splice(Number(btn.dataset.i), 1);
+      renderWallpapers();
+    }));
+  }
+
+  document.getElementById("wpPreview").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const img = document.getElementById("wpPreviewImg");
+    img.src = URL.createObjectURL(file);
+    img.style.display = "block";
+    if (!document.getElementById("wpFilename").value) {
+      document.getElementById("wpFilename").value = file.name;
+    }
+  });
+
+  document.getElementById("wpAddBtn").addEventListener("click", () => {
+    const title = document.getElementById("wpTitle").value.trim();
+    const category = document.getElementById("wpCategory").value;
+    const filename = document.getElementById("wpFilename").value.trim();
+    if (!title || !filename) { alert("Please add a title and an image filename."); return; }
+    wallpapers.push({ id: slugify(title), title, category, image: "assets/img/wallpapers/" + filename });
+    document.getElementById("wpTitle").value = "";
+    document.getElementById("wpFilename").value = "";
+    document.getElementById("wpPreviewImg").style.display = "none";
+    renderWallpapers();
+  });
+
+  document.getElementById("wpExportBtn").addEventListener("click", () => {
+    download("wallpapers.json", JSON.stringify(wallpapers, null, 2));
+  });
+
+  // ---- Daily Posts ----
+  let posts = [];
+  const dpList = document.getElementById("dpList");
+  const dpCount = document.getElementById("dpCount");
+
+  fetch("assets/data/daily-posts.json").then((r) => r.json()).then((data) => { posts = data; renderPosts(); }).catch(() => renderPosts());
+
+  function renderPosts() {
+    dpCount.textContent = posts.length;
+    dpList.innerHTML = posts.map((p, i) => `
+      <div class="admin-list-item">
+        <div class="meta"><strong>${p.type} — ${p.source}</strong>${p.translation}</div>
+        <button type="button" data-i="${i}" class="dpRemove">Remove</button>
+      </div>`).join("") || '<p class="small-muted">No posts yet.</p>';
+    dpList.querySelectorAll(".dpRemove").forEach((btn) => btn.addEventListener("click", () => {
+      posts.splice(Number(btn.dataset.i), 1);
+      renderPosts();
+    }));
+  }
+
+  document.getElementById("dpAddBtn").addEventListener("click", () => {
+    const type = document.getElementById("dpType").value;
+    const source = document.getElementById("dpSource").value.trim();
+    const arabic = document.getElementById("dpArabic").value.trim();
+    const translation = document.getElementById("dpTranslation").value.trim();
+    if (!source || !arabic || !translation) { alert("Please fill in source, Arabic text and translation."); return; }
+    posts.push({ id: slugify(type + "-" + source), type, arabic, translation, source });
+    document.getElementById("dpSource").value = "";
+    document.getElementById("dpArabic").value = "";
+    document.getElementById("dpTranslation").value = "";
+    renderPosts();
+  });
+
+  document.getElementById("dpExportBtn").addEventListener("click", () => {
+    download("daily-posts.json", JSON.stringify(posts, null, 2));
+  });
+})();
+</script>
+</body>
+</html>

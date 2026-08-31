@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ayah-rose",
+    "title": "Patience Ayah — Floral",
+    "category": "Ayah",
+    "image": "assets/img/wallpapers/wallpaper-ayah-rose.webp"
+  },
+  {
+    "id": "minimal-silhouette",
+    "title": "Build Your Akhirah — Minimal",
+    "category": "Minimal",
+    "image": "assets/img/wallpapers/wallpaper-minimal-silhouette.webp"
+  },
+  {
+    "id": "qawwam-quote",
+    "title": "Be Strong — Typography",
+    "category": "Quote",
+    "image": "assets/img/wallpapers/wallpaper-qawwam-quote.webp"
+  },
+  {
+    "id": "dua-boat",
+    "title": "Allah Is Sufficient — Calligraphy",
+    "category": "Calligraphy",
+    "image": "assets/img/wallpapers/wallpaper-dua-boat.webp"
+  }
+]

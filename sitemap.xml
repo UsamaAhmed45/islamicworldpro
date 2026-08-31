@@ -5,20 +5,52 @@
 
   <url>
     <loc>https://islamicworldpro.com/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://islamicworldpro.com/assets/img/hero-overview.webp</image:loc>
       <image:title>Islamic World Pro app home screen</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-01-app-overview.webp</image:loc>
+      <image:title>Islamic World Pro — Everything You Need, In One App</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-02-quran-companion.webp</image:loc>
+      <image:title>Islamic World Pro — Your Complete Qur'an Companion</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-03-hadith-azkar-duas.webp</image:loc>
+      <image:title>Islamic World Pro — Hadith and Azkar Duas</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-04-wallpapers-widgets.webp</image:loc>
+      <image:title>Islamic World Pro — Wallpapers, Find Nearby and Widgets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-05-ask-imam-kids-corner.webp</image:loc>
+      <image:title>Islamic World Pro — Ask Imam and Kids Corner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-06-zakat-jummah-mode.webp</image:loc>
+      <image:title>Islamic World Pro — Zakat Calculator and Jummah Mode</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-07-prayer-qibla.webp</image:loc>
+      <image:title>Islamic World Pro — Never Miss a Prayer, Qibla compass</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/screens/screen-08-calendar-settings.webp</image:loc>
+      <image:title>Islamic World Pro — Customize Themes and Settings</image:title>
+    </image:image>
     <video:video>
       <video:thumbnail_loc>https://islamicworldpro.com/assets/img/video-poster.webp</video:thumbnail_loc>
       <video:title>Islamic World Pro — App Walkthrough</video:title>
-      <video:description>A walkthrough of Islamic World Pro: Qur'an with Tajweed, daily Azkar, Qibla compass, Hadith library, Imam Bot and voice search.</video:description>
+      <video:description>A full walkthrough of Islamic World Pro: Qur'an with Tajweed and Hifz Mode memorisation, prayer times and Qibla, daily Azkar, the Hadith library, Ask Imam and more.</video:description>
       <video:content_loc>https://islamicworldpro.com/assets/video/app-walkthrough.mp4</video:content_loc>
-      <video:duration>60</video:duration>
-      <video:publication_date>2026-07-21T00:00:00+00:00</video:publication_date>
+      <video:duration>82</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
     </video:video>
@@ -70,6 +102,141 @@
       <image:loc>https://islamicworldpro.com/assets/img/gallery-hadith-calendar.webp</image:loc>
       <image:title>Hadith library and Hijri calendar</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://islamicworldpro.com/videos</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-app-overview.webp</video:thumbnail_loc>
+      <video:title>Islamic World Pro — Everything You Need, In One App</video:title>
+      <video:description>A full overview of Islamic World Pro: offline Qur'an, Prayer Times, Qibla, Hifz memorisation, Hadith, Azkar &amp; Duas and Ramadan tools.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-app-overview.mp4</video:content_loc>
+      <video:duration>6</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-prayer-qibla.webp</video:thumbnail_loc>
+      <video:title>Never Miss a Prayer — Adhan Alerts &amp; Live Qibla Compass</video:title>
+      <video:description>Accurate prayer times with Adhan alerts, automatic location detection, Night Prayer timings and a live Qibla compass.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-prayer-qibla.mp4</video:content_loc>
+      <video:duration>12</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-hadith-azkar-duas.webp</video:thumbnail_loc>
+      <video:title>Hadith &amp; Azkar (Duas) — Islamic World Pro</video:title>
+      <video:description>9 major Hadith books offline with instant search, plus daily Azkar and Duas organised by category.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-hadith-azkar-duas.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-ask-imam-kids-corner.webp</video:thumbnail_loc>
+      <video:title>Ask Imam AI, Daily Islamic Posts &amp; Kids Corner</video:title>
+      <video:description>An AI Islamic assistant for Qur'an, Hadith, Salah and Dua questions, daily Islamic posts, and a Kids Corner learning area.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-ask-imam-kids-corner.mp4</video:content_loc>
+      <video:duration>9</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-wallpapers-nearby-widgets.webp</video:thumbnail_loc>
+      <video:title>Islamic Wallpapers, Find Nearby &amp; Home Screen Widgets</video:title>
+      <video:description>Islamic wallpapers and quotes, a nearby mosque and halal-food finder, and offline home screen widgets.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-wallpapers-nearby-widgets.mp4</video:content_loc>
+      <video:duration>4</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-calendar-backup-settings.webp</video:thumbnail_loc>
+      <video:title>Islamic Hijri Calendar, Backup &amp; Restore, Smart Settings</video:title>
+      <video:description>A full Hijri calendar with Islamic occasions, one-tap backup and restore, and customisable app settings.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-calendar-backup-settings.mp4</video:content_loc>
+      <video:duration>5</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-zakat-jummah-mode.webp</video:thumbnail_loc>
+      <video:title>Zakat Calculator &amp; Jummah Mode</video:title>
+      <video:description>Calculate Zakat and Sadaqah with a Nisab-based wealth tracker, and use Jummah Mode with Surah Al-Kahf progress tracking.</video:description>
+      <video:content_loc>https://islamicworldpro.com/assets/video/feature-zakat-jummah-mode.mp4</video:content_loc>
+      <video:duration>4</video:duration>
+      <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/composite_01.webp</image:loc>
+      <image:title>Qur'an reader with Tajweed colour-coding</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/composite_04.webp</image:loc>
+      <image:title>Prayer times and Qibla compass</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/composite_05.webp</image:loc>
+      <image:title>Azkar categories and dua card</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/composite_06.webp</image:loc>
+      <image:title>Home dashboard with all Islamic tools</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/hifz-uthmani-mushaf.webp</image:loc>
+      <image:title>Uthmani Mushaf reading page in Islamic World Pro</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/hifz-mode-test.webp</image:loc>
+      <image:title>Hifz memorisation test mode with live listening</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/tarjuma-tafseer-urdu.webp</image:loc>
+      <image:title>Urdu and English Tarjuma and Tafseer screen</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://islamicworldpro.com/wallpapers</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-ayah-rose.webp</image:loc>
+      <image:title>Patience Ayah Islamic wallpaper — floral design</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-minimal-silhouette.webp</image:loc>
+      <image:title>Minimal Islamic reminder wallpaper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-qawwam-quote.webp</image:loc>
+      <image:title>Be Strong Islamic quote wallpaper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-dua-boat.webp</image:loc>
+      <image:title>Allah is Sufficient Islamic calligraphy wallpaper</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://islamicworldpro.com/daily-posts</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>

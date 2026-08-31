@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ayah-hardship-ease",
+    "type": "Ayah",
+    "arabic": "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+    "translation": "Verily, with hardship comes ease.",
+    "source": "Qur'an 94:6"
+  },
+  {
+    "id": "hadith-good-words",
+    "type": "Hadith",
+    "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
+    "translation": "Whoever believes in Allah and the Last Day should speak good or remain silent.",
+    "source": "Sahih al-Bukhari 6018"
+  },
+  {
+    "id": "dua-good-in-both-worlds",
+    "type": "Dua",
+    "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "translation": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.",
+    "source": "Qur'an 2:201"
+  },
+  {
+    "id": "hadith-strong-in-anger",
+    "type": "Hadith",
+    "arabic": "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ",
+    "translation": "The strong one is not the one who overcomes people through strength, but the one who controls himself while angry.",
+    "source": "Sahih al-Bukhari 6114"
+  },
+  {
+    "id": "ayah-allah-with-patient",
+    "type": "Ayah",
+    "arabic": "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+    "translation": "Indeed, Allah is with the patient.",
+    "source": "Qur'an 2:153"
+  },
+  {
+    "id": "dua-forgiveness",
+    "type": "Dua",
+    "arabic": "رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",
+    "translation": "My Lord, forgive me and accept my repentance; indeed, You are the Accepting of Repentance, the Merciful.",
+    "source": "Common Dua"
+  },
+  {
+    "id": "hadith-best-manners",
+    "type": "Hadith",
+    "arabic": "أَكْمَلُ الْمُؤْمِنِينَ إِيمَانًا أَحْسَنُهُمْ خُلُقًا",
+    "translation": "The most complete believers in faith are those with the best character.",
+    "source": "Sunan Abu Dawood 4682"
+  }
+]

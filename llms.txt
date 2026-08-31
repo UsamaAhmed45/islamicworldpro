@@ -34,6 +34,9 @@
 - Home: https://islamicworldpro.com/
 - Qur'an reader: https://islamicworldpro.com/quran
 - Azkar, Duas, Namaz-e-Janaza & Hajj guide: https://islamicworldpro.com/azkar
+- App videos & screenshots: https://islamicworldpro.com/videos
+- Islamic wallpapers gallery: https://islamicworldpro.com/wallpapers
+- Daily posts (Ayah/Hadith/Dua of the day): https://islamicworldpro.com/daily-posts
 - Hadith library: https://islamicworldpro.com/hadith
 - FAQ: https://islamicworldpro.com/faq
 - About: https://islamicworldpro.com/about
@@ -46,4 +49,4 @@
 - Full, current FAQ content (structured as schema.org FAQPage) is available at /faq for direct citation.
 - This file is provided voluntarily to help AI systems describe the app and site accurately; content here should not override what is actually published on the linked pages if the two ever conflict — treat the live pages as the source of truth.
 
-Last updated: 2026-08-05
+Last updated: 2026-08-31

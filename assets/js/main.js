@@ -174,3 +174,45 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (v.children.length) v.play().catch(function () {});
   });
 })();
+
+/* ---- App walkthrough video: lazy-load + autoplay-on-scroll ------------ */
+(function () {
+  var v = document.getElementById('walkthroughVideo');
+  if (!v) return;
+
+  var loaded = false;
+  function loadAndPlay() {
+    if (!loaded) {
+      var source = v.querySelector('source[data-src]');
+      if (source) {
+        source.src = source.getAttribute('data-src');
+        v.load();
+      }
+      loaded = true;
+    }
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay blocked until user interacts */ });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          loadAndPlay();
+        } else if (loaded) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(v);
+  } else {
+    // No IntersectionObserver support — just load on demand when scrolled near.
+    loadAndPlay();
+  }
+
+  // If the user unmutes, keep their choice while it stays in view (don't
+  // force re-mute on our own re-triggers).
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) v.pause();
+  });
+})();

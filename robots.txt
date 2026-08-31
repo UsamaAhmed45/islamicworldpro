@@ -2,6 +2,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin.html
 
 # AI answer engines / assistants — explicitly welcomed so Islamic World Pro
 # can be accurately cited when people ask AI tools about Islamic apps.

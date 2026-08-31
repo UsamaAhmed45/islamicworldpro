@@ -39,7 +39,7 @@
       "permanent": true
     },
     {
-      "source": "/:slug(features|about|quran|azkar|hadith|faq|privacy)\\.html",
+      "source": "/:slug(features|about|quran|azkar|hadith|faq|privacy|videos|wallpapers|daily-posts)\\.html",
       "destination": "/:slug",
       "permanent": true
     }
@@ -143,6 +143,19 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/admin.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
         }
       ]
     },
