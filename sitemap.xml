@@ -180,55 +180,68 @@
       <video:live>no</video:live>
     </video:video>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/composite_01.webp</image:loc>
-      <image:title>Qur'an reader with Tajweed colour-coding</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-home-dashboard.webp</image:loc>
+      <image:title>Home dashboard in Urdu</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/composite_04.webp</image:loc>
-      <image:title>Prayer times and Qibla compass</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-daily-greeting.webp</image:loc>
+      <image:title>Daily greeting and prayer countdown</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/composite_05.webp</image:loc>
-      <image:title>Azkar categories and dua card</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-hifz-recitation-check.webp</image:loc>
+      <image:title>Hifz recitation check surah list</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/composite_06.webp</image:loc>
-      <image:title>Home dashboard with all Islamic tools</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-ask-imam.webp</image:loc>
+      <image:title>Ask Imam AI chat</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/hifz-uthmani-mushaf.webp</image:loc>
-      <image:title>Uthmani Mushaf reading page in Islamic World Pro</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-search.webp</image:loc>
+      <image:title>Instant search with voice input</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/hifz-mode-test.webp</image:loc>
-      <image:title>Hifz memorisation test mode with live listening</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-learn-with-us.webp</image:loc>
+      <image:title>Learn With Us, Norani Qaida and Tajweed</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/tarjuma-tafseer-urdu.webp</image:loc>
-      <image:title>Urdu and English Tarjuma and Tafseer screen</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://islamicworldpro.com/wallpapers</loc>
-    <lastmod>2026-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-ayah-rose.webp</image:loc>
-      <image:title>Patience Ayah Islamic wallpaper — floral design</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-night-prayer.webp</image:loc>
+      <image:title>Night Prayer Tahajjud timings</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-minimal-silhouette.webp</image:loc>
-      <image:title>Minimal Islamic reminder wallpaper</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-jummah-mode.webp</image:loc>
+      <image:title>Jummah Mode Friday checklist</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-qawwam-quote.webp</image:loc>
-      <image:title>Be Strong Islamic quote wallpaper</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-missed-prayers-qada.webp</image:loc>
+      <image:title>Missed prayers Qada tracker</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-dua-boat.webp</image:loc>
-      <image:title>Allah is Sufficient Islamic calligraphy wallpaper</image:title>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-find-nearby.webp</image:loc>
+      <image:title>Find Nearby mosques and Islamic places</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-widgets.webp</image:loc>
+      <image:title>Home screen prayer timing widgets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-settings.webp</image:loc>
+      <image:title>Settings and appearance themes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-backup-restore.webp</image:loc>
+      <image:title>Backup and restore your data</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-daily-posts.webp</image:loc>
+      <image:title>Daily Posts dua and hadith reminders</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-zakat-sadaqah.webp</image:loc>
+      <image:title>Zakat and Sadaqah calculator</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-kids-corner.webp</image:loc>
+      <image:title>Kids Corner learning activities</image:title>
     </image:image>
   </url>
 
