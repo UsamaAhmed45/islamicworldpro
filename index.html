@@ -227,6 +227,14 @@
     70%{transform:scale(1.9);opacity:0;}
     100%{transform:scale(1.9);opacity:0;}
   }
+  .header-download-wrap{margin-left:auto;order:2;}
+  .header-download-btn{padding:9px 18px;font-size:.92rem;white-space:nowrap;}
+  .header-download-wrap .tap-hand{font-size:22px;right:-8px;bottom:-14px;}
+  .header-download-wrap::after{right:2px;bottom:-6px;width:16px;height:16px;}
+  @media (max-width:640px){
+    .header-download-btn{padding:7px 14px;font-size:.82rem;}
+    .header-download-wrap .tap-hand{font-size:18px;right:-6px;bottom:-10px;}
+  }
   @media (prefers-reduced-motion: reduce){
     .tap-hand,.btn-hand-wrap::after{animation:none;}
   }
@@ -241,6 +249,10 @@
       Islamic World Pro
     </a>
     <a href="/features" class="nav-feature" aria-label="Features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Features</span></a>
+    <span class="btn-hand-wrap header-download-wrap">
+      <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold header-download-btn" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play">Download</a>
+      <span class="tap-hand" aria-hidden="true">👆</span>
+    </span>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7" class="nt-line nt-top"/><line x1="4" y1="12" x2="20" y2="12" class="nt-line nt-mid"/><line x1="4" y1="17" x2="20" y2="17" class="nt-line nt-bot"/></svg>
     </button>
@@ -259,7 +271,6 @@
         <a href="/daily-posts" class="slide-tab" data-tab>Daily Posts</a>
         <a href="/blog" class="slide-tab" data-tab>Guides</a>
       </div>
-      <a href="#download" class="nav-cta">Download</a>
     </div>
   </nav>
 </header>
@@ -279,6 +290,14 @@
       <div class="now">
         <img class="lqip" decoding="async" width="96" height="96" src="assets/img/brand/logo-96.webp" alt="Islamic World Pro" style="width:64px;height:64px;border-radius:16px;box-shadow:var(--shadow-soft);margin-bottom:14px;background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACwBACdASoUABQAPt1irE8opSSiKAqpEBuJYgC06BEdqLX6+5ldzK/mOLZYksgAAP7urRZEJtLvRRKZhKZ7AO++I7DnppWBhUYXIIduOJxMCUnZoEFzxZGcVuGGrQANS3rhF8D7P+cBR1he2X14o+eWLXNLVPHGwAA=)">
         <span class="eyebrow">Free · Ad-Free · Works Offline</span>
+        <div class="hero-cta" style="margin-top:16px;margin-bottom:20px;">
+          <span class="btn-hand-wrap">
+            <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold btn-lg" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download on Google Play</a>
+            <span class="tap-hand tap-hand-lg" aria-hidden="true">👆</span>
+          </span>
+          <a href="/features" class="btn btn-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Explore Features</a>
+          <a href="/quran" class="btn btn-outline">Read Qur'an Online</a>
+        </div>
         <h1 style="margin-top:14px;">The best Islamic app for everyday Muslim life</h1>
         <p class="lead">Islamic World Pro brings the Qur'an, prayer times, Qibla, Hadith, Azkar and duas into one calm, premium Islamic app — plus Hifz Mode, which listens as you recite and checks your memorisation word by word. Everything works offline, with no ads and no tracking.</p>
         <div class="tag-row" style="margin:20px 0 28px;">
@@ -291,14 +310,6 @@
           <span class="pill">Home Screen Widgets</span>
           <span class="pill">Zakat Calculator</span>
           <span class="pill">100% Free, No Ads</span>
-        </div>
-        <div class="hero-cta">
-          <span class="btn-hand-wrap">
-            <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold btn-lg" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download on Google Play</a>
-            <span class="tap-hand tap-hand-lg" aria-hidden="true">👆</span>
-          </span>
-          <a href="/features" class="btn btn-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Explore Features</a>
-          <a href="/quran" class="btn btn-outline">Read Qur'an Online</a>
         </div>
       </div>
       <div class="hero-visual-wrap-outer">
