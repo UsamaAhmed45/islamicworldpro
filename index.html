@@ -227,14 +227,6 @@
     70%{transform:scale(1.9);opacity:0;}
     100%{transform:scale(1.9);opacity:0;}
   }
-  .header-download-wrap{margin-left:auto;order:2;}
-  .header-download-btn{padding:9px 18px;font-size:.92rem;white-space:nowrap;}
-  .header-download-wrap .tap-hand{font-size:22px;right:-8px;bottom:-14px;}
-  .header-download-wrap::after{right:2px;bottom:-6px;width:16px;height:16px;}
-  @media (max-width:640px){
-    .header-download-btn{padding:7px 14px;font-size:.82rem;}
-    .header-download-wrap .tap-hand{font-size:18px;right:-6px;bottom:-10px;}
-  }
   @media (prefers-reduced-motion: reduce){
     .tap-hand,.btn-hand-wrap::after{animation:none;}
   }
@@ -249,10 +241,6 @@
       Islamic World Pro
     </a>
     <a href="/features" class="nav-feature" aria-label="Features"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Features</span></a>
-    <span class="btn-hand-wrap header-download-wrap">
-      <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold header-download-btn" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play">Download</a>
-      <span class="tap-hand" aria-hidden="true">👆</span>
-    </span>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7" class="nt-line nt-top"/><line x1="4" y1="12" x2="20" y2="12" class="nt-line nt-mid"/><line x1="4" y1="17" x2="20" y2="17" class="nt-line nt-bot"/></svg>
     </button>
@@ -271,6 +259,7 @@
         <a href="/daily-posts" class="slide-tab" data-tab>Daily Posts</a>
         <a href="/blog" class="slide-tab" data-tab>Guides</a>
       </div>
+      <a href="#download" class="nav-cta">Download</a>
     </div>
   </nav>
 </header>
