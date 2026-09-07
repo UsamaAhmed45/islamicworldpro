@@ -211,12 +211,24 @@ button{font-family:inherit;cursor:pointer;}
   color:var(--green-950)!important;font-weight:700;font-size:.85rem;
   box-shadow:0 8px 20px -6px rgba(212,175,55,.5);
 }
-.nav-toggle{display:none;background:none;border:0;padding:8px;color:var(--cream-100);}
+.nav-toggle{display:none;background:none;border:0;padding:10px;color:var(--cream-100);border-radius:12px;min-width:44px;min-height:44px;align-items:center;justify-content:center;transition:background .2s ease;}
+.nav-toggle:active{background:rgba(212,175,55,.14);}
 .nav-toggle svg{width:24px;height:24px;}
 .nt-line{transition:transform .3s cubic-bezier(.22,1,.36,1), opacity .2s ease;transform-box:fill-box;transform-origin:center;}
 .nav-toggle[aria-expanded="true"] .nt-top{transform:translateY(5px) rotate(45deg);}
 .nav-toggle[aria-expanded="true"] .nt-mid{opacity:0;}
 .nav-toggle[aria-expanded="true"] .nt-bot{transform:translateY(-5px) rotate(-45deg);}
+
+/* Dimmed backdrop behind the open mobile menu (created by JS) */
+.nav-backdrop{
+  position:fixed;inset:0;z-index:90;
+  background:rgba(6,20,13,.55);
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.nav-backdrop.open{opacity:1;pointer-events:auto;}
+body.nav-open{overflow:hidden;}
 
 @media (max-width:1150px){
   .site-header{padding:12px 10px;}
@@ -230,6 +242,7 @@ button{font-family:inherit;cursor:pointer;}
     border:1px solid rgba(212,175,55,.25);
     box-shadow:0 20px 44px -16px rgba(0,0,0,.6);
     overflow-y:auto;max-height:calc(100vh - 96px);
+    z-index:95;
   }
   .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
   .slide-tabs{
@@ -242,7 +255,12 @@ button{font-family:inherit;cursor:pointer;}
   }
   .slide-tab:hover{background:rgba(212,175,55,.12);}
   .slide-tab.active{background:rgba(212,175,55,.18);color:var(--gold-200);}
-  .nav-toggle{display:block;}
+  .nav-cta{
+    width:100%;justify-content:center;padding:14px 20px;font-size:.95rem;
+    margin-top:6px;border-top:1px solid rgba(212,175,55,.18);padding-top:20px;
+    border-radius:14px;
+  }
+  .nav-toggle{display:flex;}
 }
 
 /* ============ Hero (bg pattern) ============ */
@@ -283,6 +301,8 @@ button{font-family:inherit;cursor:pointer;}
   border:1px solid transparent;transition:transform .2s ease, box-shadow .2s ease;
 }
 .btn:hover{transform:translateY(-2px);}
+.btn-lg{padding:18px 34px;font-size:1.05rem;gap:12px;}
+.btn-lg svg{width:22px;height:22px;}
 .btn-gold{
   background:linear-gradient(160deg,var(--gold-200) 0%,var(--gold-300) 32%,var(--gold-600) 100%);
   color:var(--green-950);box-shadow:var(--shadow-gold), inset 0 1px 0 rgba(255,250,230,.7);

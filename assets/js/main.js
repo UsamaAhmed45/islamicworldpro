@@ -3,14 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
-    });
-    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
+
+    function closeMenu() {
       links.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.classList.remove('nav-open');
       toggle.setAttribute('aria-expanded', 'false');
-    }));
+    }
+    function openMenu() {
+      links.classList.add('open');
+      backdrop.classList.add('open');
+      document.body.classList.add('nav-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', () => {
+      links.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) closeMenu();
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   }
 
   // ============ Reveal on scroll ============
