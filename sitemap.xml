@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://islamicworldpro.com/</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -242,6 +242,29 @@
     <image:image>
       <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-kids-corner.webp</image:loc>
       <image:title>Kids Corner learning activities</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://islamicworldpro.com/wallpapers</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-ayah-rose.webp</image:loc>
+      <image:title>Patience Ayah — Floral Islamic wallpaper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-minimal-silhouette.webp</image:loc>
+      <image:title>Build Your Akhirah — Minimal Islamic wallpaper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-qawwam-quote.webp</image:loc>
+      <image:title>Be Strong — Typography Islamic wallpaper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-dua-boat.webp</image:loc>
+      <image:title>Allah Is Sufficient — Calligraphy Islamic wallpaper</image:title>
     </image:image>
   </url>
 

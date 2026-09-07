@@ -96,21 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ============ Hero 3D tilt ============
-  const hero3D = document.getElementById('hero3D');
-  const heroWrap = hero3D ? hero3D.closest('.hero-visual-wrap') : null;
-  const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (hero3D && heroWrap && canTilt && !reduceMotion) {
-    heroWrap.addEventListener('mousemove', (e) => {
-      const rect = heroWrap.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      hero3D.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
-    });
-    heroWrap.addEventListener('mouseleave', () => {
-      hero3D.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
-  }
 });
 
 /* ---- Loading smoothness ---------------------------------------------- */
@@ -165,6 +150,50 @@ document.addEventListener('DOMContentLoaded', () => {
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!v.src && !v.children.length) return;
+        e.isIntersecting ? v.play().catch(function () {}) : v.pause();
+      });
+    }, { threshold: 0.05 }).observe(v);
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) v.pause();
+    else if (v.children.length) v.play().catch(function () {});
+  });
+})();
+
+/* ---- Hero app-demo video (phone mockup) -------------------------------- */
+(function () {
+  var v = document.getElementById('heroDemoVideo');
+  if (!v) return;
+
+  // Same policy as the hero-ambient clip: skip on small screens, reduced
+  // motion, or a data-saver connection — the poster image is already a
+  // full, meaningful screenshot, so nothing is lost.
+  var small = window.matchMedia('(max-width:900px)').matches;
+  var still = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var conn = navigator.connection || {};
+  var thrifty = conn.saveData === true || /2g/.test(conn.effectiveType || '');
+  if (small || still || thrifty) return;
+
+  function start() {
+    var url = v.getAttribute('data-src-mp4');
+    if (!url) return;
+    var src = document.createElement('source');
+    src.src = url;
+    src.type = 'video/mp4';
+    v.appendChild(src);
+    v.preload = 'auto';
+    v.load();
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay blocked; poster stays visible */ });
+  }
+
+  if (document.readyState === 'complete') setTimeout(start, 400);
+  else window.addEventListener('load', function () { setTimeout(start, 400); });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!v.children.length) return;
         e.isIntersecting ? v.play().catch(function () {}) : v.pause();
       });
     }, { threshold: 0.05 }).observe(v);

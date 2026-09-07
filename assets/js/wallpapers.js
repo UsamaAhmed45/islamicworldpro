@@ -14,23 +14,21 @@
       const res = await fetch("assets/data/wallpapers.json", { cache: "no-store" });
       items = await res.json();
     } catch (e) {
-      grid.innerHTML = '<p class="small-muted">Wallpapers could not be loaded right now.</p>';
-      return;
+      // Fetch failed (offline, blocked, etc.) — leave the server-rendered
+      // wallpapers already in the page alone instead of wiping them out.
+      items = [];
     }
 
-    if (!items.length) {
-      grid.innerHTML = '<p class="small-muted">More wallpapers are coming soon.</p>';
-      return;
+    if (items.length) {
+      grid.innerHTML = items
+        .map(
+          (w) => `
+        <button type="button" class="gallery-thumb wallpaper-thumb" data-title="${escapeHtml(w.title)}" data-sub="${escapeHtml(w.category)} wallpaper" data-full="${w.image}">
+          <img loading="lazy" decoding="async" src="${w.image}" alt="${escapeHtml(w.title)} — Islamic wallpaper from Islamic World Pro">
+        </button>`
+        )
+        .join("");
     }
-
-    grid.innerHTML = items
-      .map(
-        (w) => `
-      <button type="button" class="gallery-thumb wallpaper-thumb" data-title="${escapeHtml(w.title)}" data-sub="${escapeHtml(w.category)} wallpaper" data-full="${w.image}">
-        <img loading="lazy" decoding="async" src="${w.image}" alt="${escapeHtml(w.title)} — Islamic wallpaper from Islamic World Pro">
-      </button>`
-      )
-      .join("");
 
     if (!lightbox) return;
     const thumbs = Array.from(grid.querySelectorAll(".gallery-thumb"));
