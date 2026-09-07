@@ -230,6 +230,21 @@
   @media (prefers-reduced-motion: reduce){
     .tap-hand,.btn-hand-wrap::after{animation:none;}
   }
+
+  /* --- Mobile menu fix: keep it above the WhatsApp button and don't let Download get cut off --- */
+  @media (max-width:900px){
+    .nav-links{
+      z-index:9999 !important;
+      padding-bottom:calc(32px + env(safe-area-inset-bottom, 0px)) !important;
+      overflow-y:auto !important;
+    }
+    .nav-cta{
+      margin-bottom:calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+  body:has(.nav-toggle[aria-expanded="true"]) .whatsapp-float{
+    display:none !important;
+  }
 </style>
 </head>
 <body>
