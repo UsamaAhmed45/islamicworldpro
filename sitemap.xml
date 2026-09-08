@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://islamicworldpro.com/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -26,7 +26,7 @@
     </image:image>
     <image:image>
       <image:loc>https://islamicworldpro.com/assets/img/screens/screen-04-wallpapers-widgets.webp</image:loc>
-      <image:title>Islamic World Pro — Wallpapers, Find Nearby and Widgets</image:title>
+      <image:title>Islamic World Pro — Find Nearby and Widgets</image:title>
     </image:image>
     <image:image>
       <image:loc>https://islamicworldpro.com/assets/img/screens/screen-05-ask-imam-kids-corner.webp</image:loc>
@@ -106,7 +106,7 @@
 
   <url>
     <loc>https://islamicworldpro.com/videos</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <video:video>
@@ -151,8 +151,8 @@
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://islamicworldpro.com/assets/img/videos/feature-wallpapers-nearby-widgets.webp</video:thumbnail_loc>
-      <video:title>Islamic Wallpapers, Find Nearby &amp; Home Screen Widgets</video:title>
-      <video:description>Islamic wallpapers and quotes, a nearby mosque and halal-food finder, and offline home screen widgets.</video:description>
+      <video:title>Find Nearby &amp; Home Screen Widgets</video:title>
+      <video:description>A nearby mosque and halal-food finder, and offline home screen widgets.</video:description>
       <video:content_loc>https://islamicworldpro.com/assets/video/feature-wallpapers-nearby-widgets.mp4</video:content_loc>
       <video:duration>4</video:duration>
       <video:publication_date>2026-08-31T00:00:00+00:00</video:publication_date>
@@ -242,29 +242,6 @@
     <image:image>
       <image:loc>https://islamicworldpro.com/assets/img/real-screens/real-kids-corner.webp</image:loc>
       <image:title>Kids Corner learning activities</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://islamicworldpro.com/wallpapers</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-ayah-rose.webp</image:loc>
-      <image:title>Patience Ayah — Floral Islamic wallpaper</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-minimal-silhouette.webp</image:loc>
-      <image:title>Build Your Akhirah — Minimal Islamic wallpaper</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-qawwam-quote.webp</image:loc>
-      <image:title>Be Strong — Typography Islamic wallpaper</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://islamicworldpro.com/assets/img/wallpapers/wallpaper-dua-boat.webp</image:loc>
-      <image:title>Allah Is Sufficient — Calligraphy Islamic wallpaper</image:title>
     </image:image>
   </url>
 

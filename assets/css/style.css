@@ -248,6 +248,7 @@ body.nav-open{overflow:hidden;}
   .slide-tabs{
     flex-direction:column;align-items:stretch;gap:6px;
     background:none;border:0;padding:0;
+    overflow:visible;-webkit-overflow-scrolling:auto;
   }
   .slide-tabs-highlight{display:none;}
   .slide-tab{
@@ -354,15 +355,6 @@ section{padding:88px 0;}
 .video-card h3{font-size:1.08rem;margin-bottom:8px;color:var(--green-900);font-family:var(--font-body);font-weight:700;}
 .video-card p{color:var(--sand-600);font-size:.94rem;margin:0;}
 .section-panel{background:var(--cream-200);}
-
-/* ============ Wallpaper gallery ============ */
-.wallpaper-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-@media (max-width:820px){.wallpaper-grid{grid-template-columns:repeat(3,1fr);}}
-@media (max-width:560px){.wallpaper-grid{grid-template-columns:repeat(2,1fr);}}
-.wallpaper-thumb{position:relative;display:block;padding:0;border:0;background:var(--ink-900);cursor:pointer;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);aspect-ratio:9/16;}
-.wallpaper-grid .wallpaper-thumb img{object-fit:contain;}
-.wallpaper-thumb:hover img{transform:scale(1.05);}
-.wallpaper-cat{position:absolute;left:10px;bottom:10px;background:rgba(11,61,46,.85);color:var(--cream-100);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;}
 
 /* ============ Daily post card ============ */
 .daily-post-card{

@@ -221,7 +221,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ---- App walkthrough video: lazy-load + autoplay-on-scroll ------------ */
+/* ---- App walkthrough video: autoplay-on-scroll ------------------------- */
+// The <source> now carries a real, crawlable `src` in the markup (so
+// Googlebot and other crawlers can discover/verify the video without
+// running JS or scrolling it into view). preload="none" on the <video>
+// still stops the browser from downloading anything until play() is
+// actually called, so this keeps the same lazy-download behaviour as
+// before — it's just no longer hidden behind an IntersectionObserver.
 (function () {
   var v = document.getElementById('walkthroughVideo');
   if (!v) return;
@@ -229,11 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var loaded = false;
   function loadAndPlay() {
     if (!loaded) {
-      var source = v.querySelector('source[data-src]');
-      if (source) {
-        source.src = source.getAttribute('data-src');
-        v.load();
-      }
+      v.load();
       loaded = true;
     }
     var p = v.play();
