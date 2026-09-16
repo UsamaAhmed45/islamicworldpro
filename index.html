@@ -330,13 +330,18 @@
 </section>
 
 <!-- ============ LIVE PRAYER TIMES WIDGET ============ -->
-<div class="hp-wrap">
+<div class="hp-wrap reveal">
   <div class="container">
     <div class="hp-card" id="hpCard">
       <div class="hp-top">
         <div class="hp-loc">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
           <span id="hpPlace">Prayer times</span>
+        </div>
+        <div class="hp-dates">
+          <span id="hpGreg">—</span>
+          <span class="hp-dates-sep">·</span>
+          <span id="hpHijri">—</span>
         </div>
         <div class="hp-toggle" id="hpToggle" role="tablist" aria-label="Prayer times view">
           <button type="button" data-hp="next" aria-pressed="true">Next Prayer</button>
@@ -365,8 +370,8 @@
       <h2>Seven companions, one app</h2>
       <p>Hover or tap a panel to explore what's inside Islamic World Pro.</p>
     </div>
-    <ul class="expanding-cards reveal">
-      <li class="expanding-card" data-active="true">
+    <ul class="expanding-cards">
+      <li class="expanding-card reveal" data-active="true">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQBACdASoUABQAPt1UqEyopCQiMBgMARAbiWQAwNwQ7/HZ0DJTl0C0hQYAAP7wvf5FR0T5XIZaUAmSg7wiJyqKk5gNXlf2klnusJWKJ/NepX7XTq+sCV+1AsAAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-quran.webp" alt="Qur'an, Tarjuma &amp; Tafseer">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Qur'an, Tarjuma &amp; Tafseer</span>
@@ -375,7 +380,7 @@
           <p class="expanding-card-desc">Read the full Mushaf in Arabic with Tajweed colour-coding and audio recitation, alongside Urdu/English translation and verse-by-verse tafseer.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoUABQAPtlWpEyoJKOiN/VYAQAbCUAW2QIeFbcYhD6fJAAA/vKo/d3MWCKIPAc0dBqLOxb7f5RY701+jcHxdnfTACFPc8j7fLiwWziGqLSggAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-azkar.webp" alt="Daily Azkar &amp; Duas">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Daily Azkar &amp; Duas</span>
@@ -384,7 +389,7 @@
           <p class="expanding-card-desc">Morning and evening Azkar, tasbih counter and a curated set of authentic duas for everyday situations.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwBACdASoUABQAPtVYo0yoJSMiN/VYAQAaiWMAwAzIAX/BMO6zGEGm0T/6ivgAAP7yqG4mQEr6dQp7jaKyqBlNSIv34WYLUwkNjuLihHS43AGQae0D9mrkAAA=)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-prayer.webp" alt="Salah Guide">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Salah Guide</span>
@@ -393,7 +398,7 @@
           <p class="expanding-card-desc">A clear, step-by-step guide to Salah with rakah counts and correct method for every prayer — perfect for new Muslims and children learning to pray.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQBACdASoUABQAPt1UpUyopCOiN/VYARAbiUAYG4Id/jx7ilgcSNTYYAD+8L38YoTQj/qZc4zXCde3C1DrLUtapjsIROwlJxY0YJAsQLr9Js82Ax+3RP5WDAAAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-tasbih.webp" alt="Digital Tasbih Counter">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Digital Tasbih Counter</span>
@@ -402,7 +407,7 @@
           <p class="expanding-card-desc">A simple, satisfying tap counter for dhikr with adjustable targets, vibration feedback and automatic reset for each set.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwBACdASoUABQAPtVao0yoJSMiN/VYAQAaiWMAuzKAAadscdx/SGQiTs2SAAD+8qhuJkBlfKY3TORZzC2/wFT2j6DQrL83YJH5Ng308zAJScAAAAA=)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-qibla.webp" alt="Qibla &amp; Prayer Times">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Qibla &amp; Prayer Times</span>
@@ -411,7 +416,7 @@
           <p class="expanding-card-desc">An accurate live compass and Azaan-alert prayer timings tuned to your exact location.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAwCdASoUABQAPt1gp06opaMiKA1REBuJYwDDNBEdFZ7v0jotQAD+8MkbRHnvnLkcOGFRq4WXNmQTmrrMCNoJjn8jULzfeUZ83r2gf+U/AAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-hadith.webp" alt="Hadith Library">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Hadith Library</span>
@@ -420,7 +425,7 @@
           <p class="expanding-card-desc">Browse Sahih al-Bukhari, Sahih Muslim and more by chapter, with fast search across the full collection.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAwCdASoUABQAPt1mq1CopSOjqAgBEBuJZQDE2BEc2lsbTb+I8AD+8MkbRdE746RMJYkuj3i3w1L857BRq5Ilqlrhr1p39NRxnNkim0/oAAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-janaza.webp" alt="Namaz-e-Janaza Guide">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Namaz-e-Janaza Guide</span>
@@ -429,7 +434,7 @@
           <p class="expanding-card-desc">A clear, step-by-step method for the funeral prayer, with the correct duas at every stage — easy to follow in the moment.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAABQBACdASoUABQAPt1WqUyopCQiMBgMARAbiUAX5wIeBOZjynS/FcNd5nIAAP7wyRtF0DqZKE6RklzscgY6397fnj75zsmQnEYgoXg8HV77bwAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-hajj.webp" alt="Hajj &amp; Umrah Duas">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Hajj &amp; Umrah Duas</span>
@@ -438,7 +443,7 @@
           <p class="expanding-card-desc">A complete Hajj and Umrah walkthrough with the correct duas for every stage, from Ihram to Tawaf and Sa'i.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAwCdASoUABQAPt1YqEyopSQiMBgMARAbiUAYUAIeACAjSadOOKqAAP7wyRtF7Qs2ygvdCJhSc3l9aVP9zzvGt/e357YPqaBeIvxld6fCxXhmjsdjkRtQAAA=)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-zakat.webp" alt="Zakat Calculator">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Zakat Calculator</span>
@@ -447,7 +452,7 @@
           <p class="expanding-card-desc">Work out your annual Zakat on savings, gold, silver and business assets in a few taps, with the current Nisab built in.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAABwAwCdASoUABQAPt1UpUyopCOiN/VYARAbiWMAwq9/gS6qaAAA/u9e+Px3PgWNId+r9x4hHgsCNfudPjV3dgRy7adHeQuuaDd2oQTZ0ju5AAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-asma.webp" alt="Asma-ul-Husna">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Asma-ul-Husna</span>
@@ -456,7 +461,7 @@
           <p class="expanding-card-desc">All 99 names of Allah with meaning and transliteration, beautifully presented for daily reflection and memorisation.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQBACdASoUABQAPtlWo0yoJKMiN/VYAQAbCWMAwoAQ8MyHQWAsUvBdAAD+8qj93cWiHrt/JC84Er3+duY3Y7+9vz2TBbQouWpT+r3oxJc+PuaNqlBn2AAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-calendar.webp" alt="Hijri Calendar">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Hijri Calendar</span>
@@ -465,7 +470,7 @@
           <p class="expanding-card-desc">Track Islamic months and occasions side-by-side with the Gregorian calendar.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQBACdASoUABQAPt1WqEyopCQiMBgMARAbiUAZRBEYMDXEcIWZAfYCAAD+8MizRQDzbU49zXvZctcFXZqnrCZdn19Gb7RfLNXi+glEhavzqr4AAAA=)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-kids.webp" alt="Kids Corner">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Kids Corner</span>
@@ -474,7 +479,7 @@
           <p class="expanding-card-desc">Simple prayers, short surahs and gentle stories designed to help children build their first Islamic learning habits.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQBACdASoUABQAPt1UpUyopCOiN/VYARAbiUAYZoIeBRw4As3/eNXLZZsBf2AA/vDJG0X+3pn5bhH9ZqUwzTjzDEAkneKVX85v9C2tRMI7JR61Fja2Ow1L7IEiWKLnBM6Wi0UinfOAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-tracker.webp" alt="Prayer Tracker">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Prayer Tracker</span>
@@ -483,7 +488,7 @@
           <p class="expanding-card-desc">Log each Salah as you pray it and watch your streaks build, with weekly and monthly progress at a glance.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAwCdASoUABQAPt1kqU+opaOiKAqpEBuJYwC/OBEcjZ5haRAqAAD+8L3aokk6xomwfdArTrHAmyJSFL/sfQaU0ejiEYifNYHSI2Xo7OGfL8AA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-ramadan.webp" alt="Ramadan Tracker">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Ramadan Tracker</span>
@@ -492,7 +497,7 @@
           <p class="expanding-card-desc">Sehri and Iftar countdowns plus a full fasting calendar, so every day of Ramadan is planned and on time.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQBACdASoUABQAPt1UpUyopCOiN/VYARAbiUAYmwIeBR0CLgBFySfjOSgAAP7wyLNcUFx2afFqJt7Atq2fQWeMeJa2plsZ2SbWuwurrLvgblqU/q+ERQho1MTsdjd3E4AAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-mosques.webp" alt="Nearby Mosques">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Nearby Mosques</span>
@@ -501,7 +506,7 @@
           <p class="expanding-card-desc">Find mosques close to you using your device's location, wherever you happen to be.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoUABQAPt1orVEopaQnKAgBEBuJYwDH5BEdvEx7wvA09QAA/u6M1djZ6aRVBGsZqqGnGE0k6OFNcqTAM/LnY6hhCygMuqgA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-nearby-halal.webp" alt="Nearby Halal Food">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Nearby Halal Food</span>
@@ -510,7 +515,7 @@
           <p class="expanding-card-desc">Find halal restaurants, grocery stores and butchers near you, filtered by type, using your device's location.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACQAwCdASoUABQAPt1orFEopaQiqAgBEBuJYwAALnfidFlMycIYAP7ujQ0oZnKVC4v6iAoU5e1/6S6W8jnL/cSc7HLhH0V0K8iXgAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-qada-tracker.webp" alt="Qada Tracker">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Qada Tracker</span>
@@ -519,7 +524,7 @@
           <p class="expanding-card-desc">Log missed obligatory prayers by type, then tick each one off as you make it up — no rush, no pressure, just a clear count.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACQAwCdASoUABQAPt1orFCopaQiqAgBEBuJYwDDrBEdt9NvQGZQAP7ujNOj4D0xUcTgC07Xv7DCYJ15FsaZ4arxOshEVgbWrviAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-sadaqah-log.webp" alt="Sadaqah Log">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Sadaqah Log</span>
@@ -528,7 +533,7 @@
           <p class="expanding-card-desc">Record every act of charity you give, with amount, currency and an optional note — a running history of your giving.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwBACdASoUABQAPtlYpEyoJSOiN/VYAQAbCWMAxQd/gOjjgo1MA8zR6FhS3suAAP7yqP3dtOhFmc7hIkJfBFrvvUIhPstBYTXt4Vau7sCGkEwNrUt3X2ghO1sa4AAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-learn.webp" alt="Learn Arabic &amp; Tajweed">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Learn Arabic &amp; Tajweed</span>
@@ -537,7 +542,7 @@
           <p class="expanding-card-desc">A full Norani Qaida course, Tajweed rules and a Makharij pronunciation guide — with audio for every letter and lesson, fully offline.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoUABQAPt1orVEopaQnKAgBEBuJYwDDcBEdr1fbK/T+YAAA/u6NDUAe7o+sZMrvlYwmknRwprlSnsrj/I9+g6i6/l8UAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-bookmarks-and.webp" alt="Bookmarks &amp; Notes">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Bookmarks &amp; Notes</span>
@@ -546,7 +551,7 @@
           <p class="expanding-card-desc">Save any ayah as you read and add your own reflections, so you can return to what mattered to you.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoUABQAPt1orFEopaQjqAgBEBuJYwDBzBEdr8BPLcRC54AA/u6NOm34GF2oJ642xhNJOjoPflUSxj4K335sdA5ndgAAAA==)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-daily-posts.webp" alt="Daily Posts">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Daily Posts</span>
@@ -555,7 +560,7 @@
           <p class="expanding-card-desc">A daily feed of duas, hadith and gentle reminders, refreshed to keep your day grounded.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAwCdASoUABQAPt1orFCopaQnKAgBEBuJYwDBzBEdr7/ik3sdD1qAAP7ujTpt+BzGGHZBIPGE0k6Op0Gmiver5CIp7yb6k9RPWAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-imam-bot.webp" alt="Imam Bot">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Imam Bot</span>
@@ -564,7 +569,7 @@
           <p class="expanding-card-desc">Ask a question in English or Urdu — by typing or by voice — and Imam Bot instantly finds the answer from the Qur'an, Hadith and duas already in the app.</p>
         </div>
       </li>
-      <li class="expanding-card">
+      <li class="expanding-card reveal">
         <img class="lqip" style="background-image:url(data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAwCdASoUABQAPt1orFEopaQjqAgBEBuJYwDE2BEdt7A43drmgAD+7ozV2JKCDIdNY34aig/jCaSh46O3qBKf50EzFKvrEssdgAAA)" loading="lazy" decoding="async" width="720" height="720" src="assets/img/expanding/panel-voice-search.webp" alt="Voice Search">
         <div class="expanding-card-body">
           <span class="expanding-card-label">Voice Search</span>
@@ -585,7 +590,7 @@
       <h2>Everything a Muslim needs, in one calm app</h2>
       <p>From Fajr to Isha, Islamic World Pro keeps the Qur'an, your Azkar, prayer guidance and the Hadith close at hand — with a Tajweed colour-coded Mushaf, an Imam Bot that answers your questions, and voice search everywhere you need it. Clear typography, offline-friendly reading, and no clutter.</p>
     </div>
-    <div class="swipe-stack-wrap">
+    <div class="swipe-stack-wrap reveal">
       <div class="swipe-stack" id="aboutSwipeStack">
         <div class="swipe-card">
           <span class="swipe-card-index">01 <i>/</i> 23</span>

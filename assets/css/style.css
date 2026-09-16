@@ -68,6 +68,15 @@ button{font-family:inherit;cursor:pointer;}
 }
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.is-visible{opacity:1;transform:translateY(0);}
+.expanding-cards .reveal{transition-delay:0s;}
+.expanding-cards li.reveal:nth-child(1){transition-delay:.03s;}
+.expanding-cards li.reveal:nth-child(2){transition-delay:.09s;}
+.expanding-cards li.reveal:nth-child(3){transition-delay:.15s;}
+.expanding-cards li.reveal:nth-child(4){transition-delay:.21s;}
+.expanding-cards li.reveal:nth-child(5){transition-delay:.27s;}
+.expanding-cards li.reveal:nth-child(6){transition-delay:.33s;}
+.expanding-cards li.reveal:nth-child(7){transition-delay:.39s;}
+.expanding-cards li.reveal:nth-child(n+8){transition-delay:.42s;}
 .sr-only{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0,0,0,0);white-space:nowrap;border:0;
@@ -577,7 +586,11 @@ section{padding:88px 0;}
 .swipe-stack-hint{
   font-family:var(--font-body);font-size:.82rem;color:var(--sand-600);
   letter-spacing:.03em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
 }
+.swipe-stack-hint::before{content:"👆";display:inline-block;animation:swipeNudge 1.8s ease-in-out infinite;}
+@keyframes swipeNudge{0%,100%{transform:translateX(0) rotate(0deg);}30%{transform:translateX(-7px) rotate(-8deg);}60%{transform:translateX(7px) rotate(8deg);}}
+@media (prefers-reduced-motion:reduce){.swipe-stack-hint::before{animation:none;}}
 @media (max-width:480px){
   .swipe-card{padding:24px 24px 28px;}
   .swipe-card h3{font-size:1.28rem;}
@@ -1147,28 +1160,45 @@ html{scroll-behavior:smooth;}
 .back-to-top svg{width:20px;height:20px;}
 @media (max-width:640px){.back-to-top{left:14px;bottom:14px;width:42px;height:42px;}}
 
-/* ===== Homepage live prayer-times widget ===== */
-.hp-wrap{margin-top:-28px;margin-bottom:8px;}
-.hp-card{background:var(--green-950);color:var(--cream-100);border-radius:22px;padding:22px 26px;box-shadow:0 24px 50px -22px rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.18);}
+/* ===== Homepage live prayer-times widget — floating card, offset from the hero on purpose ===== */
+.hp-wrap{position:relative;z-index:6;margin-top:-64px;margin-bottom:12px;padding:0 12px;}
+.hp-card{
+  max-width:900px;margin:0 auto;
+  background:radial-gradient(120% 90% at 50% -10%,rgba(212,175,55,.14) 0%,rgba(212,175,55,0) 58%),linear-gradient(168deg,#fffdf7 0%,#f7f0dd 100%);
+  color:var(--green-900);border:1px solid rgba(212,175,55,.42);border-radius:22px;padding:24px 30px;
+  box-shadow:var(--shadow-deep,0 30px 60px -24px rgba(10,44,31,.5));position:relative;overflow:hidden;
+}
+.hp-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold-300),var(--gold-600),transparent);}
 .hp-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
-.hp-loc{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--gold-300);font-size:.95rem;}
-.hp-loc svg{width:16px;height:16px;flex:0 0 auto;}
-.hp-sub{color:rgba(243,234,210,.6);font-size:.8rem;margin-left:2px;}
-.hp-toggle{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(243,234,210,.1);margin-left:auto;}
-.hp-toggle button{border:0;background:none;color:rgba(243,234,210,.75);padding:6px 13px;border-radius:999px;font-size:.8rem;font-weight:700;}
-.hp-toggle button[aria-pressed="true"]{background:var(--gold-300);color:var(--green-950);}
-.hp-next{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.hp-ring{--p:0;width:74px;height:74px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:conic-gradient(var(--gold-300) calc(var(--p)*1%),rgba(243,234,210,.12) 0);}
-.hp-ring div{width:60px;height:60px;border-radius:50%;background:var(--green-950);display:grid;place-items:center;text-align:center;}
+.hp-loc{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--green-800,var(--green-900));font-size:.95rem;}
+.hp-loc svg{width:16px;height:16px;flex:0 0 auto;color:var(--gold-600);}
+.hp-dates{color:var(--sand-600);font-size:.82rem;display:flex;align-items:center;gap:8px;}
+.hp-dates-sep{opacity:.5;}
+.hp-toggle{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(10,44,31,.07);margin-left:auto;}
+.hp-toggle button{border:0;background:none;color:var(--sand-600);padding:6px 13px;border-radius:999px;font-size:.8rem;font-weight:700;transition:background .2s,color .2s;}
+.hp-toggle button[aria-pressed="true"]{background:var(--green-900);color:var(--cream-100);}
+.hp-next{display:flex;align-items:center;gap:20px;flex-wrap:wrap;transition:opacity .25s ease,transform .25s ease;}
+.hp-today{display:flex;flex-wrap:wrap;gap:10px 22px;transition:opacity .25s ease,transform .25s ease;}
+.hp-next[hidden],.hp-today[hidden]{display:none;opacity:0;}
+.hp-next.hp-anim,.hp-today.hp-anim{opacity:0;transform:translateY(4px);}
+.hp-ring{--p:0;width:74px;height:74px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:conic-gradient(var(--gold-600) calc(var(--p)*1%),rgba(10,44,31,.1) 0);animation:hpRingIn 1s ease-out;}
+.hp-ring div{width:60px;height:60px;border-radius:50%;background:#fffdf7;display:grid;place-items:center;text-align:center;position:relative;}
+.hp-ring div::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid rgba(199,155,59,.45);animation:hpPulse 2.6s ease-in-out infinite;}
 .hp-ring b{font-size:1.6rem;line-height:1;}
-.hp-next-info .hp-label{color:rgba(243,234,210,.6);font-size:.78rem;margin:0;}
-.hp-next-info h3{color:var(--cream-100);font-size:1.4rem;margin:2px 0;font-family:var(--font-display,inherit);}
-.hp-next-info .hp-time{color:var(--gold-200,var(--gold-300));font-size:1rem;margin:0;}
-.hp-today{display:flex;flex-wrap:wrap;gap:10px 22px;}
-.hp-next[hidden],.hp-today[hidden]{display:none;}
+@keyframes hpRingIn{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes hpPulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.12);opacity:0;}}
+.hp-next-info .hp-label{color:var(--sand-600);font-size:.78rem;margin:0;}
+.hp-next-info h3{color:var(--green-900);font-size:1.4rem;margin:2px 0;font-family:var(--font-display,inherit);}
+.hp-next-info .hp-time{color:var(--gold-700,#a5771f);font-size:1rem;margin:0;font-weight:600;}
 .hp-today div{text-align:center;min-width:56px;}
-.hp-today small{display:block;font-size:.7rem;color:rgba(243,234,210,.6);}
-.hp-today b{font-size:.95rem;font-variant-numeric:tabular-nums;}
-.hp-today .now b{color:var(--gold-300);}
-.hp-more{display:inline-block;margin-top:16px;font-size:.82rem;font-weight:700;color:var(--gold-300);text-decoration:underline;}
-@media (max-width:640px){.hp-card{padding:18px 18px;border-radius:18px;}.hp-toggle{margin-left:0;order:3;width:100%;justify-content:flex-start;}}
+.hp-today small{display:block;font-size:.7rem;color:var(--sand-600);}
+.hp-today b{font-size:.95rem;font-variant-numeric:tabular-nums;color:var(--green-900);}
+.hp-more{display:inline-block;margin-top:16px;font-size:.82rem;font-weight:700;color:var(--gold-700,#a5771f);text-decoration:underline;}
+@media (max-width:640px){
+  .hp-wrap{margin-top:-40px;padding:0 14px;}
+  .hp-card{padding:20px 18px;border-radius:18px;}
+  .hp-toggle{margin-left:0;}
+  .hp-top{gap:10px;}
+  .hp-dates{width:100%;order:3;font-size:.78rem;}
+}
+@media (prefers-reduced-motion:reduce){.hp-ring,.hp-ring div::after{animation:none;}}
