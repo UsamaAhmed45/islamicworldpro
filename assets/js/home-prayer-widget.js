@@ -41,6 +41,17 @@
     return E.compute(date, loc.lat, loc.lng, off, opts());
   }
 
+  function hijri(date) {
+    try {
+      return new Intl.DateTimeFormat('en-GB-u-ca-islamic-umalqura', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+        .format(new Date(Date.UTC(date.y, date.m - 1, date.d, 12)));
+    } catch (e) { return ''; }
+  }
+  function greg(date) {
+    return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+      .format(new Date(Date.UTC(date.y, date.m - 1, date.d, 12)));
+  }
+
   var $ = function (id) { return document.getElementById(id); };
   var today, times, tomorrow;
 
@@ -50,6 +61,9 @@
     tomorrow = timesFor(addDays(today, 1));
     var placeEl = $('hpPlace');
     if (placeEl) placeEl.textContent = loc.name + (loc.country ? ', ' + loc.country : '');
+    var gregEl = $('hpGreg'), hijriEl = $('hpHijri');
+    if (gregEl) gregEl.textContent = greg(today);
+    if (hijriEl) hijriEl.textContent = hijri(today);
     var today3 = $('hpToday');
     if (today3) {
       today3.innerHTML = PRAYERS.map(function (p) {
@@ -80,11 +94,17 @@
 
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest('#hpToggle button');
-    if (!b) return;
+    if (!b || b.getAttribute('aria-pressed') === 'true') return;
     document.querySelectorAll('#hpToggle button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
-    var mode = b.dataset.hp;
-    $('hpNext').hidden = mode !== 'next';
-    $('hpToday').hidden = mode !== 'today';
+    var mode = b.dataset.hp, showEl = $('hp' + (mode === 'today' ? 'Today' : 'Next')), hideEl = $('hp' + (mode === 'today' ? 'Next' : 'Today'));
+    hideEl.classList.add('hp-anim');
+    setTimeout(function () {
+      hideEl.hidden = true;
+      hideEl.classList.remove('hp-anim');
+      showEl.hidden = false;
+      showEl.classList.add('hp-anim');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { showEl.classList.remove('hp-anim'); }); });
+    }, 180);
     IWP.store.set('hp:view', mode);
   });
   var savedView = IWP.store.get('hp:view', 'next');
