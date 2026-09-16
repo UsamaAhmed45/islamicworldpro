@@ -221,13 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ---- App walkthrough video: autoplay-on-scroll ------------------------- */
-// The <source> now carries a real, crawlable `src` in the markup (so
-// Googlebot and other crawlers can discover/verify the video without
-// running JS or scrolling it into view). preload="none" on the <video>
-// still stops the browser from downloading anything until play() is
-// actually called, so this keeps the same lazy-download behaviour as
-// before — it's just no longer hidden behind an IntersectionObserver.
+/* ---- App walkthrough video: lazy-load + autoplay-on-scroll ------------ */
 (function () {
   var v = document.getElementById('walkthroughVideo');
   if (!v) return;
@@ -235,7 +229,11 @@ document.addEventListener('DOMContentLoaded', () => {
   var loaded = false;
   function loadAndPlay() {
     if (!loaded) {
-      v.load();
+      var source = v.querySelector('source[data-src]');
+      if (source) {
+        source.src = source.getAttribute('data-src');
+        v.load();
+      }
       loaded = true;
     }
     var p = v.play();
@@ -262,5 +260,30 @@ document.addEventListener('DOMContentLoaded', () => {
   // force re-mute on our own re-triggers).
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) v.pause();
+  });
+})();
+
+/* Back-to-top button — appears after scrolling down, on every page. */
+(function () {
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  if (document.body) document.body.appendChild(btn);
+  else document.addEventListener('DOMContentLoaded', function () { document.body.appendChild(btn); });
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      btn.classList.toggle('show', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();

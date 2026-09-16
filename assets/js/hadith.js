@@ -1,100 +1,144 @@
-// ============ Hadith browser ============
-// Source (public, no API key required): https://github.com/fawazahmed0/hadith-api
-// via jsDelivr CDN: https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/
-(() => {
-  const BOOKS = [
-    { key:'bukhari',  label:'Sahih al-Bukhari', en:'eng-bukhari',  ar:'ara-bukhari',  max:7563 },
-    { key:'muslim',   label:'Sahih Muslim',      en:'eng-muslim',   ar:'ara-muslim',   max:7470 },
-    { key:'abudawud', label:'Sunan Abu Dawud',   en:'eng-abudawud', ar:'ara-abudawud', max:5274 },
-    { key:'tirmidhi', label:'Jami at-Tirmidhi',  en:'eng-tirmidhi', ar:'ara-tirmidhi', max:3956 },
-    { key:'nasai',    label:"Sunan an-Nasa'i",   en:'eng-nasai',    ar:'ara-nasai',    max:5761 },
-    { key:'ibnmajah', label:'Sunan Ibn Majah',   en:'eng-ibnmajah', ar:'ara-ibnmajah', max:4341 },
-  ];
+/* Islamic World Pro — hadith library. © 2026 Aurevia Solution. All rights reserved. */
+(function () {
+  'use strict';
+  var IWP = window.IWP;
+  var root = document.querySelector('main.hd');
+  if (!root) return;
+  var main = document.getElementById('hdMain');
+  var SHORT = root.dataset.short, TITLE = root.dataset.title;
 
-  const bookList   = document.getElementById('bookList');
-  const numInput   = document.getElementById('hadithNum');
-  const goBtn      = document.getElementById('hadithGoBtn');
-  const prevBtn    = document.getElementById('hadithPrevBtn');
-  const nextBtn    = document.getElementById('hadithNextBtn');
-  const resultHost = document.getElementById('hadithResult');
-  const bookHeadEl = document.getElementById('activeBookLabel');
+  /* generic in-page filter */
+  document.querySelectorAll('[data-filter]').forEach(function (inp) {
+    inp.addEventListener('input', function () {
+      var q = inp.value.trim().toLowerCase();
+      document.querySelectorAll(inp.dataset.filter).forEach(function (el) {
+        el.hidden = !!q && el.textContent.toLowerCase().indexOf(q) < 0;
+      });
+    });
+  });
 
-  let activeBook = BOOKS[0];
-  let activeNum = 1;
+  function saved() { return IWP.store.get('hsaved', []); }
+  function keyOf(card) { return root.dataset.book + ':' + card.dataset.n; }
 
-  function esc(str){
-    return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
-  }
-
-  function renderBookList(){
-    bookList.innerHTML = '';
-    BOOKS.forEach(b => {
-      const el = document.createElement('div');
-      el.className = 'side-list-item' + (b.key === activeBook.key ? ' active' : '');
-      el.innerHTML = `
-        <div class="side-num" style="border-radius:50%;">${b.label.charAt(0)}</div>
-        <div class="meta"><div>${esc(b.label)}</div><small>${b.max.toLocaleString()} hadith</small></div>`;
-      el.addEventListener('click', () => { activeBook = b; activeNum = (b.key === 'muslim') ? 93 : 1; numInput.value = activeNum; renderBookList(); loadHadith(); });
-      bookList.appendChild(el);
+  var TOOLS = '<button type="button" data-h="save" aria-label="Save hadith"><svg><use href="#i-heart"/></svg></button>' +
+    '<button type="button" data-h="copy" aria-label="Copy hadith"><svg><use href="#i-copy"/></svg></button>' +
+    '<button type="button" data-h="share" aria-label="Share hadith"><svg><use href="#i-share"/></svg></button>';
+  function decorate(scope) {
+    var keys = saved().map(function (s) { return s.k; });
+    scope.querySelectorAll('.hcard .tools:empty').forEach(function (t) {
+      t.innerHTML = TOOLS;
+      var card = t.closest('.hcard');
+      if (keys.indexOf(keyOf(card)) >= 0) t.querySelector('[data-h="save"]').classList.add('on');
     });
   }
+  if (main) decorate(main);
 
-  async function loadHadith(){
-    bookHeadEl.textContent = `${activeBook.label} — Hadith #${activeNum}`;
-    resultHost.innerHTML = '<div class="state-msg">Loading hadith…</div>';
-    try{
-      const [enRes, arRes] = await Promise.all([
-        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/${activeBook.en}/${activeNum}.json`),
-        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/${activeBook.ar}/${activeNum}.json`)
-      ]);
-      if(!enRes.ok) throw new Error('not found');
-      const enJson = await enRes.json();
-      const arJson = arRes.ok ? await arRes.json() : null;
-      const en = enJson.hadiths && enJson.hadiths[0];
-      const ar = arJson && arJson.hadiths && arJson.hadiths[0];
-      if(!en){ throw new Error('empty'); }
-
-      // Some collections (e.g. Sahih Muslim #1-92, its untranslated
-      // "Introduction"/isnad section) return a real record with an empty
-      // text field. Show a clear message instead of a blank card, and use
-      // the section metadata the API already gives us to jump past it.
-      if(!en.text || !en.text.trim()){
-        const bookIdx = en.reference && en.reference.book;
-        const detail = enJson.metadata && enJson.metadata.section_detail && enJson.metadata.section_detail[bookIdx];
-        const sectionName = enJson.metadata && enJson.metadata.section && enJson.metadata.section[bookIdx];
-        const skipTo = detail ? detail.hadithnumber_last + 1 : activeNum + 1;
-        resultHost.innerHTML = `
-          <div class="state-msg">
-            Hadith #${activeNum}${sectionName ? ` is part of the "${esc(sectionName)}"` : ''} section, which doesn't have translated hadith text in this collection (only chain-of-narration/heading entries).
-            <div style="margin-top:16px;"><button type="button" class="btn btn-line-dark btn-block" id="hadithSkipBtn">Jump to Hadith #${skipTo} →</button></div>
-          </div>`;
-        const skipBtn = document.getElementById('hadithSkipBtn');
-        if(skipBtn){
-          skipBtn.addEventListener('click', () => { activeNum = skipTo; numInput.value = skipTo; loadHadith(); });
-        }
-        return;
-      }
-
-      resultHost.innerHTML = `
-        <div class="dua-card" style="margin-bottom:0;">
-          <span class="dua-tag">${esc(activeBook.label)} · #${en.hadithnumber}</span>
-          ${ar ? `<div class="dua-arabic">${esc(ar.text)}</div>` : ''}
-          <div class="ayah-trans" style="font-size:1rem;">${esc(en.text)}</div>
-          ${en.grades && en.grades.length ? `<p class="dua-ref">Grading: ${en.grades.map(g => esc(g.name + ' — ' + g.grade)).join(' · ')}</p>` : ''}
-        </div>`;
-    }catch(err){
-      resultHost.innerHTML = `<div class="state-msg error">Hadith #${activeNum} could not be found in ${esc(activeBook.label)}, or the connection failed. Try a different number.</div>`;
-    }
+  function cardText(card) {
+    var ar = card.querySelector('.h-ar'), n = card.querySelector('.h-narr'), en = card.querySelector('.h-en');
+    return (ar ? ar.textContent + '\n\n' : '') + (n ? n.textContent + ' ' : '') + (en ? en.textContent : '') + '\n— ' + TITLE + ' ' + card.dataset.n;
   }
 
-  goBtn.addEventListener('click', () => {
-    const v = parseInt(numInput.value, 10);
-    if(v >= 1){ activeNum = v; loadHadith(); }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-show]');
+    if (b && main) {
+      main.dataset.show = b.dataset.show;
+      document.querySelectorAll('button[data-show]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      IWP.store.set('hshow', b.dataset.show);
+      return;
+    }
+    b = ev.target.closest('[data-act="hd-rail"]');
+    if (b) { document.getElementById('hdRail').classList.toggle('open'); return; }
+    b = ev.target.closest('[data-h]');
+    if (b) {
+      var card = b.closest('.hcard'), url = location.origin + location.pathname + '#h' + card.dataset.n;
+      if (b.dataset.h === 'copy') IWP.copy(cardText(card) + '\n' + url, 'Hadith copied');
+      if (b.dataset.h === 'share') IWP.share(TITLE + ' ' + card.dataset.n, cardText(card), url);
+      if (b.dataset.h === 'save') {
+        var list = saved(), k = keyOf(card), i = list.findIndex(function (s) { return s.k === k; });
+        if (i >= 0) { list.splice(i, 1); b.classList.remove('on'); IWP.toast('Removed from saved'); }
+        else {
+          var en = card.querySelector('.h-en');
+          list.unshift({ k: k, url: location.pathname + '#h' + card.dataset.n, title: TITLE + ' ' + card.dataset.n, text: en ? en.textContent.slice(0, 180) : '' });
+          b.classList.add('on'); IWP.toast('Saved');
+        }
+        IWP.store.set('hsaved', list.slice(0, 300));
+      }
+      return;
+    }
+    b = ev.target.closest('#loadMore button');
+    if (b) loadAll(b);
   });
-  numInput.addEventListener('keydown', e => { if(e.key === 'Enter') goBtn.click(); });
-  prevBtn.addEventListener('click', () => { if(activeNum > 1){ activeNum--; numInput.value = activeNum; loadHadith(); } });
-  nextBtn.addEventListener('click', () => { activeNum++; numInput.value = activeNum; loadHadith(); });
 
-  renderBookList();
-  loadHadith();
+  var pref = IWP.store.get('hshow', null);
+  if (pref && main) { var pb = document.querySelector('button[data-show="' + pref + '"]'); if (pb) pb.click(); }
+
+  function clean(s) { return String(s || '').replace(/[\u200e\u200f]/g, '').replace(/\s*\n\s*/g, ' ').replace(/\s{2,}/g, ' ').trim(); }
+
+  function loadAll(btn) {
+    btn.disabled = true;
+    btn.textContent = 'Loading…';
+    var cards = main.querySelectorAll('.hcard');
+    var lastN = +cards[cards.length - 1].dataset.n;
+    IWP.fetchJSON(btn.dataset.src).then(function (j) {
+      var html = (j.hadiths || []).filter(function (h) { return h.idInBook > lastN; }).map(function (h) {
+        var en = h.english || {};
+        return '<article class="hcard" id="h' + h.idInBook + '" data-n="' + h.idInBook + '"><div class="hcard-top"><a class="hnum" href="#h' + h.idInBook + '">' + IWP.esc(SHORT + ' ' + h.idInBook) + '</a><div class="tools"></div></div>' +
+          '<p class="h-ar" lang="ar" dir="rtl">' + IWP.esc(clean(h.arabic)) + '</p>' +
+          (en.narrator ? '<p class="h-narr">' + IWP.esc(clean(en.narrator)) + '</p>' : '') +
+          '<p class="h-en">' + IWP.esc(clean(en.text)) + '</p></article>';
+      }).join('');
+      var wrap = document.getElementById('loadMore');
+      wrap.insertAdjacentHTML('beforebegin', html);
+      wrap.remove();
+      decorate(main);
+      if (/^#h\d+$/.test(location.hash)) { var t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = 'Could not load. Tap to try again';
+    });
+  }
+  if (/^#h\d+$/.test(location.hash) && !document.querySelector(location.hash)) {
+    var lm = document.querySelector('#loadMore button');
+    if (lm) loadAll(lm);
+  }
+
+  /* hub: saved list + lookup by number */
+  var savedBox = document.getElementById('savedHadith');
+  if (savedBox) {
+    var list = saved();
+    if (list.length) {
+      savedBox.innerHTML = '<h2 class="h2x">Saved hadith</h2><div class="saved-list" style="margin-bottom:40px">' + list.slice(0, 12).map(function (s) {
+        return '<a href="' + IWP.esc(s.url) + '"><strong>' + IWP.esc(s.title) + '</strong><br><small>' + IWP.esc(s.text) + '…</small></a>';
+      }).join('') + '</div>';
+    }
+  }
+  var form = document.getElementById('lookupForm');
+  if (form) {
+    var out = document.getElementById('lookupOut');
+    var BASE = 'https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/';
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var book = form.book.value, num = parseInt(form.num.value, 10), lang = form.lang.value;
+      var name = form.book.options[form.book.selectedIndex].text;
+      out.innerHTML = '<p class="empty">Loading ' + IWP.esc(name) + ' ' + num + '…</p>';
+      Promise.all([
+        IWP.fetchJSON(BASE + lang + '-' + book + '/' + num + '.json'),
+        IWP.fetchJSON(BASE + 'ara-' + book + '/' + num + '.json').catch(function () { return null; })
+      ]).then(function (r) {
+        var h = r[0].hadiths && r[0].hadiths[0], a = r[1] && r[1].hadiths && r[1].hadiths[0];
+        if (!h || !h.text || !h.text.trim()) {
+          out.innerHTML = '<p class="empty">' + IWP.esc(name) + ' ' + num + ' has no translated text in this edition (it is a chapter heading or chain only). Try the next number.</p>';
+          return;
+        }
+        var ur = lang === 'urd';
+        out.innerHTML = '<article class="hcard" style="margin:0"><div class="hcard-top"><span class="hnum">' + IWP.esc(name) + ' ' + h.hadithnumber + '</span></div>' +
+          (a ? '<p class="h-ar" lang="ar" dir="rtl">' + IWP.esc(a.text) + '</p>' : '') +
+          '<p class="' + (ur ? 'h-ur' : 'h-en') + '"' + (ur ? ' lang="ur" dir="rtl"' : '') + '>' + IWP.esc(h.text) + '</p>' +
+          (h.grades && h.grades.length ? '<p class="h-grade">Grading: ' + h.grades.map(function (g) { return IWP.esc(g.name + ' — ' + g.grade); }).join(' · ') + '</p>' : '') +
+          '</article>';
+      }).catch(function () {
+        out.innerHTML = '<p class="empty">' + IWP.esc(name) + ' ' + num + ' was not found, or you are offline. Check the number and try again.</p>';
+      });
+    });
+  }
 })();
