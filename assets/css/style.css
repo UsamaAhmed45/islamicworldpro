@@ -1119,7 +1119,7 @@ html{scroll-behavior:smooth;}
 }
 .blog-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-deep);}
 .blog-card-img{aspect-ratio:16/9;background:var(--ink-900);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.blog-card-img svg{width:44px;height:44px;color:var(--gold-400);opacity:.85;}
+.blog-card-img svg{width:44px;height:44px;color:var(--gold-300);opacity:.9;}
 .blog-card-body{padding:22px 22px 26px;}
 .blog-card-tag{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-500);font-weight:700;margin-bottom:10px;}
 .blog-card h3{font-size:1.15rem;margin-bottom:8px;color:var(--green-900);font-family:var(--font-body);font-weight:700;line-height:1.35;}

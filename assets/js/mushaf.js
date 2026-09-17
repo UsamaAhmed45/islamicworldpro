@@ -30,6 +30,19 @@
     return html + '</div><div class="ms-foot">' + Q.arNum(p) + '</div></div>';
   }
 
+  function fitPageText(pageEl) {
+    var textEl = pageEl.querySelector('.ms-text');
+    if (!textEl) return;
+    var base = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ar-size')) || 34;
+    textEl.style.fontSize = base + 'px';
+    var size = base, floor = Math.max(16, base * 0.55), guard = 0;
+    while (textEl.scrollHeight > textEl.clientHeight + 1 && size > floor && guard < 40) {
+      size -= 1;
+      textEl.style.fontSize = size + 'px';
+      guard++;
+    }
+  }
+
   function show(p, push) {
     p = Math.max(1, Math.min(604, p | 0));
     var pages = [p];
@@ -43,6 +56,7 @@
     Promise.all(pages.map(getPage)).then(function (list) {
       book.classList.toggle('single', list.length === 1);
       book.innerHTML = list.map(function (v, i) { return pageHTML(pages[i], v, i === 0 ? 'right' : 'left'); }).join('');
+      book.querySelectorAll('.ms-page').forEach(fitPageText);
       inPage.value = pages[0];
       syncSelects(list[0][0]);
       IWP.store.set('mpage', pages[0]);
@@ -178,7 +192,7 @@
   window.addEventListener('resize', function () { if (spread() !== wasSpread) { wasSpread = spread(); show(page); } });
   window.addEventListener('popstate', function (ev) { if (ev.state && ev.state.page) show(ev.state.page); });
 
-  Q.bindSettings();
+  Q.bindSettings(function (k) { if (k === 'arSize') show(page); });
   var qp = parseInt(new URLSearchParams(location.search).get('page'), 10);
   show(qp || IWP.store.get('mpage', 1));
 })();
