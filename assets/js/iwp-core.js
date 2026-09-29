@@ -73,7 +73,12 @@
   // Offline cache for pages you have visited (see /sw.js).
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js').catch(function () {});
+      navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(function (r) { r.update(); }).catch(function () {});
+      navigator.serviceWorker.addEventListener('message', function (e) {
+        if (!e.data || e.data.type !== 'iwp-sw-updated') return;
+        try { if (sessionStorage.getItem('iwp-sw-reloaded')) return; sessionStorage.setItem('iwp-sw-reloaded', '1'); } catch (x) {}
+        location.reload();
+      });
     });
   }
 

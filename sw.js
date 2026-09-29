@@ -1,5 +1,7 @@
-/* Islamic World Pro — offline cache. © 2026 Aurevia Solution. All rights reserved. */
-const CACHE = 'iwp-v4';
+/* Islamic World Pro — offline cache. © 2026 Aurevia Solution. All rights reserved.
+   Pages: network-first (always fresh after a deploy, cached copy only when offline).
+   Assets: stale-while-revalidate (fast, and refreshed in the background). */
+const CACHE = 'iwp-v5';
 const SHELL = [
   '/', '/quran', '/hadith', '/azkar', '/duas', '/prayer-times', '/99-names-of-allah',
   '/assets/css/style.css', '/assets/css/islamic.css', '/assets/css/polish.css',
@@ -15,28 +17,42 @@ self.addEventListener('install', (ev) => {
 
 self.addEventListener('activate', (ev) => {
   ev.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      // Pages that were opened from an old cache reload once to show the new version.
+      .then((clients) => clients.forEach((c) => c.postMessage({ type: 'iwp-sw-updated' })))
   );
-  self.clients.claim();
 });
+
+function put(req, res) {
+  if (res && res.status === 200 && res.type === 'basic') {
+    const copy = res.clone();
+    caches.open(CACHE).then((c) => c.put(req, copy));
+  }
+  return res;
+}
 
 self.addEventListener('fetch', (ev) => {
   const req = ev.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return; // let third-party audio/tafseer/API calls go straight to the network
+  if (url.origin !== location.origin) return; // third-party audio/tafseer/API calls go straight to the network
 
+  // HTML pages: network first, fall back to cache when offline
+  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
+    ev.respondWith(
+      fetch(req).then((res) => put(req, res))
+        .catch(() => caches.match(req).then((c) => c || caches.match('/')))
+    );
+    return;
+  }
+
+  // Everything else: serve cached copy instantly, refresh it in the background
   ev.respondWith(
     caches.match(req).then((cached) => {
-      const network = fetch(req)
-        .then((res) => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(req, copy));
-          }
-          return res;
-        })
-        .catch(() => cached || caches.match('/'));
+      const network = fetch(req).then((res) => put(req, res)).catch(() => cached);
       return cached || network;
     })
   );
