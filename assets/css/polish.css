@@ -809,3 +809,98 @@ a,button{-webkit-tap-highlight-color:rgba(212,175,55,.15);}
 .site-header.hdr-hide{transform:translateY(calc(-100% - 2px));box-shadow:none;}
 .qr-toolbar,.ms-bar,.hd-toolbar{transition:top .38s cubic-bezier(.2,.8,.2,1);}
 @media (prefers-reduced-motion:reduce){.site-header,.qr-toolbar,.ms-bar,.hd-toolbar{transition:none;}}
+
+/* ==========================================================================
+   Footer — clean, readable, professional
+   ========================================================================== */
+.site-footer{
+  background:
+    radial-gradient(900px 380px at 12% 0%,rgba(212,175,55,.10),transparent 62%),
+    radial-gradient(700px 360px at 95% 10%,rgba(31,138,91,.12),transparent 60%),
+    linear-gradient(180deg,#07241a 0%,#051a12 100%) !important;
+  color:rgba(243,234,210,.82);padding:78px 0 30px !important;
+}
+.site-footer::before{opacity:.18;}                      /* dot lattice was fighting the text */
+.site-footer .footer-grid{gap:40px 32px;margin-bottom:46px;}
+.site-footer .brand{display:inline-flex !important;align-items:center;gap:12px;font-size:1.15rem;margin-bottom:16px !important;}
+.site-footer .brand-mark{width:44px;height:44px;border-radius:12px;}
+.ft-about{max-width:300px;font-size:.93rem;line-height:1.65;color:rgba(243,234,210,.78);margin:0 0 20px;}
+.site-footer .footer-grid a.ft-play{
+  display:inline-flex;width:auto;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:12px;
+  background:rgba(250,243,223,.06);border:1px solid rgba(212,175,55,.4);color:var(--cream-100) !important;
+  transition:background .25s,transform .35s var(--ease-spring),border-color .25s;
+}
+.site-footer .ft-play svg{width:22px;height:22px;color:var(--gold-300);}
+.site-footer .ft-play span{display:flex;flex-direction:column;line-height:1.15;font-weight:700;font-size:.95rem;}
+.ft-play small{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,234,210,.65);}
+.ft-play:hover{background:rgba(212,175,55,.14);border-color:var(--gold-300);transform:translateY(-2px);}
+.site-footer .footer-grid h5{
+  position:relative;color:var(--gold-300);font-size:.74rem;letter-spacing:.18em;margin:6px 0 18px;padding-bottom:12px;
+}
+.site-footer .footer-grid h5::after{content:"";position:absolute;left:0;bottom:0;width:26px;height:2px;border-radius:2px;background:var(--gold-grad);}
+.site-footer .footer-grid a:not(.brand):not(.ft-play){
+  display:flex;align-items:center;gap:0;width:max-content;max-width:100%;padding:6px 0;
+  color:rgba(243,234,210,.86);font-size:.94rem;line-height:1.45;
+  transition:color .25s,gap .3s var(--ease-out);
+}
+.site-footer .footer-grid a:not(.brand):not(.ft-play)::before{
+  content:"";width:0;height:1.5px;background:var(--gold-300);border-radius:2px;transition:width .3s var(--ease-out);
+}
+.site-footer .footer-grid a:not(.brand):not(.ft-play):hover{color:var(--gold-200);gap:8px;transform:none;}
+.site-footer .footer-grid a:not(.brand):not(.ft-play):hover::before{width:10px;}
+.site-footer .social-row{gap:10px;margin:0 0 26px;padding-top:26px;border-top:1px solid rgba(212,175,55,.16);}
+.site-footer .social-icon{width:42px;height:42px;background:rgba(250,243,223,.05);border:1px solid rgba(212,175,55,.28);}
+.site-footer .footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;gap:14px 30px;flex-wrap:wrap;
+  padding-top:22px;border-top:1px solid rgba(212,175,55,.16);font-size:.8rem;line-height:1.6;color:rgba(243,234,210,.6);
+}
+.site-footer .footer-bottom span:first-child{max-width:720px;}
+.site-footer .footer-bottom span:last-child{color:var(--gold-300);font-weight:600;white-space:nowrap;}
+@media (max-width:620px){
+  .site-footer{padding:64px 0 120px !important;}          /* room for the floating buttons */
+  .site-footer .footer-grid{gap:34px 18px;}
+  .site-footer .footer-grid > div:first-child{text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .site-footer .footer-grid > div:first-child .ft-about{max-width:340px;}
+  .site-footer .footer-grid h5{font-size:.7rem;margin-bottom:12px;}
+  .site-footer .footer-grid a:not(.brand):not(.ft-play){font-size:.9rem;padding:7px 0;}
+  .site-footer .social-row{justify-content:center;}
+  .site-footer .footer-bottom{flex-direction:column;text-align:center;justify-content:center;}
+}
+
+/* ==========================================================================
+   Features page cards — numbered, framed, compact
+   ========================================================================== */
+.grid.grid-3:has(> .feature-card){counter-reset:fc;gap:18px;}
+.feature-card{
+  counter-increment:fc;position:relative;overflow:hidden;isolation:isolate;
+  padding:26px 24px 24px 24px;border-radius:20px;border:1px solid rgba(22,71,45,.09);
+  background:radial-gradient(120% 80% at 100% 0%,rgba(233,200,115,.12),transparent 55%),linear-gradient(180deg,#fff,#fffdf6);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 14px 30px -26px rgba(8,42,29,.5);
+}
+.feature-card::before{
+  content:counter(fc,decimal-leading-zero);position:absolute;top:18px;right:20px;
+  font-family:var(--font-display);font-size:1.5rem;font-weight:600;line-height:1;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.55;
+  transition:opacity .3s,transform .5s var(--ease-spring);
+}
+.feature-card::after{
+  content:"";position:absolute;left:0;top:22px;width:3px;height:28px;border-radius:0 3px 3px 0;background:var(--gold-grad);
+  transition:height .5s var(--ease-out);
+}
+.feature-card h3{padding-right:38px;font-size:1.06rem;line-height:1.35;margin-bottom:10px;}
+.feature-card p{font-size:.92rem;line-height:1.65;color:#5d5540;}
+.feature-card.on-dark{background:linear-gradient(160deg,#0f3d29,#082a1d);}
+.feature-card.on-dark p{color:rgba(243,234,210,.82);opacity:1;}
+@media (hover:hover) and (pointer:fine){
+  .feature-card:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.55);box-shadow:0 24px 44px -26px rgba(8,42,29,.5);}
+  .feature-card:hover::before{opacity:1;transform:scale(1.12);}
+  .feature-card:hover::after{height:calc(100% - 44px);}
+}
+@media (max-width:760px){
+  .grid.grid-3:has(> .feature-card){gap:12px;}
+  .feature-card{padding:20px 18px 18px 20px;border-radius:18px;}
+  .feature-card::before{top:16px;right:16px;font-size:1.2rem;}
+  .feature-card::after{top:20px;height:22px;}
+  .feature-card h3{font-size:1rem;}
+  .feature-card p{font-size:.9rem;line-height:1.6;}
+}
