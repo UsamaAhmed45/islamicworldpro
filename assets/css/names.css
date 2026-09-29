@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Islamic World Pro — 99 Names cards (animated, mobile-first)
+   Only transform / opacity animate; all motion stops under reduced motion.
+   © 2026 Aurevia Solution. All rights reserved.
+   ========================================================================== */
+
+/* ---------- Grid ---------- */
+.nm-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;perspective:1200px;}
+.nm-grid > li{display:flex;min-width:0;}
+.nm-grid > li[hidden]{display:none;}
+
+/* ---------- Card ---------- */
+.nm-card{
+  --nm-accent:var(--gold-500);
+  flex:1;min-width:0;width:100%;overflow:hidden;isolation:isolate;
+  padding:26px 14px 18px;gap:3px;align-items:center;justify-content:flex-start;
+  border-radius:22px;border:1px solid rgba(22,71,45,.10);
+  background:
+    radial-gradient(120% 70% at 50% 0%,rgba(233,200,115,.16),transparent 60%),
+    linear-gradient(180deg,#fff 0%,#fffdf6 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 24px -20px rgba(8,42,29,.45);
+  transition:transform .5s var(--ease-out,cubic-bezier(.16,1,.3,1)),box-shadow .5s,border-color .3s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+/* gold hairline arch along the top edge */
+.nm-card::before{
+  content:"";position:absolute;left:18%;right:18%;top:0;height:2px;border-radius:0 0 4px 4px;z-index:1;
+  background:linear-gradient(90deg,transparent,var(--gold-500),transparent);opacity:.75;
+  transition:left .5s var(--ease-out,ease),right .5s var(--ease-out,ease),opacity .3s;
+}
+/* eight-point star watermark behind the Arabic */
+.nm-card .nm-ar::before{
+  content:"";position:absolute;left:50%;top:50%;width:92px;height:92px;z-index:-1;
+  transform:translate(-50%,-50%) rotate(0deg);opacity:.07;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23b8892a' stroke-width='3'%3E%3Crect x='20' y='20' width='60' height='60'/%3E%3Crect x='20' y='20' width='60' height='60' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+  transition:transform 1.2s var(--ease-out,ease),opacity .4s;
+}
+/* light sweep */
+.nm-card::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,244,210,.75) 50%,transparent 65%);
+  transform:translateX(-130%);
+}
+.nm-card .nm-n{
+  top:10px;left:10px;display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;
+  font-size:.7rem;color:var(--gold-600);background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);
+  font-variant-numeric:tabular-nums;transition:background .3s,color .3s;
+}
+.nm-card .nm-ar{
+  position:relative;display:block;font-size:2.15rem;line-height:1.75;margin:2px 0 2px;
+  background:linear-gradient(180deg,var(--green-800) 0%,var(--green-950) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:transform .5s var(--ease-spring,cubic-bezier(.34,1.56,.64,1));
+}
+.nm-card strong{font-size:.98rem;letter-spacing:.01em;}
+.nm-card .nm-en{font-size:.84rem;}
+.nm-card .nm-ur{font-size:.88rem;margin-top:2px;}
+.nm-card .nm-src{margin-top:auto;padding-top:4px;}
+
+@media (hover:hover) and (pointer:fine){
+  .nm-card:hover{
+    transform:translateY(-6px);border-color:rgba(212,175,55,.65);
+    box-shadow:0 26px 44px -26px rgba(8,42,29,.5),0 0 0 1px rgba(212,175,55,.35);
+  }
+  .nm-card:hover::before{left:6%;right:6%;opacity:1;}
+  .nm-card:hover::after{animation:nmSweep .9s ease forwards;}
+  .nm-card:hover .nm-ar{transform:scale(1.08);}
+  .nm-card:hover .nm-ar::before{transform:translate(-50%,-50%) rotate(90deg);opacity:.14;}
+  .nm-card:hover .nm-n{background:var(--gold-500);color:var(--green-950);}
+}
+.nm-card:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px;}
+.nm-card:active{transform:scale(.965);transition-duration:.12s;}
+.nm-card.nm-tap::after{animation:nmSweep .6s ease forwards;}
+@keyframes nmSweep{to{transform:translateX(130%);}}
+
+/* ---------- Entrance (JS adds .nm-pre to off-screen cards, then .nm-in) ---------- */
+.nm-card.nm-pre{opacity:0;transform:translateY(26px) rotateX(22deg) scale(.95);transform-origin:50% 100%;}
+.nm-card.nm-pre.nm-in{
+  opacity:1;transform:none;
+  transition:opacity .7s var(--ease-out,ease) var(--d,0ms),transform .8s var(--ease-spring,ease) var(--d,0ms);
+}
+/* re-play when switching tabs / filtering */
+.nm-card.nm-pop{animation:nmPop .55s var(--ease-spring,ease) both;animation-delay:var(--d,0ms);}
+@keyframes nmPop{from{opacity:0;transform:translateY(14px) scale(.92);}to{opacity:1;transform:none;}}
+
+/* ---------- Hero medal: slow light around the ring ---------- */
+.nm-medal{position:relative;animation:nmFloat 7s ease-in-out infinite;}
+.nm-medal::before{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 62%,rgba(255,248,220,.85) 72%,transparent 82% 100%);
+  -webkit-mask:radial-gradient(circle,transparent 55.5%,#000 56.5%);mask:radial-gradient(circle,transparent 55.5%,#000 56.5%);
+  animation:nmSpin 9s linear infinite;
+}
+.nm-medal span{animation:nmGlow 4.5s ease-in-out infinite;}
+.nm-medal span.nm-swap{animation:nmMedalIn .6s var(--ease-spring,ease);}
+@keyframes nmSpin{to{transform:rotate(360deg);}}
+@keyframes nmFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes nmGlow{0%,100%{text-shadow:0 0 18px rgba(233,200,115,.25);}50%{text-shadow:0 0 34px rgba(233,200,115,.6);}}
+@keyframes nmMedalIn{from{opacity:0;transform:scale(.7) rotate(-8deg);}to{opacity:1;transform:none;}}
+
+/* ---------- Detail dialog ---------- */
+.nm-dialog{
+  overflow:hidden;
+  background:
+    radial-gradient(90% 60% at 50% 0%,rgba(212,175,55,.22),transparent 65%),
+    radial-gradient(70% 50% at 50% 110%,rgba(31,138,91,.25),transparent 70%),
+    var(--green-950);
+  border:1px solid rgba(212,175,55,.35);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
+}
+.nm-dialog[open]{animation:ndIn .5s var(--ease-spring,ease);}
+.nm-dialog[open]::backdrop{animation:ndFade .4s ease;background:rgba(4,18,11,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+@keyframes ndIn{from{opacity:0;transform:translateY(30px) scale(.94);}to{opacity:1;transform:none;}}
+@keyframes ndFade{from{opacity:0;}}
+.nm-dialog .nd-ar{text-shadow:0 0 30px rgba(233,200,115,.35);}
+.nm-dialog .nd-body.nd-next{animation:ndSlideL .45s var(--ease-out,ease);}
+.nm-dialog .nd-body.nd-prev{animation:ndSlideR .45s var(--ease-out,ease);}
+@keyframes ndSlideL{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:none;}}
+@keyframes ndSlideR{from{opacity:0;transform:translateX(-40px);}to{opacity:1;transform:none;}}
+.nm-dialog .nd-nav button{transition:background .25s,border-color .25s,transform .3s var(--ease-spring,ease);}
+.nm-dialog .nd-nav button:hover{background:rgba(212,175,55,.14);border-color:var(--gold-500);}
+.nm-dialog .nd-nav button:active{transform:scale(.94);}
+.nm-dialog .nd-hint{display:none;font-size:.74rem;color:rgba(243,234,210,.55);margin:14px 0 0;}
+.nm-dialog .nd-grip{display:none;}
+
+/* ---------- Phones ---------- */
+@media (max-width:760px){
+  .nm-hero-grid{gap:18px;}
+  .nm-medal{width:150px;order:-1;justify-self:center;margin-top:6px;}
+  .nm-medal span{font-size:2.6rem;}
+}
+@media (max-width:600px){
+  .nm .row-head{gap:10px;}
+  .nm .row-head .h2x{flex:1 1 100%;font-size:1.25rem;}
+  .nm .page-search{flex:1 1 auto;min-width:0;}
+  .nm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .nm-card{padding:24px 8px 14px;border-radius:18px;}
+  .nm-card .nm-n{top:8px;left:8px;min-width:22px;height:22px;font-size:.64rem;}
+  .nm-card .nm-ar{font-size:1.75rem;line-height:1.7;}
+  .nm-card .nm-ar::before{width:70px;height:70px;}
+  .nm-card strong{font-size:.9rem;}
+  .nm-card .nm-en{font-size:.76rem;}
+  .nm-card .nm-ur{font-size:.8rem;line-height:1.9;}
+  .nm-card .nm-src{display:none;}
+
+  /* dialog becomes a bottom sheet with swipe */
+  .nm-dialog{width:100vw;max-width:100vw;margin:auto 0 0;border-radius:28px 28px 0 0;border-bottom:0;max-height:88vh;}
+  .nm-dialog[open]{animation:ndSheet .5s var(--ease-out,ease);}
+  @keyframes ndSheet{from{transform:translateY(100%);}to{transform:none;}}
+  .nm-dialog .nd{padding:18px 20px calc(22px + env(safe-area-inset-bottom));}
+  .nm-dialog .nd-grip{display:block;width:44px;height:5px;border-radius:5px;background:rgba(243,234,210,.3);margin:0 auto 10px;}
+  .nm-dialog .nd-ar{font-size:3.2rem;}
+  .nm-dialog .nd-hint{display:block;}
+}
+@media (max-width:340px){.nm-card .nm-ar{font-size:1.5rem;}}
+
+@media (prefers-reduced-motion:reduce){
+  .nm-card.nm-pre{opacity:1;transform:none;}
+  .nm-medal,.nm-medal::before,.nm-medal span{animation:none !important;}
+}

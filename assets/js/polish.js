@@ -24,11 +24,52 @@
         var max = d.documentElement.scrollHeight - w.innerHeight;
         bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
         if (header) header.classList.toggle('is-scrolled', y > 12);
+        var btt = d.querySelector('.back-to-top');
+        if (btt) btt.style.setProperty('--p', max > 0 ? Math.round(Math.min(1, y / max) * 100) : 0);
         ticking = false;
       });
     }
     w.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    /* Mobile menu: icons for each link, Play icon on Download, social row */
+    var ICON = {
+      '/': '<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+      '/quran': '<path d="M4 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-4a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h4z"/>',
+      '/hadith': '<path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6"/>',
+      '/azkar': '<circle cx="12" cy="5" r="2"/><circle cx="6" cy="11" r="2"/><circle cx="18" cy="11" r="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/>',
+      '/duas': '<path d="M7 11V6a2 2 0 0 1 4 0v5M11 10V5a2 2 0 0 1 4 0v6M15 9a2 2 0 0 1 4 0v4a7 7 0 0 1-14 0v-2a2 2 0 0 1 2-2"/>',
+      '/prayer-times': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+      '/99-names-of-allah': '<path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z"/>',
+      '/features': '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
+      '/blog': '<path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2"/><path d="M8 7h6"/>',
+      '/about': '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>'
+    };
+    var navLinks = d.querySelector('.nav-links');
+    if (navLinks && !navLinks.dataset.iwpMenu) {
+      navLinks.dataset.iwpMenu = '1';
+      var n = 0;
+      navLinks.querySelectorAll('.slide-tab').forEach(function (a) {
+        var ic = ICON[a.getAttribute('href')] || ICON['/features'];
+        var label = a.textContent.trim();
+        a.innerHTML = '<span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ic + '</svg></span><span class="ml"></span>';
+        a.querySelector('.ml').textContent = label;
+        a.style.setProperty('--mi', n++);
+      });
+      var cta = navLinks.querySelector('.nav-cta');
+      if (cta) {
+        cta.style.setProperty('--mi', n++);
+        cta.insertAdjacentHTML('afterbegin', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>');
+        cta.insertAdjacentHTML('beforeend', '<span class="cta-long">the app</span>');
+      }
+      var soc = d.querySelectorAll('.social-row .social-icon');
+      if (soc.length) {
+        var foot = d.createElement('div');
+        foot.className = 'nav-menu-foot'; foot.style.setProperty('--mi', n++);
+        soc.forEach(function (s) { var c = s.cloneNode(true); c.className = ''; foot.appendChild(c); });
+        navLinks.appendChild(foot);
+      }
+    }
 
     /* Hero: soft moving light + staggered entrance of first-screen text */
     var hero = d.querySelector('.page-hero, .hub-hero, .pt-hero');
@@ -38,10 +79,35 @@
       hero.insertBefore(aur, hero.firstChild);
     }
 
+    /* Count-up numbers (e.g. homepage stats); final value is already in the HTML */
+    var nums = d.querySelectorAll('[data-count]');
+    if (nums.length && !reduce && 'IntersectionObserver' in w) {
+      var fmt = function (v) { return Math.round(v).toLocaleString('en-US'); };
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          cio.unobserve(e.target);
+          var el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', final = el.dataset.final || el.textContent;
+          if (!to) { el.textContent = final; return; }
+          var start = performance.now(), dur = 1400;
+          (function step() {
+            var k = Math.min(1, (performance.now() - start) / dur), ease = 1 - Math.pow(1 - k, 4);
+            el.textContent = k < 1 ? fmt(to * ease) : final;
+            if (k < 1) w.requestAnimationFrame(step);
+          })();
+          setTimeout(function () { el.textContent = final; }, dur + 200); // guarantee the true value
+        });
+      }, { threshold: 0.6 });
+      nums.forEach(function (n) {
+        if (n.getBoundingClientRect().top > w.innerHeight) { n.dataset.final = n.textContent; n.textContent = '0'; }
+        cio.observe(n);
+      });
+    }
+
     /* Below-the-fold reveal */
     if (reduce || !('IntersectionObserver' in w)) return;
     var SEL = [
-      '.section-head', '.feature-card', '.blog-card', '.nm-card', '.video-card', '.mode-card',
+      '.section-head', '.feature-card', '.blog-card', '.video-card', '.mode-card',
       '.contact-card', '.accordion-item', '.pt-card', '.sc', '.book', '.cat', '.jz', '.cf-card',
       '.cf-year-wrap', '.cf-near', '.daily-post-card', '.row-head', '.tt-wrap'
     ].join(',');
