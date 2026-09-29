@@ -11,7 +11,7 @@ import html, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 BASE = 'https://islamicworldpro.com'
-VER = '20260929d'
+VER = '20260929g'
 SKIP = {'admin.html'}
 
 TITLE_MAX, DESC_MAX = 62, 158

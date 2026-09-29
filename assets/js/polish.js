@@ -16,6 +16,34 @@
     var bar = d.createElement('div');
     bar.className = 'iwp-progress'; bar.setAttribute('aria-hidden', 'true');
     d.body.appendChild(bar);
+    /* Smart header: hide on scroll down, show on scroll up. Keeps --hdr-h in
+       sync so sticky toolbars below it (Qur'an, Hadith, Mushaf) slide up too. */
+    var rootEl = d.documentElement, lastY = w.scrollY || 0, hdrH = 0, hidden = false, acc = 0;
+    function measure() {
+      if (!header) return;
+      hdrH = header.offsetHeight;
+      rootEl.style.setProperty('--hdr-full', hdrH + 'px');
+      if (!hidden) rootEl.style.setProperty('--hdr-h', hdrH + 'px');
+    }
+    function setHidden(h) {
+      if (!header || h === hidden) return;
+      hidden = h;
+      header.classList.toggle('hdr-hide', h);
+      rootEl.style.setProperty('--hdr-h', h ? '0px' : hdrH + 'px');
+    }
+    function smartHeader(y) {
+      if (!header) return;
+      var dy = y - lastY; lastY = y;
+      if (d.body.classList.contains('nav-open') || d.querySelector('.nav-links.open')) { setHidden(false); return; }
+      if (y < hdrH + 40) { acc = 0; setHidden(false); return; }
+      acc = (dy > 0) === (acc > 0) ? acc + dy : dy;   // accumulate movement in one direction
+      if (acc > 24) setHidden(true);
+      else if (acc < -10) setHidden(false);
+    }
+    measure();
+    w.addEventListener('resize', measure, { passive: true });
+    d.addEventListener('focusin', function (e) { if (header && header.contains(e.target)) setHidden(false); });
+
     var ticking = false;
     function onScroll() {
       if (ticking) return; ticking = true;
@@ -24,6 +52,7 @@
         var max = d.documentElement.scrollHeight - w.innerHeight;
         bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
         if (header) header.classList.toggle('is-scrolled', y > 12);
+        smartHeader(y);
         var btt = d.querySelector('.back-to-top');
         if (btt) btt.style.setProperty('--p', max > 0 ? Math.round(Math.min(1, y / max) * 100) : 0);
         ticking = false;
