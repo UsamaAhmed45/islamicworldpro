@@ -79,6 +79,45 @@
       hero.insertBefore(aur, hero.firstChild);
     }
 
+    /* Card family: sweep layers + tap shimmer for Hadith books and Azkar tiles */
+    d.querySelectorAll('.book, .cat').forEach(function (c) {
+      if (c.querySelector('.b-sweep, .c-sweep')) return;
+      var sw = d.createElement('span');
+      sw.className = c.classList.contains('book') ? 'b-sweep' : 'c-sweep';
+      sw.setAttribute('aria-hidden', 'true');
+      c.appendChild(sw);
+      c.addEventListener('pointerdown', function () {
+        if (reduce) return;
+        sw.style.animation = 'none'; void sw.offsetWidth; sw.style.animation = 'cardSweep .7s ease forwards';
+      }, { passive: true });
+    });
+
+    /* Homepage "Today" card: pick today's Ayah / Hadith / Dua, share button */
+    var tc = d.getElementById('todayCard');
+    if (tc) {
+      var set = function (post) {
+        d.getElementById('tdType').textContent = post.type + ' of the Day';
+        d.getElementById('tdAr').textContent = post.arabic;
+        d.getElementById('tdTr').textContent = '“' + post.translation + '”';
+        d.getElementById('tdSrc').textContent = post.source;
+        tc.classList.remove('fade-swap'); void tc.offsetWidth; tc.classList.add('fade-swap');
+      };
+      fetch(tc.dataset.src).then(function (r) { return r.json(); }).then(function (items) {
+        if (!items || !items.length) return;
+        var now = new Date(), start = new Date(now.getFullYear(), 0, 0);
+        var i = Math.floor((now - start) / 86400000) % items.length;
+        if (i) set(items[i]);
+      }).catch(function () {});
+      var sh = d.getElementById('tdShare');
+      if (sh) sh.addEventListener('click', function () {
+        var text = d.getElementById('tdAr').textContent + '\n\n' + d.getElementById('tdTr').textContent + '\n— ' + d.getElementById('tdSrc').textContent + '\n\nhttps://islamicworldpro.com';
+        if (navigator.share) { navigator.share({ title: d.getElementById('tdType').textContent, text: text }).catch(function () {}); return; }
+        (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
+          sh.textContent = 'Copied ✓'; setTimeout(function () { sh.textContent = 'Share'; }, 1800);
+        }).catch(function () {});
+      });
+    }
+
     /* Count-up numbers (e.g. homepage stats); final value is already in the HTML */
     var nums = d.querySelectorAll('[data-count]');
     if (nums.length && !reduce && 'IntersectionObserver' in w) {

@@ -354,3 +354,285 @@ a,button{-webkit-tap-highlight-color:rgba(212,175,55,.15);}
 .footer-grid.footer-grid-5{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;}
 @media (max-width:980px){.footer-grid.footer-grid-5{grid-template-columns:1fr 1fr 1fr;}}
 @media (max-width:620px){.footer-grid.footer-grid-5{grid-template-columns:1fr 1fr;}.footer-grid.footer-grid-5 > div:first-child{grid-column:1 / -1;}}
+
+/* ==========================================================================
+   Card family (siblings of the 99 Names cards — same craft, own identity)
+   Shared: gold arch hairline, eight-point-star motif, light sweep, spring lift,
+   3D rise on scroll. Qur'an = medallion list, Hadith = bound book covers,
+   Azkar = framed picture tiles.
+   ========================================================================== */
+:root{
+  --star-svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23b8892a' stroke-width='3'%3E%3Crect x='20' y='20' width='60' height='60'/%3E%3Crect x='20' y='20' width='60' height='60' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E");
+  --star-svg-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23e9c873' stroke-width='2.5'%3E%3Crect x='20' y='20' width='60' height='60'/%3E%3Crect x='20' y='20' width='60' height='60' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E");
+}
+@keyframes cardSweep{to{transform:translateX(130%);}}
+.sc-grid,.book-grid,.cat-grid{perspective:1200px;}
+.sc.pz,.jz.pz,.book.pz,.cat.pz{transform:translateY(24px) rotateX(18deg) scale(.96);transform-origin:50% 100%;}
+.sc.pz.is-in,.jz.pz.is-in,.book.pz.is-in,.cat.pz.is-in{
+  transform:none;transition:opacity .7s var(--ease-out) calc(var(--pz-i,0)*60ms),transform .8s var(--ease-spring) calc(var(--pz-i,0)*60ms);
+}
+
+/* ---------- Qur'an: surah medallion list ---------- */
+.sc-grid{gap:12px;}
+.sc,.jz{transition:none;}
+.sc:hover,.jz:hover{transform:none !important;box-shadow:none !important;}
+.sc a,.jz a{
+  position:relative;overflow:hidden;isolation:isolate;border-radius:18px;padding:14px 18px 14px 14px;gap:14px;
+  grid-template-columns:50px 1fr auto;
+  background:radial-gradient(90% 120% at 100% 50%,rgba(233,200,115,.14),transparent 55%),linear-gradient(180deg,#fff,#fffdf6);
+  border:1px solid rgba(22,71,45,.1);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 22px -20px rgba(8,42,29,.5);
+  transition:transform .5s var(--ease-out),box-shadow .5s,border-color .3s;
+  -webkit-tap-highlight-color:transparent;
+}
+.sc a::before,.jz a::before{
+  content:"";position:absolute;left:0;top:18%;bottom:18%;width:3px;border-radius:0 3px 3px 0;
+  background:var(--gold-grad);opacity:.0;transform:scaleY(.3);transition:opacity .3s,transform .5s var(--ease-spring);
+}
+.sc a::after,.jz a::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,244,210,.7) 50%,transparent 65%);transform:translateX(-130%);
+}
+.sc[data-place="Madinah"] a{background:radial-gradient(90% 120% at 100% 50%,rgba(31,138,91,.12),transparent 55%),linear-gradient(180deg,#fff,#fbfdf9);}
+/* number inside an eight-point star medallion */
+.sc-n{width:50px;height:50px;font-size:.84rem;color:var(--green-900);font-variant-numeric:tabular-nums;}
+.sc-n::before{inset:9px;border:1.5px solid rgba(199,155,59,.75);border-radius:5px;transform:rotate(0deg);transition:transform .8s var(--ease-spring);}
+.sc-n::after{content:"";position:absolute;inset:9px;border:1.5px solid rgba(199,155,59,.75);border-radius:5px;transform:rotate(45deg);transition:transform .8s var(--ease-spring);}
+.sc-t strong{font-size:1rem;letter-spacing:.005em;}
+.sc .sc-t small::after{
+  position:absolute;top:8px;right:12px;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 7px;border-radius:999px;line-height:1.5;
+}
+.sc[data-place="Makkah"] .sc-t small::after{content:"Makki";color:var(--gold-600);background:rgba(212,175,55,.12);}
+.sc[data-place="Madinah"] .sc-t small::after{content:"Madani";color:var(--emerald-500);background:rgba(31,138,91,.1);}
+.sc a{padding-top:20px;}
+.sc-a{
+  font-size:1.5rem;background:linear-gradient(180deg,var(--green-800),var(--green-950));
+  -webkit-background-clip:text;background-clip:text;color:transparent;transition:transform .5s var(--ease-spring);
+}
+@media (hover:hover) and (pointer:fine){
+  .sc a:hover,.jz a:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.6);box-shadow:0 22px 40px -24px rgba(8,42,29,.5),0 0 0 1px rgba(212,175,55,.3);}
+  .sc a:hover::before,.jz a:hover::before{opacity:1;transform:none;}
+  .sc a:hover::after,.jz a:hover::after{animation:cardSweep .9s ease forwards;}
+  .sc a:hover .sc-n::before{transform:rotate(90deg);}
+  .sc a:hover .sc-n::after{transform:rotate(135deg);}
+  .sc a:hover .sc-a{transform:scale(1.08) translateX(-2px);}
+}
+.sc a:active,.jz a:active{transform:scale(.975);transition-duration:.12s;}
+
+/* ---------- Hadith: bound book covers ---------- */
+.book-grid{gap:16px;}
+.book{
+  border-radius:8px 20px 20px 8px;padding:26px 22px 20px 30px;min-height:200px;isolation:isolate;
+  background:
+    radial-gradient(120% 80% at 100% 0%,rgba(212,175,55,.18),transparent 55%),
+    linear-gradient(160deg,#0f3d29 0%,#082a1d 60%,#051a11 100%);
+  border:1px solid rgba(212,175,55,.28);
+  box-shadow:-6px 0 0 -2px #06200f inset,0 18px 36px -24px rgba(0,0,0,.7);
+  transform-origin:0 50%;
+  transition:transform .6s var(--ease-out),box-shadow .5s,border-color .3s;
+}
+/* spine */
+.book::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:12px;z-index:1;
+  background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(212,175,55,.25) 55%,rgba(0,0,0,.15));
+  border-radius:8px 0 0 8px;
+}
+/* gold double frame + star medallion instead of the plain circle */
+.book::after{
+  right:auto;top:10px;left:22px;bottom:10px;width:auto;height:auto;right:10px;border-radius:12px;
+  border:1px solid rgba(212,175,55,.35);box-shadow:inset 0 0 0 4px transparent,inset 0 0 0 5px rgba(212,175,55,.14);
+  background:var(--star-svg-light) 50% 58%/120px no-repeat;
+  opacity:.15;transition:background-size .8s var(--ease-spring),border-color .3s,opacity .4s;
+}
+.book .b-ar,.book strong,.book small{position:relative;z-index:2;}
+.book .b-ar{font-size:1.8rem;text-shadow:0 0 22px rgba(233,200,115,.25);}
+.book strong{letter-spacing:.01em;}
+.book.light{
+  background:radial-gradient(120% 80% at 100% 0%,rgba(212,175,55,.16),transparent 55%),linear-gradient(160deg,#fffdf6,#f6edd5);
+  box-shadow:-6px 0 0 -2px #e3d3a8 inset,0 16px 32px -24px rgba(8,42,29,.45);border-color:rgba(199,155,59,.35);
+}
+.book.light::before{background:linear-gradient(90deg,rgba(120,92,30,.25),rgba(212,175,55,.35) 55%,rgba(120,92,30,.1));}
+.book.light::after{background-image:var(--star-svg);border-color:rgba(199,155,59,.9);opacity:.2;}
+.book .b-sweep{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,244,210,.35) 50%,transparent 65%);transform:translateX(-130%);}
+@media (hover:hover) and (pointer:fine){
+  .book:hover{
+    transform:perspective(900px) rotateY(-9deg) translateY(-4px);border-color:rgba(212,175,55,.7);
+    box-shadow:-6px 0 0 -2px #06200f inset,18px 26px 40px -24px rgba(0,0,0,.65);
+  }
+  .book.light:hover{box-shadow:-6px 0 0 -2px #e3d3a8 inset,18px 26px 40px -24px rgba(8,42,29,.4);}
+  .book:hover::after{background-size:150px;opacity:.3;border-color:rgba(212,175,55,.9);}
+  .book:hover .b-sweep{animation:cardSweep 1s ease forwards;}
+}
+.book:active{transform:scale(.975);transition-duration:.12s;}
+
+/* ---------- Azkar: framed picture tiles ---------- */
+.cat-grid{gap:16px;}
+.cat{
+  border-radius:22px;border:1px solid rgba(212,175,55,.22);
+  box-shadow:0 18px 36px -26px rgba(0,0,0,.7);
+  background-size:100% auto,cover;background-size:cover;
+  transition:transform .55s var(--ease-out),box-shadow .5s,background-position 1.2s var(--ease-out);
+}
+/* inner gold frame that draws in on hover */
+.cat::after{
+  content:"";position:absolute;inset:8px;border-radius:16px;z-index:0;pointer-events:none;
+  border:1px solid rgba(233,200,115,.0);
+  background:var(--star-svg-light) 14px calc(100% - 14px)/0 no-repeat;
+  transition:border-color .4s,inset .5s var(--ease-out),background-size .8s var(--ease-spring);
+}
+.cat strong,.cat small,.cat .count,.cat .cat-ar{z-index:1;}
+.cat strong{position:relative;}
+.cat strong::after{
+  content:"";display:block;width:34px;height:2px;margin-top:8px;border-radius:2px;background:var(--gold-grad);
+  transform-origin:0 50%;transition:width .5s var(--ease-out);
+}
+.cat .count{
+  background:rgba(7,22,15,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:1px solid rgba(233,200,115,.3);color:var(--gold-200);letter-spacing:.02em;
+}
+.cat .c-sweep{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,244,210,.28) 50%,transparent 65%);transform:translateX(-130%);}
+@media (hover:hover) and (pointer:fine){
+  .cat:hover{transform:translateY(-6px);box-shadow:0 30px 50px -28px rgba(0,0,0,.75);background-position:center 40%;}
+  .cat:hover::after{border-color:rgba(233,200,115,.55);inset:10px;}
+  .cat:hover strong::after{width:64px;}
+  .cat:hover .c-sweep{animation:cardSweep 1s ease forwards;}
+}
+.cat:active{transform:scale(.97);transition-duration:.12s;}
+
+/* ---------- Phones ---------- */
+@media (max-width:600px){
+  .sc-grid{grid-template-columns:1fr;gap:10px;}
+  .sc a,.jz a{grid-template-columns:44px 1fr auto;padding:12px 14px 12px 10px;gap:12px;border-radius:16px;}
+  .sc-n{width:44px;height:44px;font-size:.78rem;}
+  .sc-n::before,.sc-n::after{inset:8px;}
+  .sc-a{font-size:1.35rem;}
+  .book-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .book{min-height:168px;padding:18px 14px 14px 22px;}
+  .book::after{left:16px;top:7px;right:7px;bottom:7px;background-size:90px;}
+  .book .b-ar{font-size:1.35rem;line-height:1.5;}
+  .book strong{font-size:.92rem;}
+  .book small{font-size:.72rem;}
+  .cat-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .cat{min-height:150px;padding:12px 13px;border-radius:18px;}
+  .cat.big{grid-column:1 / -1;min-height:190px;}
+  .cat strong{font-size:.98rem;line-height:1.25;}
+  .cat.big strong{font-size:1.3rem;}
+  .cat small{font-size:.72rem;line-height:1.35;}
+  .cat .count{top:10px;left:10px;font-size:.64rem;}
+  .cat .cat-ar{top:36px;right:12px;left:12px;max-width:none;font-size:1.2rem;}
+  .cat .cat-ar[lang="ur"]{font-size:.92rem;}
+  .cat.big .cat-ar{top:12px;left:auto;max-width:60%;font-size:1.4rem;}
+}
+
+/* ---------- Guide cards with real app screenshots ---------- */
+.blog-card{position:relative;isolation:isolate;border-radius:22px;border:1px solid rgba(22,71,45,.1);}
+.blog-card::before{content:"";position:absolute;left:18%;right:18%;top:0;height:2px;z-index:3;background:linear-gradient(90deg,transparent,var(--gold-500),transparent);opacity:.8;transition:left .5s var(--ease-out),right .5s var(--ease-out);}
+.blog-card-img.has-shot{position:relative;display:block;padding:0;background:#082a1d;}
+.blog-card-img.has-shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease-out),filter .6s;filter:saturate(.95);}
+.blog-card-img.has-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,42,29,0) 45%,rgba(8,42,29,.55));pointer-events:none;}
+.bc-badge{
+  position:absolute;left:16px;bottom:-22px;z-index:2;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(160deg,#0f3d29,#082a1d);border:1px solid rgba(212,175,55,.55);
+  box-shadow:0 10px 22px -10px rgba(0,0,0,.6);transition:transform .5s var(--ease-spring);
+}
+.bc-badge svg{width:24px !important;height:24px !important;color:var(--gold-300);}
+.blog-card-img.has-shot{overflow:visible;}
+.blog-card-img.has-shot img{border-radius:21px 21px 0 0;}
+.blog-card-img.has-shot + .blog-card-body{padding-top:34px;}
+@media (hover:hover) and (pointer:fine){
+  .blog-card:hover::before{left:4%;right:4%;}
+  .blog-card:hover .blog-card-img.has-shot img{transform:scale(1.06);filter:saturate(1.1);}
+  .blog-card:hover .bc-badge{transform:translateY(-4px) rotate(-6deg);}
+}
+.blog-card-img.has-shot{clip-path:inset(0 0 -40px 0 round 21px 21px 0 0);}
+
+/* Featured first card in the app-guide sections (wide, side-by-side) */
+@media (min-width:901px){
+  :is(#articles,.app-guides) .blog-grid > a:first-child{
+    grid-column:span 2;display:grid;grid-template-columns:1.25fr 1fr;align-items:stretch;
+  }
+  :is(#articles,.app-guides) .blog-grid > a:first-child .blog-card-img{aspect-ratio:auto;min-height:100%;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child .blog-card-img img{border-radius:21px 0 0 21px;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child .blog-card-img{clip-path:inset(0 -40px 0 0 round 21px 0 0 21px);}
+  :is(#articles,.app-guides) .blog-grid > a:first-child .bc-badge{left:auto;right:-24px;bottom:24px;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child .blog-card-body{padding:36px 34px 34px 44px;display:flex;flex-direction:column;justify-content:center;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child h3{font-family:var(--font-display);font-size:1.6rem;line-height:1.25;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child p{font-size:1rem;}
+  :is(#articles,.app-guides) .blog-grid > a:first-child .blog-card-body::after{content:"Read the guide →";margin-top:18px;font-weight:700;color:var(--gold-600);font-size:.92rem;}
+}
+@media (min-width:640px) and (max-width:900px){.blog-grid{grid-template-columns:1fr 1fr;gap:20px;}}
+
+/* ==========================================================================
+   Homepage: Today card + quick-access tiles, lighter hero chips, guides row
+   ========================================================================== */
+.iwp-today{padding-top:70px;padding-bottom:40px;}
+.today-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.4fr);gap:22px;align-items:stretch;}
+.today-card{
+  position:relative;overflow:hidden;isolation:isolate;border-radius:26px;padding:30px 30px 26px;color:var(--cream-100);
+  background:
+    radial-gradient(90% 70% at 100% 0%,rgba(212,175,55,.25),transparent 60%),
+    radial-gradient(70% 60% at 0% 100%,rgba(31,138,91,.3),transparent 65%),
+    linear-gradient(160deg,#0f3d29,#082a1d 60%,#051a11);
+  border:1px solid rgba(212,175,55,.35);box-shadow:0 30px 60px -34px rgba(0,0,0,.7);
+  display:flex;flex-direction:column;
+}
+.today-card::before{
+  content:"";position:absolute;right:-50px;bottom:-50px;width:230px;height:230px;z-index:-1;opacity:.12;
+  background:var(--star-svg-light) center/contain no-repeat;animation:nmSpin 60s linear infinite;
+}
+.today-card::after{content:"";position:absolute;left:22%;right:22%;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-300),transparent);}
+.today-type{align-self:flex-start;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-300);
+  padding:6px 12px;border-radius:999px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);}
+.today-ar{font-family:var(--font-arabic);font-size:clamp(1.6rem,2.6vw,2.15rem);line-height:1.9;color:var(--gold-200);margin:18px 0 10px;text-align:right;text-shadow:0 0 26px rgba(233,200,115,.25);}
+.today-tr{font-family:var(--font-script);font-size:1.25rem;line-height:1.5;color:var(--cream-100);margin:0 0 10px;}
+.today-src{font-size:.8rem;color:rgba(243,234,210,.65);letter-spacing:.04em;}
+.today-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:22px;}
+.today-card .fade-swap{animation:heroIn .7s var(--ease-out) both;}
+
+.qa-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.qa-tile{
+  position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:16px 16px;border-radius:18px;
+  background:linear-gradient(180deg,#fff,#fffdf6);border:1px solid rgba(22,71,45,.1);
+  box-shadow:0 12px 26px -24px rgba(8,42,29,.5);
+  transition:transform .45s var(--ease-out),border-color .3s,box-shadow .45s;
+}
+.qa-tile::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,244,210,.7) 50%,transparent 65%);transform:translateX(-130%);}
+.qa-ic{flex:0 0 46px;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(160deg,#0f3d29,#082a1d);color:var(--gold-300);box-shadow:inset 0 0 0 1px rgba(212,175,55,.4);
+  transition:transform .5s var(--ease-spring);}
+.qa-ic svg{width:22px;height:22px;}
+.qa-t{flex:1;min-width:0;}
+.qa-t strong{display:block;color:var(--green-900);font-size:1rem;}
+.qa-t small{display:block;color:var(--sand-600);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.qa-go{color:var(--gold-600);font-weight:700;opacity:.5;transform:translateX(-4px);transition:transform .35s var(--ease-out),opacity .3s;}
+@media (hover:hover) and (pointer:fine){
+  .qa-tile:hover{transform:translateY(-3px);border-color:rgba(212,175,55,.6);box-shadow:0 20px 36px -24px rgba(8,42,29,.5);}
+  .qa-tile:hover::after{animation:cardSweep .9s ease forwards;}
+  .qa-tile:hover .qa-ic{transform:rotate(-8deg) scale(1.06);}
+  .qa-tile:hover .qa-go{opacity:1;transform:none;}
+}
+.qa-tile:active{transform:scale(.97);}
+
+/* Hero chips: glass on dark instead of heavy cream pills */
+.page-hero .tag-row .pill{
+  background:rgba(250,243,223,.06);color:var(--cream-100);border:1px solid rgba(212,175,55,.28);
+  box-shadow:none;font-weight:600;font-size:.8rem;padding:7px 14px 7px 12px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.page-hero .tag-row .pill:hover{background:rgba(212,175,55,.14);}
+
+@media (max-width:900px){
+  .today-grid{grid-template-columns:1fr;}
+  .qa-grid{order:-1;}
+}
+@media (max-width:600px){
+  .iwp-today{padding-top:48px;}
+  .qa-grid{gap:10px;}
+  .qa-tile{flex-direction:column;align-items:flex-start;gap:10px;padding:14px;}
+  .qa-go{display:none;}
+  .qa-t small{white-space:normal;}
+  .today-card{padding:24px 20px 20px;border-radius:22px;}
+  .page-hero .tag-row{gap:6px;}
+  .page-hero .tag-row .pill{font-size:.72rem;padding:6px 10px;}
+}

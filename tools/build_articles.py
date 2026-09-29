@@ -112,7 +112,7 @@ def main():
     s = open('blog.html', encoding='utf-8').read()
     s = re.sub(r'<!-- iwp:app-guides -->.*?<!-- /iwp:app-guides -->\n?', '', s, flags=re.S)
     block = f'''<!-- iwp:app-guides -->
-<section class="section-light" style="padding-bottom:0;">
+<section class="section-light app-guides" style="padding-bottom:0;">
   <div class="container">
     <div class="section-head"><span class="eyebrow" style="justify-content:center;">Choosing an app</span><h2>Guides to the best Islamic apps</h2>
       <p>What to look for in a Qur'an, prayer-times, Hifz or all-in-one Muslim app — with honest checklists you can use for any app.</p></div>
