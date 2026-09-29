@@ -1,9 +1,9 @@
 /* Islamic World Pro — offline cache. © 2026 Aurevia Solution. All rights reserved. */
-const CACHE = 'iwp-v3';
+const CACHE = 'iwp-v4';
 const SHELL = [
   '/', '/quran', '/hadith', '/azkar', '/duas', '/prayer-times', '/99-names-of-allah',
-  '/assets/css/style.css', '/assets/css/islamic.css',
-  '/assets/js/main.js', '/assets/js/iwp-core.js', '/assets/js/slide-tabs.js',
+  '/assets/css/style.css', '/assets/css/islamic.css', '/assets/css/polish.css',
+  '/assets/js/main.js', '/assets/js/polish.js', '/assets/js/iwp-core.js', '/assets/js/slide-tabs.js',
   '/assets/js/quran-meta.js', '/assets/js/quran-core.js', '/assets/js/quran-hub.js',
   '/assets/fonts/UthmanicHafs.woff2'
 ];

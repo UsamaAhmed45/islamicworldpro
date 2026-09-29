@@ -1,6 +1,6 @@
+# Islamic World Pro — https://islamicworldpro.com
 User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /assets/data/
 
 Sitemap: https://islamicworldpro.com/sitemap.xml
