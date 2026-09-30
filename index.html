@@ -40,9 +40,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&family=Cinzel:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&family=Cinzel:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" as="image" href="assets/img/hero-overview.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/img/hero-promo-poster.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css?v=20260907e">
-<link rel="stylesheet" href="/assets/css/polish.css?v=20260929h">
+<link rel="stylesheet" href="/assets/css/polish.css?v=20260930b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -280,9 +280,9 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section class="page-hero bg-pattern" style="padding:52px 0 64px;">
-  <video class="hero-ambient" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
-         data-src-webm="assets/video/hero-ambient.webm" data-src-mp4="assets/video/hero-ambient.mp4"></video>
+<section class="page-hero hero-v3" aria-labelledby="heroTitle">
+  <canvas class="hero-bf" aria-hidden="true" data-base="#FAF3DF" data-accent="#D4AF37" data-density="64" data-density-mobile="20" data-size="46" data-size-mobile="22" data-speed="55" data-flap="38" data-wander="28" data-hover="150" data-reach="24"></canvas>
+  <div class="hero-v3-shade" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-bismillah now">
       <span class="bismillah-rule" aria-hidden="true"></span>
@@ -290,44 +290,36 @@
       <span id="bismillahType" class="bismillah-type" lang="ar" dir="rtl" aria-hidden="true"></span><span class="bismillah-cursor" aria-hidden="true"></span>
       <span class="bismillah-rule" aria-hidden="true"></span>
     </div>
-    <div class="grid grid-2" style="align-items:center;gap:56px;">
-      <div class="now">
-        <img class="lqip" decoding="async" width="96" height="96" src="assets/img/brand/logo-96.webp" alt="Islamic World Pro" style="width:64px;height:64px;border-radius:16px;box-shadow:var(--shadow-soft);margin-bottom:14px;background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACwBACdASoUABQAPt1irE8opSSiKAqpEBuJYgC06BEdqLX6+5ldzK/mOLZYksgAAP7urRZEJtLvRRKZhKZ7AO++I7DnppWBhUYXIIduOJxMCUnZoEFzxZGcVuGGrQANS3rhF8D7P+cBR1he2X14o+eWLXNLVPHGwAA=)">
-        <span class="eyebrow">Free · Ad-Free · Works Offline</span>
-        <h1 class="iwp-enter iwp-enter-2" style="margin-top:14px;">The best Islamic app for <span class="text-gold">everyday Muslim life</span></h1>
-        <p class="lead iwp-enter iwp-enter-3">Islamic World Pro brings the Qur'an, prayer times, Qibla, Hadith, Azkar and duas into one calm, premium Islamic app — plus Hifz Mode, which listens as you recite and checks your memorisation word by word. Everything works offline, with no ads and no tracking.</p>
-        <div class="hero-cta iwp-enter iwp-enter-4" style="margin:26px 0 22px;" data-iwp="hero-v2">
-          <span class="btn-hand-wrap">
-            <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold btn-lg" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download on Google Play</a>
-            <span class="tap-hand tap-hand-lg" aria-hidden="true">👆</span>
-          </span>
-          <a href="/features" class="btn btn-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Explore Features</a>
-          <a href="/quran" class="btn btn-outline">Read Qur'an Online</a>
+    <div class="hero-v3-grid">
+      <div class="hero-v3-copy">
+        <span class="hero-chip iwp-enter"><span class="hc-dot" aria-hidden="true"></span>Free · Ad-free · Works offline</span>
+        <h1 id="heroTitle" class="iwp-enter iwp-enter-2">The best Islamic app for <span class="text-gold">everyday Muslim life</span></h1>
+        <p class="lead iwp-enter iwp-enter-3">Islamic World Pro brings the Qur'an, prayer times, Qibla, Hadith, Azkar and duas into one calm, premium app — plus Hifz Mode, which listens as you recite and checks your memorisation word by word.</p>
+        <div class="hero-cta iwp-enter iwp-enter-4" data-iwp="hero-v3">
+          <a href="https://play.google.com/store/apps/details?id=com.aurevia.islamicworld" class="btn btn-gold btn-lg hero-play" target="_blank" rel="noopener" aria-label="Download Islamic World Pro on Google Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.5.8-.5 1.4v16c0 .6.2 1.1.5 1.4l9-9.4-9-9.4zm10.3 10.8 2.6 2.7-10.4 6c-.5.3-1 .3-1.4.1l9.2-8.8zm0-2.8L5.3 1.8c.4-.2.9-.2 1.4.1l10.4 6-2.6 2.7zm3.9-1.9 3 1.7c.9.5.9 1.8 0 2.3l-3 1.7-2.9-2.9 2.9-2.8z"/></svg><span><small>Get it on</small>Google Play</span></a>
+          <a href="/quran" class="btn btn-glass btn-lg">Read Qur'an online<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-        <div class="tag-row" style="margin:20px 0 28px;">
-          <span class="pill">Offline Qur'an with Tajweed</span>
-          <span class="pill">Hifz Memorisation Mode</span>
-          <span class="pill">Prayer Times &amp; Adhan</span>
-          <span class="pill">Qibla Compass</span>
-          <span class="pill">Sahih Bukhari &amp; Muslim</span>
-          <span class="pill">Azkar &amp; Duas</span>
-          <span class="pill">Home Screen Widgets</span>
-          <span class="pill">Zakat Calculator</span>
-          <span class="pill">100% Free, No Ads</span>
-        </div>
+        <ul class="hero-proof iwp-enter iwp-enter-4">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Offline Qur'an &amp; tafseer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Prayer times, Adhan &amp; Qibla</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Hifz Mode with voice checking</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Bukhari, Muslim &amp; more</li>
+        </ul>
+        <p class="hero-meta iwp-enter iwp-enter-4">Android · English &amp; Urdu · No account, no tracking</p>
       </div>
-      <div class="hero-visual-wrap-outer">
-        <div class="hero-visual-wrap hero-visual-wrap-flat">
-          <div class="arch-frame hero-phone hero-phone-lg">
-            <div class="arch">
-              <video class="hero-demo-video" id="heroDemoVideo" width="1080" height="1350" muted loop playsinline preload="none" poster="assets/img/hero-overview.webp" data-src-mp4="assets/video/hero-app-demo.mp4?v=20260907" aria-label="Islamic World Pro app demo">
-              </video>
-            </div>
-          </div>
+      <div class="hero-v3-visual" aria-hidden="false">
+        <div class="hv-ring" aria-hidden="true"></div>
+        <div class="hv-card hv-video" id="hvCard">
+          <video id="heroPromo" muted loop playsinline preload="none" poster="/assets/img/hero-promo-poster.webp" width="720" height="720" data-src="/assets/video/hero-promo.mp4?v=20260930" data-src-webm="/assets/video/hero-promo.webm?v=20260930" aria-label="Islamic World Pro — prayer times, Qur'an, Hadith, duas and more in one app"></video>
+          <button type="button" class="hv-pp" id="heroPromoPP" aria-label="Pause video" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
         </div>
+        <div class="hv-chip hv-c1"><img src="/assets/img/icons/icon-prayer.webp" width="40" height="40" alt=""><span><b>Adhan alerts</b><small>On time, every prayer</small></span></div>
+        <div class="hv-chip hv-c2"><img src="/assets/img/icons/icon-quran.webp" width="40" height="40" alt=""><span><b>114 Surahs</b><small>Offline, with tafseer</small></span></div>
+        <div class="hv-chip hv-c3"><img src="/assets/img/icons/icon-qibla.webp" width="40" height="40" alt=""><span><b>Qibla</b><small>Live compass</small></span></div>
       </div>
     </div>
   </div>
+  <a href="#hpCard" class="hero-scroll" aria-label="Scroll to today's prayer times"><span></span></a>
 </section>
 
 <!-- ============ LIVE PRAYER TIMES WIDGET ============ -->
@@ -1009,6 +1001,7 @@
 <a href="https://wa.me/97471394723?text=Assalamu%20alaikum%2C%20I%20have%20a%20question%20about%20Islamic%20World%20Pro" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.41-1.42a9.87 9.87 0 004.63 1.18h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.69 2 12.04 2zm0 18.06a8.14 8.14 0 01-4.15-1.14l-.3-.18-3.09.81.83-3.01-.2-.31a8.14 8.14 0 01-1.25-4.32c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.23.85 5.78 2.4a8.11 8.11 0 012.4 5.79c0 4.51-3.67 8.14-8.2 8.14zm4.48-6.13c-.25-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.03 0 1.2.87 2.36 1 2.52.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
 </a>
-<script defer src="/assets/js/polish.js?v=20260929h"></script>
+<script defer src="/assets/js/polish.js?v=20260930b"></script>
+<script defer src="/assets/js/hero-butterflies.js?v=20260930c"></script>
 </body>
 </html>

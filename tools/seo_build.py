@@ -11,7 +11,7 @@ import html, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 BASE = 'https://islamicworldpro.com'
-VER = '20260929h'
+VER = '20260930b'
 SKIP = {'admin.html'}
 
 TITLE_MAX, DESC_MAX = 62, 158
@@ -264,7 +264,7 @@ def patch_city(s, c):
 
 # ---------------------------------------------------------------- homepage hero
 def patch_home(s):
-    if 'data-iwp="hero-v2"' in s:
+    if 'data-iwp="hero-v2"' in s or 'hero-v3' in s:
         return s
     cta = re.search(r'\n        <div class="hero-cta" style="margin-top:16px;margin-bottom:20px;">.*?\n        </div>', s, re.S)
     h1 = re.search(r'\n        <h1 style="margin-top:14px;">The best Islamic app for everyday Muslim life</h1>', s)

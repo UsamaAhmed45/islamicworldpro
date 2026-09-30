@@ -108,6 +108,47 @@
       hero.insertBefore(aur, hero.firstChild);
     }
 
+    /* Hero v3: gentle 3D tilt of the product card toward the pointer */
+    var hv = d.getElementById('hvCard');
+    if (hv && !reduce && w.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var vis = hv.closest('.hero-v3-visual');
+      vis.addEventListener('pointermove', function (e) {
+        var r = vis.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        hv.style.transform = 'rotateY(' + (-10 + x * 16).toFixed(2) + 'deg) rotateX(' + (4 - y * 10).toFixed(2) + 'deg)';
+      });
+      vis.addEventListener('pointerleave', function () { hv.style.transform = ''; });
+    }
+
+    /* Hero promo video: loads after the page, skips data-saver / reduced motion,
+       plays only while visible, with a pause button */
+    var pv = d.getElementById('heroPromo');
+    if (pv) {
+      var conn = navigator.connection || {};
+      var pp = d.getElementById('heroPromoPP');
+      if (!reduce && !conn.saveData && !/2g/.test(conn.effectiveType || '')) {
+        var load = function () {
+          var mp4ok = pv.canPlayType('video/mp4; codecs="avc1.640028"') || pv.canPlayType('video/mp4');
+          pv.src = mp4ok || !pv.dataset.srcWebm ? pv.dataset.src : pv.dataset.srcWebm; pv.load();
+          pv.addEventListener('error', function () {       // MP4 not decodable here: fall back to WebM once
+            if (pv.dataset.srcWebm && pv.currentSrc.indexOf('.webm') < 0) { pv.src = pv.dataset.srcWebm; pv.load(); if (!pv.dataset.paused) pv.play().catch(function () {}); }
+          });
+          if (pp) pp.hidden = false;
+          if ('IntersectionObserver' in w) {
+            new IntersectionObserver(function (es) {
+              if (pv.dataset.paused) return;
+              es[0].isIntersecting ? pv.play().catch(function () {}) : pv.pause();
+            }, { threshold: 0.25 }).observe(pv);
+          } else pv.play().catch(function () {});
+        };
+        d.readyState === 'complete' ? setTimeout(load, 300) : w.addEventListener('load', function () { setTimeout(load, 300); });
+      }
+      if (pp) pp.addEventListener('click', function () {
+        if (pv.paused) { delete pv.dataset.paused; pv.play().catch(function () {}); pp.querySelector('path').setAttribute('d', 'M7 5h3.5v14H7zM13.5 5H17v14h-3.5z'); pp.setAttribute('aria-label', 'Pause video'); }
+        else { pv.dataset.paused = '1'; pv.pause(); pp.querySelector('path').setAttribute('d', 'M8 5v14l11-7z'); pp.setAttribute('aria-label', 'Play video'); }
+      });
+    }
+
     /* Card family: sweep layers + tap shimmer for Hadith books and Azkar tiles */
     d.querySelectorAll('.book, .cat').forEach(function (c) {
       if (c.querySelector('.b-sweep, .c-sweep')) return;
