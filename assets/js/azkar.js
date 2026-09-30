@@ -189,13 +189,56 @@
       document.getElementById('tRound').textContent = 'Round ' + ts.round;
       document.getElementById('tToday').textContent = ts.today;
       tBtn.textContent = ts.count;
+      var tgt = +p.dataset.t, of = document.getElementById('tOf');
+      if (of) of.textContent = 'of ' + tgt;
+      var prog = document.getElementById('tProg');
+      if (prog) prog.style.strokeDashoffset = (578 * (1 - ts.count / tgt)).toFixed(1);
       IWP.store.set('tasbih', ts);
     }
+    /* animated bead string: beads slide along an arc on each count */
+    var beadBox = document.getElementById('tBeads'), BEADS = 11, beadEls = [];
+    if (beadBox) for (var bi = 0; bi < BEADS; bi++) { var be = document.createElement('i'); beadBox.appendChild(be); beadEls.push(be); }
+    var beadShift = 0;
+    function placeBeads(anim) {
+      var dial = beadBox.parentNode, R = dial.offsetWidth / 2 - 4;
+      beadEls.forEach(function (be, k) {
+        var a = (-150 + (k - beadShift) * 12) * Math.PI / 180;    // arc around the lower-left of the dial
+        be.style.transition = anim ? 'transform .45s cubic-bezier(.34,1.56,.64,1)' : 'none';
+        be.style.transform = 'translate(' + (Math.cos(a) * R).toFixed(1) + 'px,' + (Math.sin(a) * -R).toFixed(1) + 'px)';
+      });
+    }
+    function slideBead() {
+      beadShift = 1; placeBeads(true);
+      setTimeout(function () { beadEls.push(beadEls.shift()); beadShift = 0; placeBeads(false); }, 460);
+    }
+    function pop() {
+      tBtn.classList.remove('t-pop'); void tBtn.offsetWidth; tBtn.classList.add('t-pop');
+      var r = document.createElement('span'); r.className = 't-ripple'; tBtn.parentNode.appendChild(r);
+      setTimeout(function () { r.remove(); }, 700);
+    }
+    function burst() {
+      var b = document.getElementById('tBurst'); if (!b) return;
+      b.innerHTML = '';
+      for (var q = 0; q < 14; q++) {
+        var sp = document.createElement('i'), ang = q / 14 * 360;
+        sp.style.setProperty('--a', ang + 'deg'); sp.style.setProperty('--d', (80 + Math.random() * 40) + 'px');
+        b.appendChild(sp);
+      }
+      b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
+      tBtn.parentNode.classList.add('t-done'); setTimeout(function () { tBtn.parentNode.classList.remove('t-done'); }, 1200);
+    }
+    placeBeads(false);
+    window.addEventListener('resize', function () { placeBeads(false); }, { passive: true });
     tBtn.addEventListener('click', function () {
       var target = +presets[ts.preset].dataset.t;
       ts.count++; ts.today++;
-      buzz(10);
-      if (ts.count >= target) { buzz([40, 50, 40]); IWP.toast('Set of ' + target + ' complete'); ts.count = 0; ts.round++; }
+      buzz(10); pop(); slideBead();
+      if (ts.count >= target) {
+        buzz([40, 50, 40]); IWP.toast('Set of ' + target + ' complete — round ' + ts.round + ' done');
+        paint(); burst();
+        setTimeout(function () { ts.count = 0; ts.round++; paint(); }, 650);
+        return;
+      }
       paint();
     });
     presets.forEach(function (b, i) { b.addEventListener('click', function () { ts.preset = i; ts.count = 0; ts.round = 1; paint(); }); });

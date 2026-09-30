@@ -89,8 +89,24 @@
     if (nameEl) nameEl.textContent = label[1];
     if (timeEl) timeEl.textContent = 'at ' + fmt(next.k === 'fajr' && next.at > instant(today, times.isha || 0) ? tomorrow.fajr : times[next.k]) + ' · in ' + (hh ? hh + 'h ' : '') + mm + 'm';
     if (ring) ring.style.setProperty('--p', Math.min(100, Math.max(0, (1 - left / (next.at - prevAt)) * 100)).toFixed(1));
+    var cnt = $('hpCount');
+    if (cnt) {
+      var ss = Math.floor(left % 60000 / 1000);
+      cnt.textContent = ('0' + hh).slice(-2) + ':' + ('0' + mm).slice(-2) + ':' + ('0' + ss).slice(-2);
+    }
+    var line = $('hpLine');
+    if (line) {
+      var html = PRAYERS.map(function (p) {
+        var at = instant(today, times[p[0]]);
+        var st = (next.k === p[0] && next.at === at) ? 'is-next' : (at <= now ? 'is-past' : '');
+        return '<li class="' + st + '"><span class="hl-dot"></span><small>' + p[1] + '</small><b>' + fmt(times[p[0]]) + '</b></li>';
+      }).join('');
+      if (line.dataset.h !== html) { line.innerHTML = html; line.dataset.h = html; }
+      var done = PRAYERS.filter(function (p) { return instant(today, times[p[0]]) <= now; }).length;
+      line.style.setProperty('--done', done);
+    }
   }
-  setInterval(tick, 30000);
+  setInterval(tick, 1000);
 
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest('#hpToggle button');

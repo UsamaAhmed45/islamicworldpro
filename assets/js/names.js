@@ -56,9 +56,7 @@
     grids.nabi.hidden = s !== 'nabi';
     document.querySelectorAll('[data-tabset]').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.tabset === s); });
     document.getElementById('nmHeading').textContent = s === 'husna' ? 'Asma-ul-Husna — the 99 names' : 'Names and titles of the Prophet Muhammad ﷺ';
-    var medal = document.getElementById('nmMedal');
-    medal.textContent = s === 'husna' ? 'ٱللَّه' : 'مُحَمَّد ﷺ';
-    medal.classList.remove('nm-swap'); void medal.offsetWidth; medal.classList.add('nm-swap');
+    if (window.__nmMedal) window.__nmMedal.reset();
     document.getElementById('quiz').hidden = true;
     search.value = '';
     filter();
@@ -86,6 +84,7 @@
     document.getElementById('ndSrc').textContent = field(c, '.nm-src');
     document.getElementById('ndN').textContent = (idx + 1) + ' / ' + list.length;
     if (!dlg.open) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
+    if (window.__nmMedal) window.__nmMedal.show(idx, true);
   }
 
   document.addEventListener('click', function (ev) {
@@ -149,6 +148,61 @@
       quiz.querySelector('[data-again]').onclick = startQuiz;
     }, ok ? 650 : 1400);
   });
+
+  /* ---------- hero medal: tap to step through the names, gentle auto-play ---------- */
+  (function () {
+    var btn = document.getElementById('nmMedalBtn');
+    if (!btn) return;
+    var ar = document.getElementById('nmMedal'), nEl = document.getElementById('nmMedalN');
+    var tEl = document.getElementById('nmMedalT'), enEl = document.getElementById('nmMedalEn');
+    var playBtn2 = document.getElementById('nmMedalPlay');
+    var cur = -1, timer = null, auto = !reduce, busy = false;
+    function show(i, quiet) {
+      var list = cards(); if (!list.length) return;
+      cur = (i + list.length) % list.length;
+      var c = list[cur];
+      var apply = function () {
+        ar.textContent = field(c, '.nm-ar');
+        nEl.textContent = cur + 1;
+        tEl.textContent = field(c, 'strong');
+        enEl.textContent = field(c, '.nm-en');
+      };
+      if (reduce || quiet === 'instant') { apply(); return; }
+      if (busy) { apply(); return; }
+      busy = true;
+      btn.classList.remove('flip-in'); btn.classList.add('flip-out');
+      setTimeout(function () {
+        apply();
+        btn.classList.remove('flip-out'); void btn.offsetWidth; btn.classList.add('flip-in');
+        setTimeout(function () { busy = false; }, 420);
+      }, 260);
+    }
+    function schedule() { clearInterval(timer); if (auto) timer = setInterval(function () { show(cur + 1); }, 4200); }
+    btn.addEventListener('click', function () { show(cur + 1); schedule(); if (navigator.vibrate) navigator.vibrate(8); });
+    document.getElementById('nmMedalNext').addEventListener('click', function () { show(cur + 1); schedule(); });
+    document.getElementById('nmMedalPrev').addEventListener('click', function () { show(cur - 1); schedule(); });
+    playBtn2.addEventListener('click', function () {
+      auto = !auto; playBtn2.setAttribute('aria-pressed', auto);
+      playBtn2.textContent = auto ? '❚❚' : '▶'; playBtn2.setAttribute('aria-label', auto ? 'Pause auto-play' : 'Play auto-play');
+      schedule();
+    });
+    if (reduce) { playBtn2.textContent = '▶'; playBtn2.setAttribute('aria-pressed', 'false'); }
+    // swipe on the medal
+    var sx = 0;
+    btn.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    btn.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { e.preventDefault(); show(cur + (dx < 0 ? 1 : -1)); schedule(); } });
+    // pause while the medal is off-screen
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { if (es[0].isIntersecting) schedule(); else clearInterval(timer); }).observe(btn);
+    window.__nmMedal = {
+      show: function (i) { show(i); schedule(); },
+      reset: function () {
+        cur = -1; ar.textContent = set === 'husna' ? 'ٱللَّه' : 'مُحَمَّد ﷺ'; nEl.textContent = '';
+        tEl.textContent = set === 'husna' ? 'Allah' : 'Muhammad ﷺ'; enEl.textContent = 'Tap the circle to explore the names';
+        btn.classList.remove('flip-in'); void btn.offsetWidth; btn.classList.add('flip-in'); schedule();
+      }
+    };
+    schedule();
+  })();
 
   if (location.hash === '#asma-un-nabi') showSet('nabi');
 

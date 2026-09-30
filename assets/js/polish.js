@@ -43,6 +43,8 @@
     measure();
     w.addEventListener('resize', measure, { passive: true });
     d.addEventListener('focusin', function (e) { if (header && header.contains(e.target)) setHidden(false); });
+    // opening the mobile menu always brings the header (and menu) into view
+    d.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.nav-toggle')) { setHidden(false); measure(); } }, true);
 
     var ticking = false;
     function onScroll() {
@@ -120,36 +122,55 @@
       vis.addEventListener('pointerleave', function () { hv.style.transform = ''; });
     }
 
-    /* Hero promo video: loads after the page, skips data-saver / reduced motion,
-       plays only while visible, with a pause button */
+    /* Hero promo video: start as soon as the page is interactive, play while
+       visible, retry on the first touch if the browser blocked autoplay
+       (e.g. iPhone Low Power Mode), WebM fallback, pause button. */
     var pv = d.getElementById('heroPromo');
     if (pv) {
       var conn = navigator.connection || {};
       var pp = d.getElementById('heroPromoPP');
-      if (!reduce && !conn.saveData && !/2g/.test(conn.effectiveType || '')) {
-        var load = function () {
-          var mp4ok = pv.canPlayType('video/mp4; codecs="avc1.640028"') || pv.canPlayType('video/mp4');
-          pv.src = mp4ok || !pv.dataset.srcWebm ? pv.dataset.src : pv.dataset.srcWebm; pv.load();
-          pv.addEventListener('error', function () {       // MP4 not decodable here: fall back to WebM once
-            if (pv.dataset.srcWebm && pv.currentSrc.indexOf('.webm') < 0) { pv.src = pv.dataset.srcWebm; pv.load(); if (!pv.dataset.paused) pv.play().catch(function () {}); }
-          });
-          if (pp) pp.hidden = false;
-          if ('IntersectionObserver' in w) {
-            new IntersectionObserver(function (es) {
-              if (pv.dataset.paused) return;
-              es[0].isIntersecting ? pv.play().catch(function () {}) : pv.pause();
-            }, { threshold: 0.25 }).observe(pv);
-          } else pv.play().catch(function () {});
-        };
-        d.readyState === 'complete' ? setTimeout(load, 300) : w.addEventListener('load', function () { setTimeout(load, 300); });
+      var inView = true, started = false;
+      pv.muted = true; pv.defaultMuted = true; pv.playsInline = true;
+      pv.setAttribute('muted', ''); pv.setAttribute('playsinline', ''); pv.setAttribute('webkit-playsinline', '');
+      var tryPlay = function () {
+        if (pv.dataset.paused || !inView) return;
+        var pr = pv.play();
+        if (pr && pr.catch) pr.catch(function () {
+          // autoplay blocked: play on the first interaction anywhere
+          var kick = function () { if (!pv.dataset.paused) pv.play().catch(function () {}); rm(); };
+          var rm = function () { ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (t) { w.removeEventListener(t, kick, true); }); };
+          ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (t) { w.addEventListener(t, kick, { capture: true, passive: true, once: true }); });
+        });
+      };
+      var startVideo = function () {
+        if (started) return; started = true;
+        var mp4ok = pv.canPlayType('video/mp4; codecs="avc1.640028"') || pv.canPlayType('video/mp4');
+        pv.preload = 'auto';
+        pv.src = mp4ok || !pv.dataset.srcWebm ? pv.dataset.src : pv.dataset.srcWebm;
+        pv.addEventListener('error', function () {
+          if (pv.dataset.srcWebm && pv.currentSrc.indexOf('.webm') < 0) { pv.src = pv.dataset.srcWebm; pv.load(); tryPlay(); }
+        });
+        pv.addEventListener('canplay', tryPlay);
+        pv.load(); tryPlay();
+        if (pp) pp.hidden = false;
+      };
+      if ('IntersectionObserver' in w) {
+        new IntersectionObserver(function (es) {
+          inView = es[0].isIntersecting;
+          if (inView) { startVideo(); tryPlay(); } else if (started) pv.pause();
+        }, { threshold: 0.15 }).observe(pv);
       }
+      if (!conn.saveData) setTimeout(startVideo, 150);
+      else if (pp) { pp.hidden = false; }          // data saver: poster until the visitor taps play
       if (pp) pp.addEventListener('click', function () {
+        startVideo();
         if (pv.paused) { delete pv.dataset.paused; pv.play().catch(function () {}); pp.querySelector('path').setAttribute('d', 'M7 5h3.5v14H7zM13.5 5H17v14h-3.5z'); pp.setAttribute('aria-label', 'Pause video'); }
         else { pv.dataset.paused = '1'; pv.pause(); pp.querySelector('path').setAttribute('d', 'M8 5v14l11-7z'); pp.setAttribute('aria-label', 'Play video'); }
       });
     }
 
     /* Card family: sweep layers + tap shimmer for Hadith books and Azkar tiles */
+    d.querySelectorAll('.cat').forEach(function (c) { if (!c.querySelector('.c-star')) { var st = d.createElement('span'); st.className = 'c-star'; st.setAttribute('aria-hidden', 'true'); c.appendChild(st); } });
     d.querySelectorAll('.book, .cat').forEach(function (c) {
       if (c.querySelector('.b-sweep, .c-sweep')) return;
       var sw = d.createElement('span');

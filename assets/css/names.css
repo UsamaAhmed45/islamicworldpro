@@ -158,3 +158,36 @@
   .nm-card.nm-pre{opacity:1;transform:none;}
   .nm-medal,.nm-medal::before,.nm-medal span{animation:none !important;}
 }
+
+/* ---------- Interactive medal: tap / swipe / auto-play through the names ---------- */
+.nm-medal-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+button.nm-medal{border:0;cursor:pointer;font:inherit;color:inherit;perspective:800px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:transform .35s var(--ease-spring,ease),box-shadow .35s;}
+button.nm-medal:hover{transform:scale(1.03);box-shadow:0 36px 70px -22px rgba(0,0,0,.6),0 0 0 6px rgba(212,175,55,.12);}
+button.nm-medal:active{transform:scale(.97);}
+button.nm-medal:focus-visible{outline:2px solid var(--gold-300);outline-offset:6px;}
+.nm-medal span{display:inline-block;max-width:78%;line-height:1.35;text-align:center;font-size:clamp(2.2rem,6.5vw,4.4rem) !important;}
+.nm-medal.flip-out span{animation:mdOut .26s ease-in forwards;}
+.nm-medal.flip-in span{animation:mdIn .42s cubic-bezier(.34,1.56,.64,1) both, nmGlow 4.5s ease-in-out .42s infinite;}
+@keyframes mdOut{to{opacity:0;transform:rotateY(80deg) scale(.85);filter:blur(2px);}}
+@keyframes mdIn{from{opacity:0;transform:rotateY(-80deg) scale(.85);filter:blur(2px);}to{opacity:1;transform:none;filter:none;}}
+.nm-medal.flip-in::before{animation:nmSpin 9s linear infinite, mdFlash .6s ease;}
+@keyframes mdFlash{0%{opacity:1;}50%{opacity:.2;}100%{opacity:1;}}
+.nm-medal-n{position:absolute;top:13%;left:50%;transform:translateX(-50%);font-style:normal;font-size:.72rem;font-weight:800;letter-spacing:.08em;
+  color:var(--green-950);background:var(--gold-grad);border-radius:999px;padding:2px 9px;min-width:26px;text-align:center;}
+.nm-medal-n:empty{display:none;}
+.nm-medal-cap{text-align:center;min-height:48px;}
+.nm-medal-cap strong{display:block;font-family:var(--font-display);font-size:1.15rem;color:var(--gold-200);}
+.nm-medal-cap small{display:block;font-size:.84rem;color:rgba(243,234,210,.75);}
+.nm-medal-nav{display:flex;gap:8px;}
+.nm-medal-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(212,175,55,.45);background:rgba(250,243,223,.06);
+  color:var(--gold-200);font-size:1.2rem;line-height:1;display:grid;place-items:center;transition:background .25s,transform .3s var(--ease-spring,ease);}
+.nm-medal-nav button:hover{background:rgba(212,175,55,.18);transform:translateY(-2px);}
+.nm-medal-nav #nmMedalPlay{font-size:.7rem;letter-spacing:-.08em;}
+@media (max-width:760px){
+  .nm-medal-wrap{order:-1;gap:10px;}
+  .nm-medal-wrap .nm-medal{width:190px !important;}
+  .nm-medal span{font-size:2.3rem !important;}
+  .nm-medal-cap strong{font-size:1rem;}
+}
+@media (prefers-reduced-motion:reduce){.nm-medal.flip-in span,.nm-medal.flip-out span{animation:none;}}

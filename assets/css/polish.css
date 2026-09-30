@@ -1093,3 +1093,129 @@ a,button{-webkit-tap-highlight-color:rgba(212,175,55,.15);}
   .site-header .nav-feature span{display:none;}
   .site-header .nav-feature{padding:8px;}
 }
+
+/* ==========================================================================
+   Azkar category cards — one curated palette (emerald · teal · bronze · midnight)
+   ========================================================================== */
+.cat{background-color:#0b3524;background-image:none;}
+.cat::before{background:linear-gradient(180deg,rgba(4,18,11,0) 25%,rgba(4,18,11,.72)) !important;}
+.cat-emerald {background:radial-gradient(120% 90% at 100% 0%,rgba(212,175,55,.22),transparent 55%),linear-gradient(150deg,#15573a 0%,#0b3524 60%,#062417 100%);}
+.cat-teal    {background:radial-gradient(120% 90% at 100% 0%,rgba(212,175,55,.18),transparent 55%),linear-gradient(150deg,#16595a 0%,#0c3a3d 60%,#06252a 100%);}
+.cat-bronze  {background:radial-gradient(120% 90% at 100% 0%,rgba(255,236,180,.22),transparent 55%),linear-gradient(150deg,#7a5a24 0%,#4d3714 60%,#2c1f0a 100%);}
+.cat-midnight{background:radial-gradient(120% 90% at 100% 0%,rgba(212,175,55,.18),transparent 55%),linear-gradient(150deg,#1d3a3a 0%,#11252a 60%,#08161a 100%);}
+/* faint eight-point star watermark on every tile */
+.cat > .c-star{position:absolute;right:-26px;bottom:-26px;width:130px;height:130px;z-index:-1;opacity:.12;
+  background:var(--star-svg-light) center/contain no-repeat;transition:transform 1.2s var(--ease-spring),opacity .4s;}
+@media (hover:hover) and (pointer:fine){.cat:hover > .c-star{transform:rotate(90deg) scale(1.1);opacity:.22;}}
+.cat .cat-ar{color:var(--gold-200);text-shadow:0 2px 14px rgba(0,0,0,.35);}
+.cat strong{color:#fffaf0;}
+
+/* ==========================================================================
+   Tasbih — animated dial: progress ring, sliding beads, ripple, completion burst
+   ========================================================================== */
+.tasbih{
+  background:radial-gradient(90% 90% at 0% 0%,rgba(212,175,55,.16),transparent 55%),linear-gradient(160deg,#0f3d29,#082a1d 60%,#051b12) !important;
+  border:1px solid rgba(212,175,55,.3);box-shadow:0 30px 60px -34px rgba(0,0,0,.7);padding:34px 34px 34px 40px !important;gap:44px !important;
+}
+.t-dial{position:relative;width:250px;height:250px;display:grid;place-items:center;flex:none;}
+.t-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);}
+.t-track{fill:none;stroke:rgba(243,234,210,.1);stroke-width:6;}
+.t-prog{fill:none;stroke:url(#none);stroke:#e9c873;stroke-width:6;stroke-linecap:round;stroke-dasharray:578;stroke-dashoffset:578;
+  filter:drop-shadow(0 0 6px rgba(233,200,115,.6));transition:stroke-dashoffset .45s var(--ease-out);}
+.t-beads{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none;}
+.t-beads i{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff3c9,#d4af37 55%,#8a6415);box-shadow:0 3px 6px rgba(0,0,0,.45);}
+.tasbih .t-btn{
+  position:relative;z-index:2;width:176px !important;height:176px !important;font-size:3rem !important;
+  background:radial-gradient(circle at 35% 28%,#fff1c1 0%,#e9c873 30%,#c79b3b 70%,#9a7422 100%) !important;
+  box-shadow:0 22px 40px -14px rgba(0,0,0,.7),inset 0 -8px 18px rgba(120,80,10,.35),inset 0 6px 14px rgba(255,250,230,.6) !important;
+  transition:transform .15s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.tasbih .t-btn:active{transform:scale(.94) !important;}
+.tasbih .t-btn.t-pop{animation:tPop .35s var(--ease-spring);}
+@keyframes tPop{40%{transform:scale(.92);}100%{transform:scale(1);}}
+.t-ripple{position:absolute;left:50%;top:50%;width:176px;height:176px;margin:-88px 0 0 -88px;border-radius:50%;z-index:1;
+  border:2px solid rgba(233,200,115,.7);animation:tRipple .7s ease-out forwards;pointer-events:none;}
+@keyframes tRipple{to{transform:scale(1.45);opacity:0;}}
+.t-of{position:absolute;bottom:36px;z-index:3;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(8,42,29,.7);pointer-events:none;}
+.t-burst{position:absolute;inset:0;pointer-events:none;z-index:4;}
+.t-burst i{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:#f3d879;opacity:0;}
+.t-burst.go i{animation:tSpark .9s var(--ease-out) forwards;}
+@keyframes tSpark{0%{opacity:1;transform:rotate(var(--a)) translateY(0) scale(1);}100%{opacity:0;transform:rotate(var(--a)) translateY(calc(-1 * var(--d))) scale(.3);}}
+.t-dial.t-done .t-prog{stroke:#fff3c9;filter:drop-shadow(0 0 14px rgba(255,240,190,.9));}
+.tasbih .t-ar{font-size:2rem !important;line-height:1.7;}
+.t-presets button{transition:background .25s,color .25s,transform .3s var(--ease-spring);}
+.t-presets button:hover{transform:translateY(-2px);}
+@media (max-width:620px){
+  .tasbih{padding:28px 18px !important;gap:18px !important;}
+  .t-dial{width:230px;height:230px;margin:0 auto;}
+  .tasbih .t-btn{width:160px !important;height:160px !important;}
+  .t-ripple{width:160px;height:160px;margin:-80px 0 0 -80px;}
+  .t-of{bottom:34px;}
+}
+@media (prefers-reduced-motion:reduce){.t-beads i{transition:none !important;}.t-burst,.t-ripple{display:none;}}
+
+/* ==========================================================================
+   Homepage prayer card — live countdown + 5-prayer timeline
+   ========================================================================== */
+.hp-card{
+  max-width:980px !important;padding:26px 30px 22px !important;border-radius:26px !important;
+  background:radial-gradient(90% 120% at 100% 0%,rgba(212,175,55,.16),transparent 55%),linear-gradient(170deg,#fffdf7 0%,#f6eed8 100%) !important;
+  box-shadow:0 40px 70px -40px rgba(8,42,29,.65),0 0 0 1px rgba(212,175,55,.35) !important;border:0 !important;
+}
+.hp-next{display:grid !important;grid-template-columns:auto 1fr auto;gap:22px !important;align-items:center;}
+.hp-ring{width:86px !important;height:86px !important;background:conic-gradient(#c79b3b calc(var(--p)*1%),rgba(10,44,31,.09) 0) !important;}
+.hp-ring div{width:72px !important;height:72px !important;background:#fffdf7 !important;}
+.hp-ring img{width:56px;height:56px;border-radius:50%;}
+.hp-next-info h3{font-size:1.75rem !important;margin:2px 0 4px !important;}
+.hp-count{text-align:right;padding:12px 18px;border-radius:18px;background:linear-gradient(160deg,#0f3d29,#082a1d);color:var(--cream-100);
+  box-shadow:0 14px 28px -16px rgba(8,42,29,.8),inset 0 0 0 1px rgba(212,175,55,.35);}
+.hp-count small{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-300);font-weight:700;}
+.hp-count b{display:block;font-size:1.7rem;font-variant-numeric:tabular-nums;letter-spacing:.02em;line-height:1.2;}
+.hp-line{list-style:none;margin:22px 0 4px;padding:18px 0 0;display:grid;grid-template-columns:repeat(5,1fr);position:relative;border-top:1px solid rgba(22,71,45,.1);}
+.hp-line::before{content:"";position:absolute;left:10%;right:10%;top:25px;height:2px;background:rgba(22,71,45,.12);border-radius:2px;}
+.hp-line::after{content:"";position:absolute;left:10%;top:25px;height:2px;border-radius:2px;background:var(--gold-grad);
+  width:calc(80% * max(0, var(--done,0) - 1) / 4);transition:width .6s var(--ease-out);}
+.hp-line li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;padding:0 4px;}
+.hl-dot{width:16px;height:16px;border-radius:50%;background:#fffdf7;border:2px solid rgba(22,71,45,.22);margin-bottom:6px;transition:all .4s;}
+.hp-line small{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sand-600);}
+.hp-line b{font-size:.98rem;color:var(--green-900);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.hp-line li.is-past{opacity:.55;}
+.hp-line li.is-past .hl-dot{background:#c79b3b;border-color:#c79b3b;}
+.hp-line li.is-next .hl-dot{width:20px;height:20px;margin:-2px 0 4px;background:#0b3524;border-color:#d4af37;box-shadow:0 0 0 5px rgba(212,175,55,.22);animation:hpNext 2s ease-in-out infinite;}
+.hp-line li.is-next small{color:var(--gold-600);}
+.hp-line li.is-next b{color:#0b3524;font-weight:800;}
+@keyframes hpNext{50%{box-shadow:0 0 0 9px rgba(212,175,55,.08);}}
+.hp-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.hp-foot .hp-more{margin:0 !important;}
+.hp-loc-btn{font-size:.8rem;font-weight:700;color:var(--green-800);padding:7px 14px;border-radius:999px;border:1px solid rgba(22,71,45,.18);transition:background .25s,border-color .25s;}
+.hp-loc-btn:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.55);}
+@media (max-width:640px){
+  .hp-card{padding:20px 16px 16px !important;border-radius:22px !important;}
+  .hp-next{grid-template-columns:auto 1fr !important;gap:14px !important;}
+  .hp-ring{width:70px !important;height:70px !important;}
+  .hp-ring div{width:58px !important;height:58px !important;}
+  .hp-ring img{width:46px;height:46px;}
+  .hp-next-info h3{font-size:1.4rem !important;}
+  .hp-count{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;text-align:left;padding:10px 16px;}
+  .hp-count b{font-size:1.4rem;}
+  .hp-line{margin-top:16px;padding-top:14px;}
+  .hp-line::before,.hp-line::after{top:21px;}
+  .hp-line small{font-size:.62rem;letter-spacing:.02em;}
+  .hp-line b{font-size:.7rem;white-space:nowrap;letter-spacing:-.01em;}
+  .hp-line li{padding:0 1px;}
+  .hl-dot{width:12px;height:12px;}
+  .hp-line li.is-next .hl-dot{width:16px;height:16px;}
+  .hp-foot{justify-content:center;}
+}
+@media (prefers-reduced-motion:reduce){.hp-line li.is-next .hl-dot{animation:none;}}
+
+/* Mobile menu: lock scrolling on <html> (locking <body> broke the sticky header,
+   so the open menu appeared at the top of the page instead of on screen). */
+body.nav-open{overflow:visible !important;}
+html:has(body.nav-open){overflow:hidden;overscroll-behavior:none;}
+body.nav-open .site-header{transform:none !important;}
+@media (max-width:1150px){
+  .site-header .nav{-webkit-backdrop-filter:none;backdrop-filter:none;}
+  .nav-links{position:fixed !important;top:calc(var(--hdr-full,71px) + 6px) !important;max-height:calc(100dvh - var(--hdr-full,71px) - 18px) !important;}
+}
