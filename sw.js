@@ -1,7 +1,7 @@
 /* Islamic World Pro — offline cache. © 2026 Aurevia Solution. All rights reserved.
    Pages: network-first (always fresh after a deploy, cached copy only when offline).
    Assets: stale-while-revalidate (fast, and refreshed in the background). */
-const CACHE = 'iwp-v17';
+const CACHE = 'iwp-v18';
 const SHELL = [
   '/', '/quran', '/hadith', '/azkar', '/duas', '/prayer-times', '/99-names-of-allah',
   '/assets/css/style.css', '/assets/css/islamic.css', '/assets/css/polish.css',

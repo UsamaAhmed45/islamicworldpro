@@ -410,3 +410,9 @@ window.IWP_UR_MORE = {
   'Calculate Zakat and Sadaqah with a Nisab-based wealth tracker, and use the dedicated Jummah Mode with Surah Al-Kahf progress tracking and a Friday Sunnah checklist.': 'نصاب پر مبنی ٹریکر سے زکوٰۃ اور صدقہ کا حساب کریں، اور سورۃ الکہف کی پیش رفت اور جمعہ کی سنتوں کی چیک لسٹ کے ساتھ خصوصی جمعہ موڈ استعمال کریں۔',
   'what makes the best Islamic app': 'بہترین اسلامی ایپ کی خوبیاں'
 };
+
+/* whole paragraphs that contain links / bold names: full Urdu HTML, keyed by the English text */
+window.IWP_UR_HTML = {
+  "Islamic World Pro was built by Aurevia Solution with one goal: bring the Qur'an, Azkar, Hadith, prayer times and Hajj & Umrah guidance into a single, uncluttered place — so opening the app feels like a moment of calm, not another notification to manage.":
+    'اسلامک ورلڈ پرو <strong>اوریویا سلوشن</strong> نے ایک مقصد کے ساتھ بنائی: قرآن، اذکار، حدیث، نماز کے اوقات اور حج و عمرہ کی رہنمائی کو ایک صاف ستھری جگہ پر جمع کرنا — تاکہ ایپ کھولنا سکون کا لمحہ ہو، ایک اور نوٹیفکیشن نہیں۔'
+};

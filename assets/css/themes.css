@@ -110,12 +110,20 @@ html[data-theme="light"] .hero-bf.is-live{opacity:.75;}
 
 /* ---------------------------------------------------------------- switcher UI */
 .iwp-prefs-btn{
-  display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;margin-left:8px;flex:none;
-  border:1px solid rgba(212,175,55,.4);background:rgba(var(--c-on-dk2-rgb),.06);color:var(--gold-200);cursor:pointer;
-  transition:background .25s,transform .3s var(--ease-spring,ease);
+  display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 6px;border-radius:999px;margin-left:10px;flex:none;
+  border:1px solid rgba(212,175,55,.38);background:linear-gradient(180deg,rgba(var(--c-on-dk2-rgb),.08),rgba(var(--c-on-dk2-rgb),.02));
+  color:var(--gold-200);cursor:pointer;font:700 .78rem/1 var(--font-body);letter-spacing:.06em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);transition:background .25s,border-color .25s,box-shadow .25s;
 }
-.iwp-prefs-btn:hover{background:rgba(212,175,55,.16);transform:rotate(-8deg);}
-.iwp-prefs-btn svg{width:19px;height:19px;}
+.iwp-prefs-btn:hover,.iwp-prefs-btn[aria-expanded="true"]{background:rgba(212,175,55,.14);border-color:rgba(212,175,55,.7);box-shadow:0 0 0 3px rgba(212,175,55,.12),inset 0 1px 0 rgba(255,255,255,.1);}
+.iwp-prefs-btn:focus-visible{outline:2px solid var(--gold-300);outline-offset:2px;}
+.iwp-prefs-btn .ipb-sw{width:28px;height:28px;flex:none;box-shadow:0 0 0 2px rgba(212,175,55,.75),0 2px 6px rgba(0,0,0,.35);transition:transform .45s var(--ease-spring,ease);}
+.iwp-prefs-btn .ipb-sw::after{display:none;}
+.iwp-prefs-btn:hover .ipb-sw{transform:rotate(90deg);}
+.iwp-prefs-btn .ipb-lang{min-width:18px;text-align:center;}
+.iwp-prefs-btn .ipb-lang[lang="ur"]{font-family:var(--urdu-ui);font-size:.92rem;letter-spacing:0;line-height:1;}
+.iwp-prefs-btn .ipb-chev{width:14px;height:14px;opacity:.75;transition:transform .3s;}
+.iwp-prefs-btn[aria-expanded="true"] .ipb-chev{transform:rotate(180deg);}
 .iwp-prefs{
   position:fixed;z-index:1200;top:calc(var(--hdr-full,90px) + 6px);right:max(14px,calc((100vw - 1300px)/2 + 14px));
   width:min(330px,calc(100vw - 28px));padding:16px;border-radius:20px;
@@ -156,19 +164,6 @@ html[data-theme="light"] .hero-bf.is-live{opacity:.75;}
 @media (min-width:1151px){.nav-links .iwp-prefs-inline{display:none;}}
 @media (max-width:1150px){.site-header .iwp-prefs-btn{display:none;}}
 
-/* ---------------------------------------------------------------- Urdu UI */
-html[data-lang="ur"] [data-i18n]{font-family:var(--urdu,'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif);direction:rtl;unicode-bidi:isolate;letter-spacing:0 !important;text-transform:none !important;}
-html[data-lang="ur"] :is(h1,h2,h3,p,.lead)[data-i18n]{line-height:1.9;}
-html[data-lang="ur"] :is(h1,h2)[data-i18n]{line-height:1.7;}
-html[data-lang="ur"] .hero-v3 h1[data-i18n]{font-size:clamp(2rem,4.2vw,3.2rem) !important;}
-html[data-lang="ur"] .slide-tab [data-i18n],html[data-lang="ur"] .slide-tab[data-i18n]{font-size:.95rem;line-height:1.3;}
-html[data-lang="ur"] .hero-v3-copy,html[data-lang="ur"] .section-head{direction:rtl;}
-html[data-lang="ur"] .hero-proof li{direction:rtl;}
-html[data-lang="ur"] .site-footer h5[data-i18n]{font-size:1rem !important;line-height:1.8;text-align:left;}
-html[data-lang="ur"] .site-footer .footer-grid a[data-i18n]{text-align:left;}
-html[data-lang="ur"] .site-footer .footer-grid a[data-i18n]{font-size:.92rem;font-weight:400;line-height:1.9;}
-html[data-lang="ur"] .iwp-prefs h6[data-i18n]{font-size:.85rem;line-height:1.7;margin-bottom:6px;}
-html[data-lang="ur"] .ip-theme[data-i18n],html[data-lang="ur"] .ip-theme [data-i18n]{font-size:.78rem;line-height:1.8;}
 
 /* Night: elements that used the dark green as a *background* keep a dark fill */
 html[data-theme="night"] :is(#playSurahBtn.active,.ayah-play-btn.playing,.filter-chips button[aria-pressed="true"],.hd-rail a.on,
@@ -223,8 +218,65 @@ html.vt-theme::view-transition-new(root){z-index:2;}
 @keyframes ipTick{from{transform:scale(0);}to{transform:scale(1);}}
 .ip-lang{position:relative;overflow:hidden;}
 .ip-lang[aria-pressed="true"]{box-shadow:0 8px 18px -10px rgba(212,175,55,.9);}
-html[data-lang="ur"] :is(span,small,label,strong,b,a,button,summary)[data-i18n]{line-height:1.75;}
-html[data-lang="ur"] .btn[data-i18n],html[data-lang="ur"] .btn [data-i18n]{line-height:1.5;padding-top:.1em;}
-html[data-lang="ur"] .eyebrow[data-i18n]{font-size:.9rem;}
-html[data-lang="ur"] .badge[data-i18n]{font-size:.72rem;line-height:1.6;}
+
+/* ---------------------------------------------------------------- Urdu typography
+   Self-hosted Noto fonts (SIL OFL). They only download when اردو is chosen.
+   Nastaliq (the calligraphic Urdu style) for headings and reading text,
+   Naskh (compact, clear) for menus, buttons, chips and small labels, so tall
+   Nastaliq letters never collide or get clipped inside tight UI. */
+@font-face{font-family:'IWP Nastaliq';src:url(/assets/fonts/NotoNastaliqUrdu-400.woff2) format('woff2');font-weight:400;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC;}
+@font-face{font-family:'IWP Nastaliq';src:url(/assets/fonts/NotoNastaliqUrdu-600.woff2) format('woff2');font-weight:500 800;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC;}
+@font-face{font-family:'IWP Naskh';src:url(/assets/fonts/NotoNaskhArabic-400.woff2) format('woff2');font-weight:400;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC;}
+@font-face{font-family:'IWP Naskh';src:url(/assets/fonts/NotoNaskhArabic-600.woff2) format('woff2');font-weight:500 800;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC;}
+html:root{--urdu:'IWP Nastaliq','Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif;--urdu-ui:'IWP Naskh','Noto Naskh Arabic',var(--font-body),sans-serif;}
+
+/* base: every translated element is right-to-left, compact Naskh */
+html[data-lang="ur"] [data-i18n]{font-family:var(--urdu-ui);direction:rtl;unicode-bidi:isolate;letter-spacing:0 !important;text-transform:none !important;font-style:normal;}
+/* reading text + headings: Nastaliq with room for its tall ascenders and deep descenders */
+html[data-lang="ur"] :is(h1,h2,h3,h4,p,.lead,blockquote)[data-i18n]:not(.btn):not(.pill):not(.badge):not(.eyebrow){font-family:var(--urdu),var(--font-body);line-height:2.05;}
+html[data-lang="ur"] :is(h1,h2)[data-i18n]{line-height:1.85;padding-block:.08em;}
+html[data-lang="ur"] h3[data-i18n]{line-height:1.9;}
+html[data-lang="ur"] :is(p,.lead)[data-i18n]{line-height:2.15;}
+html[data-lang="ur"] :is(span,small,label,strong,b,a,button,summary,div)[data-i18n]{line-height:1.7;}
+/* sizes: Naskh reads a touch smaller than Latin at the same size */
+html[data-lang="ur"] :is(.btn,.btn span,.pill,.nav-cta,.slide-tab,.slide-tab .ml,.seg button,.filter-chips button,.t-chips button)[data-i18n]{line-height:1.5;font-weight:600;}
+html[data-lang="ur"] .eyebrow[data-i18n]{font-size:.92rem;font-weight:600;}
+html[data-lang="ur"] .badge[data-i18n],html[data-lang="ur"] .cat .count[data-i18n]{font-size:.74rem;line-height:1.6;}
+html[data-lang="ur"] .hero-v3 h1[data-i18n]{font-size:clamp(2rem,4.2vw,3.1rem) !important;line-height:1.75;}
+html[data-lang="ur"] .hero-v3 .lead[data-i18n]{font-size:1.02rem;}
+html[data-lang="ur"] .slide-tab[data-i18n],html[data-lang="ur"] .slide-tab [data-i18n]{font-size:.98rem;line-height:1.3;}
+html[data-lang="ur"] .hero-v3-copy,html[data-lang="ur"] .section-head{direction:rtl;}
+html[data-lang="ur"] .hero-proof li{direction:rtl;}
+html[data-lang="ur"] .hero-proof li[data-i18n]{font-family:var(--urdu-ui);line-height:1.7;}
+/* footer */
+html[data-lang="ur"] .site-footer h5[data-i18n]{font-size:1rem !important;line-height:1.7;text-align:left;}
+html[data-lang="ur"] .site-footer .footer-grid a[data-i18n]{font-size:.95rem;font-weight:400;line-height:1.8;text-align:left;}
+html[data-lang="ur"] .site-footer .ft-about[data-i18n]{font-size:.98rem;}
+/* prefs panel */
+html[data-lang="ur"] .iwp-prefs h6[data-i18n],html[data-lang="ur"] .iwp-prefs-inline h6[data-i18n]{font-size:.9rem;line-height:1.6;}
+html[data-lang="ur"] .ip-theme span:last-child{font-family:var(--urdu-ui);font-size:.8rem;line-height:1.5;}
+/* small cards / captions stay compact */
+html[data-lang="ur"] :is(.expanding-card-desc,.cat small,.book small,.mode-card span,.feature-card p,.hv-chip small,.qa-t small)[data-i18n]{font-family:var(--urdu-ui);line-height:1.75;}
+html[data-lang="ur"] :is(.feature-card p)[data-i18n]{font-size:.95rem;}
+/* prayer tables: the Arabic name repeats the Urdu one, so hide it */
 html[data-lang="ur"] .pt-row [lang="ar"]{display:none;}
+/* Azkar category cards: in Urdu the Arabic heading joins the flow so a two-line title can't run into it */
+html[data-lang="ur"] .cat .cat-ar{position:relative;top:auto;right:auto;align-self:flex-end;max-width:calc(100% - 70px);margin:0 0 auto;padding-bottom:8px;}
+html[data-lang="ur"] .cat strong[data-i18n]{font-size:1.02rem;line-height:1.55;}
+html[data-lang="ur"] .cat.big strong[data-i18n]{font-size:1.3rem;}
+html[data-lang="ur"] .cat small[data-i18n]{font-size:.78rem;line-height:1.6;}
+/* clock times, numbers and Latin names inside Urdu lines keep their own direction */
+html[data-lang="ur"] [data-i18n] :is(span,time,b,strong):not([data-i18n]){unicode-bidi:plaintext;}
+html[data-lang="ur"] .t-meta{direction:rtl;font-family:var(--urdu-ui);}
+html[data-theme="light"] .iwp-prefs-btn{color:#7a5a14;background:#fffdf7;border-color:rgba(199,155,59,.5);}
+
+/* ---------------------------------------------------------------- finishing touches per theme */
+html[data-theme="light"] .nav-cta,html[data-theme="light"] .nav-cta *{color:#1f1606 !important;}
+::selection{background:rgba(212,175,55,.34);}
+html{scrollbar-color:#1b5e20 #efe7cf;}
+html[data-theme="night"]{scrollbar-color:#3b5a48 #07120d;}
+html[data-theme="light"]{scrollbar-color:#c79b3b #fbf6e8;}
+html[data-theme="sky"]{scrollbar-color:#1f4f86 #eaf1f9;}
+html[data-theme="terracotta"]{scrollbar-color:#8a3b22 #f6ebdf;}
+/* the mobile browser bar follows the theme too (set from JS); smooth colour changes on the few big surfaces */
+body,.site-header,.site-footer{transition:background-color .35s ease,color .35s ease;}

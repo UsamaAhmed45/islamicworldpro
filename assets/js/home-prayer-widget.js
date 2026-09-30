@@ -90,8 +90,10 @@
     var atStr = fmt(next.k === 'fajr' && next.at > instant(today, times.isha || 0) ? tomorrow.fajr : times[next.k]);
     if (nameEl && nameEl.textContent !== T(label[1])) nameEl.textContent = T(label[1]);
     if (timeEl) {
-      var tt = UR ? atStr + ' پر · ' + (hh ? hh + ' گھنٹے ' : '') + mm + ' منٹ میں' : 'at ' + atStr + ' · in ' + (hh ? hh + 'h ' : '') + mm + 'm';
+      // Urdu: keep the clock time as an isolated left-to-right run so the line never scrambles
+      var tt = UR ? '\u2066' + atStr + '\u2069 پر · ' + (hh ? hh + ' گھنٹے ' : '') + mm + ' منٹ باقی' : 'at ' + atStr + ' · in ' + (hh ? hh + 'h ' : '') + mm + 'm';
       if (timeEl.textContent !== tt) timeEl.textContent = tt;
+      if (UR) { timeEl.setAttribute('data-i18n', ''); timeEl.dir = 'rtl'; } else if (timeEl.hasAttribute('data-i18n')) { timeEl.removeAttribute('data-i18n'); timeEl.removeAttribute('dir'); }
     }
     if (ring) ring.style.setProperty('--p', Math.min(100, Math.max(0, (1 - left / (next.at - prevAt)) * 100)).toFixed(1));
     var cnt = $('hpCount');

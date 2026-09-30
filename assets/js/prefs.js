@@ -88,7 +88,7 @@
   var PAT = [
     [/^(\d[\d,]*) adhkar$/, '$1 اذکار'], [/^1 dhikr$/, '۱ ذکر'],
     [/^([\d,]+) hadith · (\d+) books$/, '$1 احادیث · $2 کتب'], [/^([\d,]+) hadith$/, '$1 احادیث'],
-    [/^Round (\d+)$/, 'دور $1'], [/^(\d+) ayahs$/, '$1 آیات']
+    [/^Round (\d+)$/, 'دور $1'], [/^([\d,]+) km \(([\d,]+) mi\) to the Ka‘bah$/, 'کعبہ تک $1 کلومیٹر ($2 میل)'], [/^(\d+) ayahs$/, '$1 آیات']
   ];
   function tr(en) {
     var v = UR[en] || UR[norm(en)];
@@ -111,18 +111,55 @@
     }
     return null;
   }
+  // a sentence that continues in other (untranslated) words — e.g. "built by <b>Aurevia</b> with one goal…" —
+  // is left in English rather than half-translated
+  var LAT = /[A-Za-z]{3,}/;
+  function mixed(el, tn) {
+    for (var i = 0; i < el.childNodes.length; i++) {
+      var n = el.childNodes[i];
+      if (n === tn) continue;
+      if (n.nodeType === 3) { if (LAT.test(n.nodeValue)) return true; continue; }
+      if (n.nodeType !== 1 || n.hasAttribute('data-i18n') || n.getAttribute('aria-hidden') === 'true' || n.tagName === 'svg' || n.tagName === 'SVG' || n.matches(SEL)) continue;
+      if (LAT.test(n.textContent)) return true;
+    }
+    return false;
+  }
   function translateOne(el, lang) {
-      if (el.closest(NOT)) return;
+      if (el.closest(NOT) || el.dataset.enKey) return;
       var tn = textNodeOnly(el);
       if (!tn) return;
       var raw = tn.nodeValue, cur = norm(raw);
       // text changed by the page since we last looked → that is the new English
       if (el.dataset.en == null || (cur !== el.dataset.en && cur !== el.dataset.ur)) el.dataset.en = cur;
-      var en = el.dataset.en, ur = lang === 'ur' ? tr(en) : null;
+      var en = el.dataset.en, ur = lang === 'ur' && !mixed(el, tn) ? tr(en) : null;
       var lead = raw.match(/^\s*/)[0], trail = raw.match(/\s*$/)[0];
       if (ur) { el.dataset.ur = ur; if (cur !== ur) tn.nodeValue = lead + ur + trail; el.setAttribute('data-i18n', ''); }
       else if (el.hasAttribute('data-i18n')) { if (cur !== en) tn.nodeValue = lead + en + trail; el.removeAttribute('data-i18n'); }
     }
+  // "Round 1 · target 33 · today 0" — the connecting words sit between live numbers
+  var META = { '· target': '· ہدف', '· today': '· آج' };
+  function translateMeta(lang) {
+    d.querySelectorAll('.t-meta').forEach(function (p) {
+      p.childNodes.forEach(function (n) {
+        if (n.nodeType !== 3) return;
+        if (n.__en == null) n.__en = n.nodeValue;
+        var k = n.__en.trim();
+        n.nodeValue = lang === 'ur' && META[k] ? n.__en.replace(k, META[k]) : n.__en;
+      });
+    });
+  }
+  function translateHtml(lang) {
+    var H = window.IWP_UR_HTML || {};
+    d.querySelectorAll('main p, section p').forEach(function (p) {
+      if (p.dataset.enHtml == null) {
+        var key = norm(p.textContent);
+        if (!H[key]) return;
+        p.dataset.enHtml = p.innerHTML; p.dataset.enKey = key;
+      }
+      if (lang === 'ur' && H[p.dataset.enKey]) { p.innerHTML = H[p.dataset.enKey]; p.setAttribute('data-i18n', ''); }
+      else { p.innerHTML = p.dataset.enHtml; p.removeAttribute('data-i18n'); }
+    });
+  }
   function translateIn(scope, lang) {
     if (scope.nodeType === 1 && scope.matches && scope.matches(SEL)) translateOne(scope, lang);
     scope.querySelectorAll(SEL).forEach(function (el) { translateOne(el, lang); });
@@ -147,14 +184,10 @@
   function applyLang(lang) {
     root.dataset.lang = lang;
     root.setAttribute('lang', lang === 'ur' ? 'ur' : 'en');
-    if (lang === 'ur' && !d.getElementById('iwpUrduFont')) {
-      var f = d.createElement('link');
-      f.id = 'iwpUrduFont'; f.rel = 'stylesheet';
-      f.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap';
-      d.head.appendChild(f);
-    }
     if (lang === 'ur' && !window.IWP_UR_MORE) { loadMore(); }
     translateIn(d, lang);
+    translateMeta(lang);
+    translateHtml(lang);
     watch(lang);
     var h1 = d.getElementById('heroTitle');
     if (h1) {
@@ -176,7 +209,7 @@
   function loadMore() {
     if (moreLoading) return; moreLoading = true;
     var s = d.createElement('script');
-    s.src = '/assets/js/i18n-ur.js?v=20260930d'; s.async = true;
+    s.src = '/assets/js/i18n-ur.js?v=20260930e'; s.async = true;
     s.onload = function () {
       var m = window.IWP_UR_MORE || {};
       for (var k in m) if (!UR[k]) UR[k] = m[k];
@@ -201,7 +234,9 @@
   }
 
   /* ------------------------------------------------------------ UI */
-  var PAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.3 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="14.5" cy="7" r="1.2"/></svg>';
+  // header control: a live swatch of the current theme + the language, with a small chevron
+  var PAL = '<span class="ipb-sw ip-sw" aria-hidden="true"></span><span class="ipb-lang">EN</span>' +
+    '<svg class="ipb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   function panelHTML() {
     var lang = get(KEY_L, 'en');
     return '<h6 class="ip-title">Theme</h6><div class="ip-themes" role="group" aria-label="Theme">' +
@@ -215,6 +250,8 @@
   var panel = null, btn = null, inline = null;
   function paintPanels() {
     var t = get(KEY_T, 'classic'), l = get(KEY_L, 'en');
+    d.querySelectorAll('.ipb-sw').forEach(function (sw) { sw.className = 'ipb-sw ip-sw ' + t; });
+    d.querySelectorAll('.ipb-lang').forEach(function (x) { x.textContent = l === 'ur' ? 'اردو' : 'EN'; x.lang = l; });
     d.querySelectorAll('[data-theme-pick]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.themePick === t); });
     d.querySelectorAll('[data-lang-pick]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.langPick === l); });
     d.querySelectorAll('.ip-theme span:last-child').forEach(function (s, i) {
