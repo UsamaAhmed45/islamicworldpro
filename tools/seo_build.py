@@ -11,7 +11,9 @@ import html, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 BASE = 'https://islamicworldpro.com'
-VER = '20260930i'
+VER = '20260930j'
+THEME_VER = '20260930d'
+PREFS_HEAD = '<script>(function(){try{var t=JSON.parse(localStorage.getItem("iwp:site-theme")||"null"),l=JSON.parse(localStorage.getItem("iwp:site-lang")||"null"),h=document.documentElement;if(t&&t!=="classic")h.dataset.theme=t;if(l==="ur")h.dataset.lang="ur";}catch(e){}})();</script>'
 SKIP = {'admin.html'}
 
 TITLE_MAX, DESC_MAX = 62, 158
@@ -158,6 +160,13 @@ def add_polish(s):
         s = s.replace('</body>', f'<script defer src="/assets/js/polish.js?v={VER}"></script>\n</body>', 1)
     else:
         s = re.sub(r'polish\.js\?v=\w+', f'polish.js?v={VER}', s)
+    # site themes + English/Urdu switch (same as the app)
+    if 'iwp:site-theme' not in s:
+        s = s.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n' + PREFS_HEAD, 1)
+    if 'themes.css' not in s:
+        s = re.sub(r'(<link rel="stylesheet" href="/assets/css/polish\.css\?v=\w+">)', r'\1\n<link rel="stylesheet" href="/assets/css/themes.css?v=' + THEME_VER + '">', s, count=1)
+    if 'prefs.js' not in s:
+        s = s.replace('</body>', f'<script defer src="/assets/js/prefs.js?v=20260930c"></script>\n</body>', 1)
     return s
 
 

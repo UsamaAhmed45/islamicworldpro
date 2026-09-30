@@ -14,11 +14,11 @@
   --nm-accent:var(--gold-500);
   flex:1;min-width:0;width:100%;overflow:hidden;isolation:isolate;
   padding:26px 14px 18px;gap:3px;align-items:center;justify-content:flex-start;
-  border-radius:22px;border:1px solid rgba(22,71,45,.10);
+  border-radius:22px;border:1px solid rgba(var(--t-md-rgb),.10);
   background:
     radial-gradient(120% 70% at 50% 0%,rgba(233,200,115,.16),transparent 60%),
-    linear-gradient(180deg,#fff 0%,#fffdf6 100%);
-  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 24px -20px rgba(8,42,29,.45);
+    linear-gradient(180deg,var(--s-card) 0%,var(--s-card2) 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 24px -20px rgba(var(--t-dk-rgb),.45);
   transition:transform .5s var(--ease-out,cubic-bezier(.16,1,.3,1)),box-shadow .5s,border-color .3s;
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
@@ -60,7 +60,7 @@
 @media (hover:hover) and (pointer:fine){
   .nm-card:hover{
     transform:translateY(-6px);border-color:rgba(212,175,55,.65);
-    box-shadow:0 26px 44px -26px rgba(8,42,29,.5),0 0 0 1px rgba(212,175,55,.35);
+    box-shadow:0 26px 44px -26px rgba(var(--t-dk-rgb),.5),0 0 0 1px rgba(212,175,55,.35);
   }
   .nm-card:hover::before{left:6%;right:6%;opacity:1;}
   .nm-card:hover::after{animation:nmSweep .9s ease forwards;}
@@ -103,13 +103,13 @@
   overflow:hidden;
   background:
     radial-gradient(90% 60% at 50% 0%,rgba(212,175,55,.22),transparent 65%),
-    radial-gradient(70% 50% at 50% 110%,rgba(31,138,91,.25),transparent 70%),
+    radial-gradient(70% 50% at 50% 110%,rgba(var(--t-acc-rgb),.25),transparent 70%),
     var(--green-950);
   border:1px solid rgba(212,175,55,.35);
   box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
 }
 .nm-dialog[open]{animation:ndIn .5s var(--ease-spring,ease);}
-.nm-dialog[open]::backdrop{animation:ndFade .4s ease;background:rgba(4,18,11,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.nm-dialog[open]::backdrop{animation:ndFade .4s ease;background:rgba(var(--t-dk-rgb),.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
 @keyframes ndIn{from{opacity:0;transform:translateY(30px) scale(.94);}to{opacity:1;transform:none;}}
 @keyframes ndFade{from{opacity:0;}}
 .nm-dialog .nd-ar{text-shadow:0 0 30px rgba(233,200,115,.35);}
@@ -120,7 +120,7 @@
 .nm-dialog .nd-nav button{transition:background .25s,border-color .25s,transform .3s var(--ease-spring,ease);}
 .nm-dialog .nd-nav button:hover{background:rgba(212,175,55,.14);border-color:var(--gold-500);}
 .nm-dialog .nd-nav button:active{transform:scale(.94);}
-.nm-dialog .nd-hint{display:none;font-size:.74rem;color:rgba(243,234,210,.55);margin:14px 0 0;}
+.nm-dialog .nd-hint{display:none;font-size:.74rem;color:rgba(var(--c-on-dk-rgb),.55);margin:14px 0 0;}
 .nm-dialog .nd-grip{display:none;}
 
 /* ---------- Phones ---------- */
@@ -148,7 +148,7 @@
   .nm-dialog[open]{animation:ndSheet .5s var(--ease-out,ease);}
   @keyframes ndSheet{from{transform:translateY(100%);}to{transform:none;}}
   .nm-dialog .nd{padding:18px 20px calc(22px + env(safe-area-inset-bottom));}
-  .nm-dialog .nd-grip{display:block;width:44px;height:5px;border-radius:5px;background:rgba(243,234,210,.3);margin:0 auto 10px;}
+  .nm-dialog .nd-grip{display:block;width:44px;height:5px;border-radius:5px;background:rgba(var(--c-on-dk-rgb),.3);margin:0 auto 10px;}
   .nm-dialog .nd-ar{font-size:3.2rem;}
   .nm-dialog .nd-hint{display:block;}
 }
@@ -178,9 +178,9 @@ button.nm-medal:focus-visible{outline:2px solid var(--gold-300);outline-offset:6
 .nm-medal-n:empty{display:none;}
 .nm-medal-cap{text-align:center;min-height:48px;}
 .nm-medal-cap strong{display:block;font-family:var(--font-display);font-size:1.15rem;color:var(--gold-200);}
-.nm-medal-cap small{display:block;font-size:.84rem;color:rgba(243,234,210,.75);}
+.nm-medal-cap small{display:block;font-size:.84rem;color:rgba(var(--c-on-dk-rgb),.75);}
 .nm-medal-nav{display:flex;gap:8px;}
-.nm-medal-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(212,175,55,.45);background:rgba(250,243,223,.06);
+.nm-medal-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(212,175,55,.45);background:rgba(var(--c-on-dk2-rgb),.06);
   color:var(--gold-200);font-size:1.2rem;line-height:1;display:grid;place-items:center;transition:background .25s,transform .3s var(--ease-spring,ease);}
 .nm-medal-nav button:hover{background:rgba(212,175,55,.18);transform:translateY(-2px);}
 .nm-medal-nav #nmMedalPlay{font-size:.7rem;letter-spacing:-.08em;}

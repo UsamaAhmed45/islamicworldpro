@@ -47,6 +47,8 @@
   ];
 
   var DEFAULTS = { arSize: 34, trSize: 17, rtheme: 'paper', reciter: 'Alafasy_128kbps', tafseer: 'en-tafisr-ibn-kathir', translation: 'en.sahih', autoscroll: true, translit: false, mode: 'translation', lang: 'en', tajweed: false };
+  // readers who chose اردو for the site start with the Urdu translation (their own reader choice still wins)
+  try { if (JSON.parse(localStorage.getItem('iwp:site-lang') || 'null') === 'ur') DEFAULTS.lang = 'ur'; } catch (e) {}
   Q.settings = Object.assign({}, DEFAULTS, IWP.store.get('qset', {}));
   if (window.innerWidth < 620 && !IWP.store.get('qset', {}).arSize) Q.settings.arSize = 28;
   Q.save = function () { IWP.store.set('qset', Q.settings); };

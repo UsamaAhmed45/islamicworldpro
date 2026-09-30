@@ -187,6 +187,8 @@
   var $ = function (id) { return document.getElementById(id); };
   var today, times, tomorrow;
 
+  function T(s) { return window.IWPT ? window.IWPT(s) : s; }
+  document.addEventListener('iwp:lang', function () { if (times) render(); });
   function render() {
     today = dateIn(loc.tz, new Date());
     times = timesFor(today);
@@ -197,7 +199,7 @@
     $('ptHijriAr').textContent = hijri(today, 'ar');
     $('ptList').innerHTML = PRAYERS.map(function (p) {
       return '<div class="pt-row' + (p[0] === 'sunrise' ? ' sun' : '') + '" data-p="' + p[0] + '"><span class="ic"><svg viewBox="0 0 24 24">' + ICONS[p[0]] + '</svg></span>' +
-        '<span><strong>' + p[1] + '</strong><span lang="ar">' + p[2] + '</span></span><time>' + fmt(times[p[0]]) + '</time></div>';
+        '<span><strong>' + T(p[1]) + '</strong><span lang="ar">' + p[2] + '</span></span><time>' + fmt(times[p[0]]) + '</time></div>';
     }).join('');
     $('ptMidnight').textContent = fmt(times.midnight);
     $('ptThird').textContent = fmt(times.lastThird);
@@ -227,7 +229,7 @@
     if (dateIn(loc.tz, new Date()).d !== today.d) { render(); return; }
     var left = Math.max(0, next.at - now), hh = Math.floor(left / 3600000), mm = Math.floor(left % 3600000 / 60000), ss = Math.floor(left % 60000 / 1000);
     var name = PRAYERS.find(function (p) { return p[0] === next.k; });
-    $('nxName').textContent = name[1];
+    if ($('nxName').textContent !== T(name[1])) $('nxName').textContent = T(name[1]);
     $('nxTime').textContent = fmt(next.k === 'fajr' && next.at > instant(today, times.isha) ? tomorrow.fajr : times[next.k]);
     $('nxLeft').textContent = (hh ? hh + ':' + ('0' + mm).slice(-2) : mm) + ':' + ('0' + ss).slice(-2);
     var span = next.at - prev.at;

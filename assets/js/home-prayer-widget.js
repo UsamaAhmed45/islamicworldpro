@@ -86,8 +86,13 @@
     var label = PRAYERS.concat([['fajr', 'Fajr']]).find(function (p) { return p[0] === next.k; });
     var nameEl = $('hpName'), timeEl = $('hpTime'), ring = $('hpRing');    var left = Math.max(0, next.at - now);
     var hh = Math.floor(left / 3600000), mm = Math.floor(left % 3600000 / 60000);
-    if (nameEl) nameEl.textContent = label[1];
-    if (timeEl) timeEl.textContent = 'at ' + fmt(next.k === 'fajr' && next.at > instant(today, times.isha || 0) ? tomorrow.fajr : times[next.k]) + ' · in ' + (hh ? hh + 'h ' : '') + mm + 'm';
+    var T = window.IWPT || function (s) { return s; }, UR = window.IWPLANG && window.IWPLANG() === 'ur';
+    var atStr = fmt(next.k === 'fajr' && next.at > instant(today, times.isha || 0) ? tomorrow.fajr : times[next.k]);
+    if (nameEl && nameEl.textContent !== T(label[1])) nameEl.textContent = T(label[1]);
+    if (timeEl) {
+      var tt = UR ? atStr + ' پر · ' + (hh ? hh + ' گھنٹے ' : '') + mm + ' منٹ میں' : 'at ' + atStr + ' · in ' + (hh ? hh + 'h ' : '') + mm + 'm';
+      if (timeEl.textContent !== tt) timeEl.textContent = tt;
+    }
     if (ring) ring.style.setProperty('--p', Math.min(100, Math.max(0, (1 - left / (next.at - prevAt)) * 100)).toFixed(1));
     var cnt = $('hpCount');
     if (cnt) {
@@ -99,7 +104,7 @@
       var html = PRAYERS.map(function (p) {
         var at = instant(today, times[p[0]]);
         var st = (next.k === p[0] && next.at === at) ? 'is-next' : (at <= now ? 'is-past' : '');
-        return '<li class="' + st + '"><span class="hl-dot"></span><small>' + p[1] + '</small><b>' + fmt(times[p[0]]) + '</b></li>';
+        return '<li class="' + st + '"><span class="hl-dot"></span><small>' + T(p[1]) + '</small><b>' + fmt(times[p[0]]) + '</b></li>';
       }).join('');
       if (line.dataset.h !== html) { line.innerHTML = html; line.dataset.h = html; }
       var done = PRAYERS.filter(function (p) { return instant(today, times[p[0]]) <= now; }).length;

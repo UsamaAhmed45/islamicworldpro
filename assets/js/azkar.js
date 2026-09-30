@@ -181,12 +181,13 @@
     if (ts.date !== today) { ts.today = 0; ts.date = today; }
     ts.count = ts.count || 0; ts.round = ts.round || 1; ts.preset = ts.preset || 0;
     var presets = Array.prototype.slice.call(document.querySelectorAll('#tPresets [data-t]'));
+    document.addEventListener('iwp:lang', function () { paint(); });
     function paint() {
       var p = presets[ts.preset] || presets[0];
       presets.forEach(function (x, i) { x.setAttribute('aria-pressed', i === ts.preset); });
       document.getElementById('tAr').textContent = p.dataset.ar;
       document.getElementById('tTarget').textContent = p.dataset.t;
-      document.getElementById('tRound').textContent = 'Round ' + ts.round;
+      document.getElementById('tRound').textContent = (window.IWPT || String)('Round ' + ts.round);
       document.getElementById('tToday').textContent = ts.today;
       tBtn.textContent = ts.count;
       var tgt = +p.dataset.t, of = document.getElementById('tOf');

@@ -111,6 +111,7 @@
     reach: cl(n(ds.reach, 22), 0, 100) / 100
   };
   var BASE = hex(ds.base, [0.98, 0.95, 0.87]), ACCENT = hex(ds.accent, [0.83, 0.69, 0.22]);
+  window.IWPBF = { setColors: function (b, a) { BASE = hex(b, BASE); ACCENT = hex(a, ACCENT); if (!running) requestAnimationFrame(function (t) { last = t - 16; frame(t); }); } };
 
   /* ---- swarm ---- */
   var F = function () { return new Float32Array(MAX_COUNT); };
