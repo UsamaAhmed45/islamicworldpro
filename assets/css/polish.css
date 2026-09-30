@@ -1245,3 +1245,33 @@ body.nav-open .site-header{transform:none !important;}
 @keyframes glint{0%,100%{opacity:0;transform:scale(.3);}45%{opacity:1;transform:scale(1);}60%{opacity:0;transform:scale(.4);}}
 @media (max-width:600px){.hv-still .hv-frame{border-radius:16px;}}
 @media (prefers-reduced-motion:reduce){.hv-still .hv-frame img,.hv-shine,.hv-glints i{animation:none;}}
+
+/* ==========================================================================
+   Smoothness pass — same look, less work for the phone's GPU.
+   Only transform/opacity animate; costly blur, backdrop and repaint-every-frame
+   effects are switched off on touch devices; long lists get content-visibility.
+   ========================================================================== */
+.pz{will-change:auto;}
+.pz.is-in{transition-delay:calc(var(--pz-i,0) * 35ms);}
+.sc.pz,.jz.pz,.book.pz,.cat.pz{transform:translateY(18px);}          /* no 3D tilt on reveal */
+html{-webkit-text-size-adjust:100%;}
+body{overscroll-behavior-y:none;}
+img{content-visibility:visible;}
+@media (hover:none),(pointer:coarse),(max-width:760px){
+  .iwp-aurora{display:none;}                                      /* big blurred animated layer */
+  .text-gold{animation:none !important;}                          /* repainted every frame */
+  .site-header.is-scrolled{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;background:#082a1d !important;}
+  .qr-toolbar,.hd-toolbar,.ms-bar{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+  .qr-toolbar{background:var(--paper,#fbf6e8) !important;}
+  .hd-toolbar{background:#faf3df !important;}
+  .ms-bar{background:#fbf6e8 !important;}
+  .qr-dock{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;background:#082a1d !important;}
+  .hv-chip,.hero-chip,.btn-glass,.cat .count{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+  .hv-chip{background:rgba(8,42,29,.92) !important;}
+  .bm-scrim,.nav-backdrop,.nm-dialog[open]::backdrop{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+  .hc-dot,.hp-line li.is-next .hl-dot{animation:none !important;}    /* box-shadow pulses repaint */
+  .hv-glints{display:none;}
+  .hv-ring::before{animation:none !important;}
+  .feature-card,.blog-card,.nm-card,.sc a,.jz a,.book,.cat,.qa-tile,.hp-card{box-shadow:0 8px 20px -16px rgba(8,42,29,.45) !important;}
+  .sc a::after,.jz a::after,.nm-card::after,.qa-tile::after{display:none;}  /* hover sweeps never show on touch */
+}

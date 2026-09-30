@@ -132,7 +132,7 @@
 
   function frame(now) {
     var dt = Math.min(0.05, (now - last) / 1000); last = now;
-    var dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : MAX_DPR);
+    var dpr = Math.min(window.devicePixelRatio || 1, small ? 1 : 1.5);
     var cw = canvas.clientWidth || 1200, ch = canvas.clientHeight || 700;
     var bw = Math.max(1, Math.round(cw * dpr)), bh = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== bw || canvas.height !== bh) { canvas.width = bw; canvas.height = bh; gl.viewport(0, 0, bw, bh); }

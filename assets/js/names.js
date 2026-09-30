@@ -17,10 +17,11 @@
   // Staggered rise for cards that scroll into view (on-screen cards are never hidden)
   function initReveal(grid) {
     if (reduce || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(hover: none), (pointer: coarse), (max-width: 760px)').matches) return; // phones: no hidden cards
     var n = cols(grid), vh = window.innerHeight;
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('nm-in'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
+    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
     Array.prototype.forEach.call(grid.querySelectorAll('.nm-card'), function (c, i) {
       if (c.getBoundingClientRect().top < vh) return;
       c.style.setProperty('--d', (i % n) * 70 + 'ms');

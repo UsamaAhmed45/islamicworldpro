@@ -46,7 +46,7 @@
     // opening the mobile menu always brings the header (and menu) into view
     d.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.nav-toggle')) { setHidden(false); measure(); } }, true);
 
-    var ticking = false;
+    var ticking = false, bttEl = null;
     function onScroll() {
       if (ticking) return; ticking = true;
       w.requestAnimationFrame(function () {
@@ -55,7 +55,7 @@
         bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
         if (header) header.classList.toggle('is-scrolled', y > 12);
         smartHeader(y);
-        var btt = d.querySelector('.back-to-top');
+        var btt = bttEl || (bttEl = d.querySelector('.back-to-top'));
         if (btt) btt.style.setProperty('--p', max > 0 ? Math.round(Math.min(1, y / max) * 100) : 0);
         ticking = false;
       });
@@ -242,13 +242,18 @@
       '.cf-year-wrap', '.cf-near', '.daily-post-card', '.row-head', '.tt-wrap'
     ].join(',');
     var vh = w.innerHeight;
+    // Phones / touch: never hide long lists (momentum scrolling on iOS fires
+    // observers late, which left blank gaps). Only headings and a few feature
+    // cards fade in there, and they start before they reach the screen.
+    var touch = w.matchMedia('(hover: none), (pointer: coarse), (max-width: 760px)').matches;
+    if (touch) SEL = '.section-head, .feature-card, .blog-card, .video-card, .mode-card, .cf-year-wrap';
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         e.target.classList.add('is-in');
         io.unobserve(e.target);
       });
-    }, { rootMargin: '0px 0px -5% 0px', threshold: 0 });
+    }, { rootMargin: touch ? '0px 0px 25% 0px' : '0px 0px 10% 0px', threshold: 0 });
 
     var els = d.querySelectorAll(SEL);
     for (var i = 0; i < els.length; i++) {
